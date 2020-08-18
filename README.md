@@ -47,7 +47,7 @@ A terminal presentation tool.
 
 ### Images
 
-![python](python.png)
+<img src="python.png" width="200" />
 
 ### Animations
 
