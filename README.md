@@ -16,6 +16,8 @@ $ present slides.md
 
 ## Features
 
+Slides can be formatted with Markdown, and each slide can be separated using `---`.
+
 ### Headers and normal text
 
 ```markdown
@@ -31,6 +33,7 @@ A terminal presentation tool.
     - Quit: q
     - Next slide: n, Right arrow
     - Previous slide: b, Left arrow
+- Advance controls
 ```
 
 ### Code blocks
@@ -47,3 +50,7 @@ A terminal presentation tool.
 ![python](python.png)
 
 ### Animations
+
+```html
+<!-- effect='explosions' -->
+```
