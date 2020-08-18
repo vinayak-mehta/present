@@ -2,9 +2,16 @@
 
 import click
 
+from .markdown import Markdown
+
 
 @click.command("present")
-@click.pass_context
-def cli(*args, **kwargs):
+@click.argument("filename")
+def cli(filename):
     """A terminal presentation tool."""
-    print("I'm present!")
+
+    markdown = Markdown()
+    with open(filename, "r") as f:
+        slides = markdown.parse(f.read())
+
+    print(slides)
