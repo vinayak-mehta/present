@@ -1,3 +1,3 @@
 # present
 
-Yet another project manager.
+A terminal presentation tool.
