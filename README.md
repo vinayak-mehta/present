@@ -1,6 +1,6 @@
 # present
 
-A terminal presentation tool.
+A terminal-based presentation tool.
 
 ## Installation
 
@@ -23,7 +23,7 @@ Slides can be formatted with Markdown, and each slide can be separated using `--
 ```markdown
 # present
 
-A terminal presentation tool.
+A terminal-based presentation tool.
 ```
 
 ### Lists
@@ -39,10 +39,9 @@ A terminal presentation tool.
 ### Code blocks
 
 ```python
->>> bin(termios.ICANON)
-'0b10'
->>> bin(termios.ECHO)
-'0b1000'
+import os
+
+print(os.getcwd())
 ```
 
 ### Images

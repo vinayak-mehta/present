@@ -3,13 +3,9 @@
 import re
 from dataclasses import dataclass
 
-import mistune
 from pyfiglet import Figlet
-from pygments import highlight
-from pygments.style import Style
-from pygments.token import Token
-from pygments.lexers import Python3Lexer
-from pygments.formatters import Terminal256Formatter
+
+from ._vendor.mistune import markdown
 
 
 @dataclass
@@ -60,22 +56,26 @@ class List(object):
         return "\n".join(self.walk(self.obj))
 
 
-class MyStyle(Style):
-    styles = {
-        Token.String: "ansibrightblue bg:ansibrightred",
-    }
-
-
 @dataclass
 class BlockCode(object):
     type: str = "code"
     obj: dict = None
 
+    @staticmethod
+    def pad(s, fill=" "):
+        lines = s.splitlines()
+        max_len = max(len(l) for l in lines)
+        top = bottom = " " * (max_len + 2)
+
+        lines = [l.ljust(max_len + 1, fill) for l in lines]
+        lines = [" " + l for l in lines]
+        lines.insert(0, top)
+        lines.append(bottom)
+
+        return "\n".join(lines)
+
     def render(self):
-        result = highlight(
-            self.obj["text"], Python3Lexer(), Terminal256Formatter(style=MyStyle)
-        )
-        return result
+        return self.pad(self.obj["text"])
 
 
 @dataclass
@@ -105,10 +105,17 @@ class Slide(object):
     def __init__(self, elements=None):
         self.elements = elements
         self.has_style = False
+        self.has_code = False
 
         for e in elements:
             if e.type == "html":
                 self.has_style = True
+
+            if e.type == "code":
+                self.has_code = True
+
+        if self.has_style and self.has_code:
+            raise ValueError("Effects and code not supported on the same slide.")
 
         if self.has_style:
             self.fg_color, self.bg_color = 7, 0
@@ -125,7 +132,7 @@ class Markdown(object):
 
     def parse(self, text):
         slides = []
-        ast = mistune.markdown(text, renderer="ast")
+        ast = markdown(text, renderer="ast")
 
         buffer = []
         for i, obj in enumerate(ast):

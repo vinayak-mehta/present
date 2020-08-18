@@ -84,7 +84,7 @@ class Slideshow(object):
     def reset_effect(self):
         reset = [
             Print(
-                self.screen, Text("Press r to restart!"), int(self.screen.height / 2),
+                self.screen, Text("Press 'r' to restart!"), int(self.screen.height / 2),
             ),
         ]
 
@@ -93,6 +93,7 @@ class Slideshow(object):
     def to_effects(self, slide):
         effects = []
         style = None
+        transparent = True
         fg_color, bg_color = 0, 7
         elements = slide.elements
 
@@ -100,6 +101,9 @@ class Slideshow(object):
             style = elements[0].style
             fg_color, bg_color = 7, 0
             elements = elements[1:]
+
+        if slide.has_code:
+            transparent = False
 
         for e in elements:
             if e.type == "heading":
@@ -129,6 +133,9 @@ class Slideshow(object):
                     )
                 )
             else:
+                if e.type == "code":
+                    fg_color, bg_color = 7, 0
+
                 effects.append(
                     Print(
                         self.screen,
@@ -138,6 +145,7 @@ class Slideshow(object):
                         ),
                         colour=fg_color,
                         bg=bg_color,
+                        transparent=transparent,
                     )
                 )
                 height_factor -= 1

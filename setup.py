@@ -15,9 +15,7 @@ with open("README.md", "r") as f:
 requires = [
     "asciimatics>=1.11.0",
     "Click>=7.0",
-    # "git+https://github.com/lepture/mistune@51a96f4191db823896ca5ad22abea6a15f09d7d5#egg=mistune",
     "pyfiglet==0.8.post1",
-    "Pygments==2.6.1",
 ]
 dev_requires = ["Sphinx>=2.2.1"]
 dev_requires = dev_requires + requires
@@ -35,11 +33,7 @@ def setup_package():
         author_email=about["__author_email__"],
         license=about["__license__"],
         packages=find_packages(exclude=("tests",)),
-        entry_points={
-            "console_scripts": [
-                "present = present.cli:cli"
-            ]
-        },
+        entry_points={"console_scripts": ["present = present.cli:cli"]},
         install_requires=requires,
         extras_require={"dev": dev_requires},
         classifiers=[

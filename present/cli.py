@@ -9,7 +9,7 @@ from .markdown import Markdown
 @click.command()
 @click.argument("filename")
 def cli(filename):
-    """present: A terminal presentation tool."""
+    """present: A terminal-based presentation tool."""
 
     markdown = Markdown()
 
