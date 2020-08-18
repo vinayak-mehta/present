@@ -10,6 +10,7 @@ A terminal presentation tool.
     - Quit: q
     - Next slide: n, Right arrow
     - Previous slide: b, Left arrow
+- Advanced controls
 
 ---
 
@@ -29,7 +30,6 @@ A terminal presentation tool.
 ![python](python.png)
 
 ---
+<!-- effect='explosions' -->
 
-## Animations
-
-<!-- animation="fireworks" -->
+## Effects

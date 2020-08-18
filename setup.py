@@ -13,8 +13,9 @@ with open("README.md", "r") as f:
     readme = f.read()
 
 requires = [
+    "asciimatics>=1.11.0",
     "Click>=7.0",
-    "git+https://github.com/lepture/mistune@51a96f4191db823896ca5ad22abea6a15f09d7d5#egg=mistune",
+    # "git+https://github.com/lepture/mistune@51a96f4191db823896ca5ad22abea6a15f09d7d5#egg=mistune",
     "pyfiglet==0.8.post1",
     "Pygments==2.6.1",
 ]

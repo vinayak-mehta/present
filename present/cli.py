@@ -2,16 +2,22 @@
 
 import click
 
+from .slideshow import Slideshow
 from .markdown import Markdown
 
 
-@click.command("present")
+@click.command()
 @click.argument("filename")
 def cli(filename):
-    """A terminal presentation tool."""
+    """slide-o-matic: Presentation tool!"""
 
     markdown = Markdown()
+
     with open(filename, "r") as f:
         slides = markdown.parse(f.read())
 
-    print(slides)
+    show = Slideshow(slides)
+    try:
+        show.play()
+    except KeyboardInterrupt:
+        pass
