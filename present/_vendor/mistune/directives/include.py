@@ -1,5 +1,5 @@
 import os
-from mistune.markdown import preprocess
+from ..markdown import preprocess
 from .base import Directive
 
 
