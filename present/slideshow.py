@@ -11,7 +11,7 @@ from asciimatics.event import KeyboardEvent
 from asciimatics.exceptions import ResizeScreenError, StopApplication, NextScene
 from asciimatics.renderers import Box, StaticRenderer, FigletText, ColourImageFile
 
-from .effects import explosions
+from .effects import explosions, matrix, stars
 
 
 class Text(StaticRenderer):
@@ -84,7 +84,7 @@ class Slideshow(object):
     def reset_effect(self):
         reset = [
             Print(
-                self.screen, Text("Press 'r' to restart!"), int(self.screen.height / 2),
+                self.screen, Text("Press 'r' to restart."), int(self.screen.height / 2),
             ),
         ]
 

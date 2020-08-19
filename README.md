@@ -1,8 +1,14 @@
+<p align="center">
+   <img src="https://raw.githubusercontent.com/vinayak-mehta/present/master/docs/_static/present.png" width="200">
+</p>
+
 # present
 
 A terminal-based presentation tool.
 
 ## Installation
+
+You can simply use pip to install `present`:
 
 ```bash
 $ pip install present
@@ -11,45 +17,13 @@ $ pip install present
 ## Usage
 
 ```bash
-$ present slides.md
+$ present sample.md
 ```
 
-## Features
+## Versioning
 
-Slides can be formatted with Markdown, and each slide can be separated using `---`.
+`present` uses [Semantic Versioning](https://semver.org/). For the available versions, see the tags on the GitHub repository.
 
-### Headers and normal text
+## License
 
-```markdown
-# present
-
-A terminal-based presentation tool.
-```
-
-### Lists
-
-```markdown
-- Basic controls
-    - Quit: q
-    - Next slide: n, Right arrow
-    - Previous slide: b, Left arrow
-- Advance controls
-```
-
-### Code blocks
-
-```python
-import os
-
-print(os.getcwd())
-```
-
-### Images
-
-<img src="python.png" width="200" />
-
-### Animations
-
-```html
-<!-- effect='explosions' -->
-```
+This project is licensed under the Apache License, see the [LICENSE](https://github.com/vinayak-mehta/present/blob/master/LICENSE) file for details.

@@ -2,7 +2,7 @@ from .scanner import escape, escape_html
 
 
 class BaseRenderer(object):
-    NAME = 'base'
+    NAME = "base"
     IS_TREE = False
 
     def __init__(self):
@@ -22,63 +22,60 @@ class BaseRenderer(object):
 
 
 class AstRenderer(BaseRenderer):
-    NAME = 'ast'
+    NAME = "ast"
     IS_TREE = True
 
     def text(self, text):
-        return {'type': 'text', 'text': text}
+        return {"type": "text", "text": text}
 
     def link(self, link, children=None, title=None):
-        return {'type': 'link', 'link': link, 'children': children, 'title': title}
+        return {"type": "link", "link": link, "children": children, "title": title}
 
     def image(self, src, alt="", title=None):
-        return {'type': 'image', 'src': src, 'alt': alt, 'title': title}
+        return {"type": "image", "src": src, "alt": alt, "title": title}
 
     def codespan(self, text):
-        return {'type': 'codespan', 'text': text}
+        return {"type": "codespan", "text": text}
 
     def linebreak(self):
-        return {'type': 'linebreak'}
+        return {"type": "linebreak"}
 
     def inline_html(self, html):
-        return {'type': 'inline_html', 'text': html}
+        return {"type": "inline_html", "text": html}
 
     def heading(self, children, level):
-        return {'type': 'heading', 'children': children, 'level': level}
+        return {"type": "heading", "children": children, "level": level}
 
     def newline(self):
-        return {'type': 'newline'}
+        return {"type": "newline"}
 
     def thematic_break(self):
-        return {'type': 'thematic_break'}
+        return {"type": "thematic_break"}
 
     def block_code(self, children, info=None):
-        return {
-            'type': 'block_code',
-            'text': children,
-            'info': info
-        }
+        return {"type": "block_code", "text": children, "info": info}
 
     def block_html(self, children):
-        return {'type': 'block_html', 'text': children}
+        return {"type": "block_html", "text": children}
 
     def list(self, children, ordered, level, start=None):
         token = {
-            'type': 'list',
-            'children': children,
-            'ordered': ordered,
-            'level': level,
+            "type": "list",
+            "children": children,
+            "ordered": ordered,
+            "level": level,
         }
         if start is not None:
-            token['start'] = start
+            token["start"] = start
         return token
 
     def list_item(self, children, level):
-        return {'type': 'list_item', 'children': children, 'level': level}
+        return {"type": "list_item", "children": children, "level": level}
 
     def _create_default_method(self, name):
         def __ast(children):
-            return {'type': name, 'children': children}
+            return {"type": name, "children": children}
+
         return __ast
 
     def _get_method(self, name):
@@ -89,12 +86,12 @@ class AstRenderer(BaseRenderer):
 
 
 class HTMLRenderer(BaseRenderer):
-    NAME = 'html'
+    NAME = "html"
     IS_TREE = False
     HARMFUL_PROTOCOLS = {
-        'javascript:',
-        'vbscript:',
-        'data:',
+        "javascript:",
+        "vbscript:",
+        "data:",
     }
 
     def __init__(self, escape=True, allow_harmful_protocols=None):
@@ -114,7 +111,7 @@ class HTMLRenderer(BaseRenderer):
         if schemes:
             for s in schemes:
                 if url.startswith(s):
-                    url = '#harmful-link'
+                    url = "#harmful-link"
                     break
         return url
 
@@ -128,25 +125,25 @@ class HTMLRenderer(BaseRenderer):
         s = '<a href="' + self._safe_url(link) + '"'
         if title:
             s += ' title="' + escape_html(title) + '"'
-        return s + '>' + (text or link) + '</a>'
+        return s + ">" + (text or link) + "</a>"
 
     def image(self, src, alt="", title=None):
         s = '<img src="' + src + '" alt="' + alt + '"'
         if title:
             s += ' title="' + escape_html(title) + '"'
-        return s + ' />'
+        return s + " />"
 
     def emphasis(self, text):
-        return '<em>' + text + '</em>'
+        return "<em>" + text + "</em>"
 
     def strong(self, text):
-        return '<strong>' + text + '</strong>'
+        return "<strong>" + text + "</strong>"
 
     def codespan(self, text):
-        return '<code>' + escape(text) + '</code>'
+        return "<code>" + escape(text) + "</code>"
 
     def linebreak(self):
-        return '<br />\n'
+        return "<br />\n"
 
     def inline_html(self, html):
         if self._escape:
@@ -154,49 +151,49 @@ class HTMLRenderer(BaseRenderer):
         return html
 
     def paragraph(self, text):
-        return '<p>' + text + '</p>\n'
+        return "<p>" + text + "</p>\n"
 
     def heading(self, text, level):
-        tag = 'h' + str(level)
-        return '<' + tag + '>' + text + '</' + tag + '>\n'
+        tag = "h" + str(level)
+        return "<" + tag + ">" + text + "</" + tag + ">\n"
 
     def newline(self):
-        return ''
+        return ""
 
     def thematic_break(self):
-        return '<hr />\n'
+        return "<hr />\n"
 
     def block_text(self, text):
         return text
 
     def block_code(self, code, info=None):
-        html = '<pre><code'
+        html = "<pre><code"
         if info is not None:
             info = info.strip()
         if info:
             lang = info.split(None, 1)[0]
             lang = escape_html(lang)
             html += ' class="language-' + lang + '"'
-        return html + '>' + escape(code) + '</code></pre>\n'
+        return html + ">" + escape(code) + "</code></pre>\n"
 
     def block_quote(self, text):
-        return '<blockquote>\n' + text + '</blockquote>\n'
+        return "<blockquote>\n" + text + "</blockquote>\n"
 
     def block_html(self, html):
         if not self._escape:
-            return html + '\n'
-        return '<p>' + escape(html) + '</p>\n'
+            return html + "\n"
+        return "<p>" + escape(html) + "</p>\n"
 
     def block_error(self, html):
-        return '<div class="error">' + html + '</div>\n'
+        return '<div class="error">' + html + "</div>\n"
 
     def list(self, text, ordered, level, start=None):
         if ordered:
-            html = '<ol'
+            html = "<ol"
             if start is not None:
                 html += ' start="' + str(start) + '"'
-            return html + '>\n' + text + '</ol>\n'
-        return '<ul>\n' + text + '</ul>\n'
+            return html + ">\n" + text + "</ol>\n"
+        return "<ul>\n" + text + "</ul>\n"
 
     def list_item(self, text, level):
-        return '<li>' + text + '</li>\n'
+        return "<li>" + text + "</li>\n"

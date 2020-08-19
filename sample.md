@@ -18,10 +18,9 @@ A terminal-based presentation tool.
 ## Code blocks
 
 ```python
->>> p = Path('.')
->>> [x for x in p.iterdir() if x.is_dir()]
-[PosixPath('.hg'), PosixPath('docs'), PosixPath('dist'),
- PosixPath('__pycache__'), PosixPath('build')]
+import os
+
+print(os.getcwd())
 ```
 
 ---
@@ -31,6 +30,6 @@ A terminal-based presentation tool.
 ![python](python.png)
 
 ---
-<!-- effect='explosions' -->
+<!-- effect='stars' -->
 
 ## Effects

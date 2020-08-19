@@ -3,6 +3,7 @@
 from random import randint
 
 from asciimatics.particles import Explosion
+from asciimatics.effects import Stars, Matrix
 
 
 def explosions(screen):
@@ -14,3 +15,11 @@ def explosions(screen):
             randint(20, 30),
             start_frame=randint(0, 250),
         )
+
+
+def matrix(screen):
+    return [Matrix(screen, stop_frame=200)]
+
+
+def stars(screen):
+    return [Stars(screen, (screen.width + screen.height) // 2, stop_frame=100)]

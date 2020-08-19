@@ -2,8 +2,8 @@ import re
 from .block_parser import BlockParser, expand_leading_tab
 from .inline_parser import InlineParser
 
-_newline_pattern = re.compile(r'\r\n|\r')
-_blank_lines = re.compile(r'^ +$', re.M)
+_newline_pattern = re.compile(r"\r\n|\r")
+_blank_lines = re.compile(r"^ +$", re.M)
 
 
 class Markdown(object):
@@ -59,31 +59,29 @@ class Markdown(object):
         if state is None:
             state = {}
 
-        state['__file__'] = filepath
-        with open(filepath, 'rb') as f:
+        state["__file__"] = filepath
+        with open(filepath, "rb") as f:
             s = f.read()
 
-        return self.parse(s.decode('utf-8'), state)
+        return self.parse(s.decode("utf-8"), state)
 
     def __call__(self, s):
         return self.parse(s)
 
 
 def preprocess(s, state):
-    state.update({
-        'def_links': {},
-        'def_footnotes': {},
-        'footnotes': [],
-    })
+    state.update(
+        {"def_links": {}, "def_footnotes": {}, "footnotes": [],}
+    )
 
     if s is None:
-        s = '\n'
+        s = "\n"
     else:
-        s = s.replace('\u2424', '\n')
-        s = _newline_pattern.sub('\n', s)
-        s = _blank_lines.sub('', s)
+        s = s.replace("\u2424", "\n")
+        s = _newline_pattern.sub("\n", s)
+        s = _blank_lines.sub("", s)
         s = expand_leading_tab(s)
-        if not s.endswith('\n'):
-            s += '\n'
+        if not s.endswith("\n"):
+            s += "\n"
 
     return s, state

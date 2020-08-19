@@ -23,9 +23,9 @@ def create_markdown(escape=True, renderer=None, plugins=None):
         # re-use markdown function
         markdown('.... your text ...')
     """
-    if renderer is None or renderer == 'html':
+    if renderer is None or renderer == "html":
         renderer = HTMLRenderer(escape=escape)
-    elif renderer == 'ast':
+    elif renderer == "ast":
         renderer = AstRenderer()
 
     if plugins:
@@ -40,9 +40,7 @@ def create_markdown(escape=True, renderer=None, plugins=None):
 
 
 html = create_markdown(
-    escape=False,
-    renderer='html',
-    plugins=['strikethrough', 'footnotes', 'table'],
+    escape=False, renderer="html", plugins=["strikethrough", "footnotes", "table"],
 )
 
 
@@ -52,10 +50,18 @@ def markdown(text, escape=True, renderer=None, plugins=None):
 
 
 __all__ = [
-    'Markdown', 'AstRenderer', 'HTMLRenderer',
-    'BlockParser', 'InlineParser',
-    'escape', 'escape_url', 'escape_html', 'unikey',
-    'html', 'create_markdown', 'markdown',
+    "Markdown",
+    "AstRenderer",
+    "HTMLRenderer",
+    "BlockParser",
+    "InlineParser",
+    "escape",
+    "escape_url",
+    "escape_html",
+    "unikey",
+    "html",
+    "create_markdown",
+    "markdown",
 ]
 
-__version__ = '2.0.0a4'
+__version__ = "2.0.0a4"

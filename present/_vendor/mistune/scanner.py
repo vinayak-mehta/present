@@ -1,9 +1,11 @@
 import re
+
 try:
     from urllib.parse import quote
     import html
 except ImportError:
     from urllib import quote
+
     html = None
 
 
@@ -14,7 +16,7 @@ class Scanner(re.Scanner):
         pos = 0
         for match in iter(sc.search, None):
             name, method = self.lexicon[match.lastindex - 1][1]
-            hole = string[pos:match.start()]
+            hole = string[pos : match.start()]
             if hole:
                 yield parse_text(hole, state)
 
@@ -46,7 +48,7 @@ class ScannerParser(object):
     def get_rule_method(self, name):
         if name not in self.RULE_NAMES:
             return self.rule_methods[name][1]
-        return getattr(self, 'parse_' + name)
+        return getattr(self, "parse_" + name)
 
     def parse_text(self, text, state):
         raise NotImplementedError
@@ -61,14 +63,13 @@ class ScannerParser(object):
                 yield tok
 
     def _create_scanner(self, rules):
-        sc_key = '|'.join(rules)
+        sc_key = "|".join(rules)
         sc = self._cached_sc.get(sc_key)
         if sc:
             return sc
 
         lexicon = [
-            (self.get_rule_pattern(n), (n, self.get_rule_method(n)))
-            for n in rules
+            (self.get_rule_pattern(n), (n, self.get_rule_method(n))) for n in rules
         ]
         sc = self.scanner_cls(lexicon)
         self._cached_sc[sc_key] = sc
@@ -77,12 +78,12 @@ class ScannerParser(object):
 
 class Matcher(object):
     PARAGRAPH_END = re.compile(
-        r'(?:\n{2,})|'
-        r'(?:\n {0,3}#{1,6})|'  # axt heading
-        r'(?:\n {0,3}(?:`{3,}|~{3,}))|'  # fenced code
-        r'(?:\n {0,3}>)|'  # blockquote
-        r'(?:\n {0,3}(?:[\*\+-]|1[.)]))|'  # list
-        r'(?:\n {0,3}<)'  # block html
+        r"(?:\n{2,})|"
+        r"(?:\n {0,3}#{1,6})|"  # axt heading
+        r"(?:\n {0,3}(?:`{3,}|~{3,}))|"  # fenced code
+        r"(?:\n {0,3}>)|"  # blockquote
+        r"(?:\n {0,3}(?:[\*\+-]|1[.)]))|"  # list
+        r"(?:\n {0,3}<)"  # block html
     )
 
     def __init__(self, lexicon):
@@ -92,7 +93,7 @@ class Matcher(object):
         m = self.PARAGRAPH_END.search(string, pos)
         if not m:
             return None
-        if set(m.group(0)) == {'\n'}:
+        if set(m.group(0)) == {"\n"}:
             return m.end()
         return m.start() + 1
 
@@ -110,7 +111,7 @@ class Matcher(object):
                     if start > last_end:
                         yield parse_text(string[last_end:start], state)
 
-                    if name.endswith('_start'):
+                    if name.endswith("_start"):
                         token = method(match, state, string)
                         yield token[0]
                         end = token[1]
@@ -138,17 +139,17 @@ def escape(s, quote=True):
 
 
 def escape_url(link):
-    safe = '/#:()*?=%@+,&'
+    safe = "/#:()*?=%@+,&"
     if html is None:
-        return quote(link.encode('utf-8'), safe=safe)
+        return quote(link.encode("utf-8"), safe=safe)
     return html.escape(quote(html.unescape(link), safe=safe))
 
 
 def escape_html(s):
     if html is not None:
-        return html.escape(html.unescape(s)).replace('&#x27;', "'")
+        return html.escape(html.unescape(s)).replace("&#x27;", "'")
     return escape(s)
 
 
 def unikey(s):
-    return ' '.join(s.split()).lower()
+    return " ".join(s.split()).lower()
