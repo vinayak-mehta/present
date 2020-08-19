@@ -21,6 +21,8 @@ present — A terminal-based presentation tool
 
 ``present`` is a terminal-based presentation tool.
 
+.. image:: _static/demo.gif
+
 Installation
 ------------
 

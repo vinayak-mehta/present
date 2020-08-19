@@ -2,20 +2,36 @@
 
 A terminal-based presentation tool.
 
+```bash
+$ pip install present
+```
+
+---
+
+## Markdown
+
+Slides are made with Markdown.
+
+Each slide is separated with a ---.
+
 ---
 
 ## Lists
 
-- Basic controls
+These are the controls:
+
+- Basic
     - Quit: q
     - Next slide: n, Right arrow
     - Previous slide: b, Left arrow
-- Advanced controls
+- Advanced
     - Please suggest them!
 
 ---
 
 ## Code blocks
+
+Show me the:
 
 ```python
 import os
@@ -33,6 +49,10 @@ columns, rows = shutil.get_terminal_size()
 
 ## Images
 
+```
+![python](images/recurse.png)
+```
+
 ![python](images/recurse.png)
 
 ---
@@ -40,13 +60,30 @@ columns, rows = shutil.get_terminal_size()
 
 ## Colors
 
-Add a comment like this at the top of the slide.
+You can add style with fg and bg colors!
+
+Just add this to the top of your slide:
 
 ```html
 <!-- fg=white bg=red -->
 ```
 
 ---
-<!-- effect=plasma -->
+<!-- fg=black bg=yellow -->
 
 ## Effects
+
+And there are effects:
+
+- explosions
+- matrix
+- plasma
+- stars
+- more coming soon!
+
+```html
+<!-- effect=explosions -->
+```
+
+---
+<!-- effect=explosions -->

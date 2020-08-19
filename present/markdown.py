@@ -9,6 +9,19 @@ from pyfiglet import Figlet
 from ._vendor.mistune import markdown
 
 
+EFFECTS = ["explosions", "stars", "matrix", "plasma"]
+COLORMAP = {
+    "black": 0,
+    "red": 1,
+    "green": 2,
+    "yellow": 3,
+    "blue": 4,
+    "magenta": 5,
+    "cyan": 6,
+    "white": 7,
+}
+
+
 @dataclass
 class Heading(object):
     type: str = "heading"
@@ -131,19 +144,6 @@ class BlockHtml(object):
         raise NotImplementedError
 
 
-EFFECTS = ["explosions", "stars", "matrix", "plasma"]
-COLORMAP = {
-    "black": 0,
-    "red": 1,
-    "green": 2,
-    "yellow": 3,
-    "blue": 4,
-    "magenta": 5,
-    "cyan": 6,
-    "white": 7,
-}
-
-
 class Slide(object):
     def __init__(self, elements=None):
         self.elements = elements
@@ -209,6 +209,7 @@ class Markdown(object):
         slides = []
         ast = markdown(text, renderer="ast")
 
+        sliden = 0
         buffer = []
         for i, obj in enumerate(ast):
             if obj["type"] in ["newline"]:
@@ -216,18 +217,28 @@ class Markdown(object):
 
             if obj["type"] == "thematic_break" and buffer:
                 slides.append(Slide(elements=buffer))
+                sliden += 1
                 buffer = []
                 continue
 
             if obj["type"] == "paragraph":
                 for child in obj["children"]:
-                    Element = eval(child["type"].title().replace("_", ""))
+                    try:
+                        element_name = child["type"].title().replace("_", "")
+                        Element = eval(element_name)
+                    except NameError:
+                        raise ValueError(f"(Slide {sliden + 1}) {element_name} is not supported")
                     buffer.append(Element(obj=child))
             else:
-                Element = eval(obj["type"].title().replace("_", ""))
+                try:
+                    element_name = obj["type"].title().replace("_", "")
+                    Element = eval(element_name)
+                except NameError:
+                    raise ValueError(f"(Slide {sliden + 1}) {element_name} is not supported")
                 buffer.append(Element(obj=obj))
 
             if i == len(ast) - 1:
                 slides.append(Slide(elements=buffer))
+                sliden += 1
 
         return slides

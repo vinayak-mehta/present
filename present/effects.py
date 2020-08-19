@@ -66,8 +66,8 @@ def _explosions(screen):
     for _ in range(20):
         yield Explosion(
             screen,
-            randint(3, screen.width - 4),
-            randint(1, screen.height - 2),
+            randint(int(screen.width * 0.2), int(screen.width - (screen.width * 0.2))),
+            randint(int(screen.height * 0.2), int(screen.height - (screen.height * 0.2))),
             randint(20, 30),
             start_frame=randint(0, 250),
         )

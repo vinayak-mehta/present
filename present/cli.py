@@ -27,3 +27,5 @@ def cli(filename):
         # temp fix till underlying bug is found and fixed
         if os.name == "posix":
             os.system("reset")
+
+    click.secho("All done! ✨ 🍰 ✨", bold=True)
