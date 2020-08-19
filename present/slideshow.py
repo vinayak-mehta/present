@@ -7,7 +7,7 @@ from asciimatics.screen import Screen
 from asciimatics.event import KeyboardEvent
 from asciimatics.exceptions import ResizeScreenError, StopApplication
 
-from .effects import _reset, _base, _image, _code, _explosions, _matrix, _stars
+from .effects import _reset, _base, _image, _code, _explosions, _stars, _matrix, _plasma
 
 
 class Slide(Scene):

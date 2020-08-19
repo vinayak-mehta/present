@@ -47,6 +47,6 @@ Add a comment like this at the top of the slide.
 ```
 
 ---
-<!-- effect=explosions -->
+<!-- effect=plasma -->
 
 ## Effects

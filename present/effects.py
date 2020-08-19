@@ -6,7 +6,7 @@ from asciimatics.effects import Print
 from asciimatics.screen import Screen
 from asciimatics.particles import Explosion
 from asciimatics.effects import Stars, Matrix
-from asciimatics.renderers import StaticRenderer, ColourImageFile, SpeechBubble
+from asciimatics.renderers import StaticRenderer, ColourImageFile, SpeechBubble, Plasma
 
 
 class Text(StaticRenderer):
@@ -73,9 +73,21 @@ def _explosions(screen):
         )
 
 
+def _stars(screen):
+    return [Stars(screen, (screen.width + screen.height) // 2, stop_frame=100)]
+
+
 def _matrix(screen):
     return [Matrix(screen, stop_frame=200)]
 
 
-def _stars(screen):
-    return [Stars(screen, (screen.width + screen.height) // 2, stop_frame=100)]
+def _plasma(screen):
+    return [
+        Print(
+            screen,
+            Plasma(screen.height, screen.width, screen.colours),
+            0,
+            speed=1,
+            transparent=False,
+        )
+    ]

@@ -131,7 +131,7 @@ class BlockHtml(object):
         raise NotImplementedError
 
 
-EFFECTS = ["explosions", "matrix", "stars"]
+EFFECTS = ["explosions", "stars", "matrix", "plasma"]
 COLORMAP = {
     "black": 0,
     "red": 1,
