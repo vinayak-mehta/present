@@ -1,15 +1,13 @@
 # -*- coding: utf-8 -*-
 
-import re
 import time
-from random import randint, choice
 
 from asciimatics.scene import Scene
 from asciimatics.screen import Screen
 from asciimatics.effects import Print
 from asciimatics.event import KeyboardEvent
-from asciimatics.exceptions import ResizeScreenError, StopApplication, NextScene
-from asciimatics.renderers import Box, StaticRenderer, FigletText, ColourImageFile
+from asciimatics.exceptions import ResizeScreenError, StopApplication
+from asciimatics.renderers import StaticRenderer, ColourImageFile, SpeechBubble
 
 from .effects import explosions, matrix, stars
 
@@ -84,8 +82,11 @@ class Slideshow(object):
     def reset_effect(self):
         reset = [
             Print(
-                self.screen, Text("Press 'r' to restart."), int(self.screen.height / 2),
-            ),
+                self.screen,
+                SpeechBubble("Press 'r' to restart."),
+                int(self.screen.height / 2),
+                attr=Screen.A_BOLD,
+            )
         ]
 
         return [Slide(self, reset, 7, 0)]

@@ -156,7 +156,9 @@ class Slide(object):
             except KeyError:
                 raise ValueError(f"Color {self.style['bg']} is not supported")
 
-        if self.has_effect and (self.style.get("fg") is not None or self.style.get("bg") is not None):
+        if self.has_effect and (
+            self.style.get("fg") is not None or self.style.get("bg") is not None
+        ):
             raise ValueError("Effects and colors on the same slide are not supported")
 
         if self.has_effect and self.has_code:
