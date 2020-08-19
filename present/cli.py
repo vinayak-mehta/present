@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+import os
 import click
 
 from .slideshow import Slideshow
@@ -21,3 +22,8 @@ def cli(filename):
         show.play()
     except KeyboardInterrupt:
         pass
+
+    # TODO: asciimatics leaves terminal in abnormal state
+    # temp fix till underlying bug is found and fixed
+    if os.name == "posix":
+        os.system("reset")
