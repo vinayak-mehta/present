@@ -23,6 +23,12 @@ import os
 print(os.getcwd())
 ```
 
+```python
+import shutil
+
+columns, rows = shutil.get_terminal_size()
+```
+
 ---
 
 ## Images
@@ -34,18 +40,13 @@ print(os.getcwd())
 
 ## Colors
 
+Add a comment like this at the top of the slide.
+
 ```html
 <!-- fg=white bg=red -->
 ```
-
-## Heading 2
 
 ---
 <!-- effect=explosions -->
 
 ## Effects
-
----
-<!-- fg=black bg=yellow -->
-
-## Test
