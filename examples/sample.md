@@ -27,7 +27,7 @@ print(os.getcwd())
 
 ## Images
 
-![python](python.png)
+![python](images/recurse.png)
 
 ---
 <!-- fg=white bg=red -->
@@ -38,7 +38,14 @@ print(os.getcwd())
 <!-- fg=white bg=red -->
 ```
 
+## Heading 2
+
 ---
 <!-- effect=explosions -->
 
 ## Effects
+
+---
+<!-- fg=black bg=yellow -->
+
+## Test

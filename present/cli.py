@@ -22,8 +22,8 @@ def cli(filename):
         show.play()
     except KeyboardInterrupt:
         pass
-
-    # TODO: asciimatics leaves terminal in abnormal state
-    # temp fix till underlying bug is found and fixed
-    if os.name == "posix":
-        os.system("reset")
+    finally:
+        # TODO: asciimatics leaves terminal in abnormal state
+        # temp fix till underlying bug is found and fixed
+        if os.name == "posix":
+            os.system("reset")

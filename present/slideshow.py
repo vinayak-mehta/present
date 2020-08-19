@@ -4,18 +4,10 @@ import time
 
 from asciimatics.scene import Scene
 from asciimatics.screen import Screen
-from asciimatics.effects import Print
 from asciimatics.event import KeyboardEvent
 from asciimatics.exceptions import ResizeScreenError, StopApplication
-from asciimatics.renderers import StaticRenderer, ColourImageFile, SpeechBubble
 
-from .effects import explosions, matrix, stars
-
-
-class Text(StaticRenderer):
-    def __init__(self, text):
-        super(Text, self).__init__()
-        self._images = [text]
+from .effects import _reset, _base, _image, _code, _explosions, _matrix, _stars
 
 
 class Slide(Scene):
@@ -70,28 +62,16 @@ class Slideshow(object):
         self.reset = None
         self.current_slide = 0
         self.screen = Screen.open()
-        self.reset = self.reset_effect()
+        self.reset = [Slide(self, _reset(self.screen), 7, 0)]
         self.line_height = self.screen.height / 20.0
         self.slides = [
-            Slide(self, self.to_effects(slide), slide.fg_color, slide.bg_color)
+            Slide(self, self.get_effects(slide), slide.fg_color, slide.bg_color)
             for slide in slides
         ]
 
         super(Slideshow, self).__init__()
 
-    def reset_effect(self):
-        reset = [
-            Print(
-                self.screen,
-                SpeechBubble("Press 'r' to restart."),
-                int(self.screen.height / 2),
-                attr=Screen.A_BOLD,
-            )
-        ]
-
-        return [Slide(self, reset, 7, 0)]
-
-    def to_effects(self, slide):
+    def get_effects(self, slide):
         effects = []
         transparent = True
         elements = slide.elements
@@ -100,56 +80,20 @@ class Slideshow(object):
         if slide.has_style:
             elements = elements[1:]
 
-        if slide.has_code:
-            transparent = False
-
         for e in elements:
-            if e.type == "heading":
-                if e.obj["level"] == 1:
-                    height_factor = 6
-                else:
-                    height_factor = 4
+            height_factor = 2
+
+            if e.type == "code":
+                effects.extend(_code(self.screen, e, height_factor, self.line_height))
+            elif e.type == "image":
+                effects.extend(_image(self.screen, e, height_factor, self.line_height, bg_color))
             else:
-                height_factor = 2
+                effects.extend(_base(self.screen, e, height_factor, self.line_height, fg_color, bg_color))
 
-            if e.type == "image":
-                effects.append(
-                    Print(
-                        self.screen,
-                        ColourImageFile(
-                            self.screen,
-                            e.obj["src"],
-                            int(self.screen.height / 2),
-                            bg=bg_color,
-                            fill_background=True,
-                            uni=self.screen.unicode_aware,
-                            dither=self.screen.unicode_aware,
-                        ),
-                        int(
-                            self.screen.height / 2 - (height_factor * self.line_height)
-                        ),
-                    )
-                )
-            else:
-                if e.type == "code":
-                    fg_color, bg_color = 7, 0
+            height_factor -= 1
 
-                effects.append(
-                    Print(
-                        self.screen,
-                        Text(e.render()),
-                        int(
-                            self.screen.height / 2 - (height_factor * self.line_height)
-                        ),
-                        colour=fg_color,
-                        bg=bg_color,
-                        transparent=transparent,
-                    )
-                )
-                height_factor -= 1
-
-        if slide.effect is not None:
-            _effect = eval(slide.effect)(self.screen)
+        if slide.has_style and slide.effect is not None:
+            _effect = eval(f"_{slide.effect}")(self.screen)
             effects.extend(list(_effect))
 
         return effects
