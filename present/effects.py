@@ -25,55 +25,40 @@ def _reset(screen):
     return [reset]
 
 
-def _base(screen, element, height_factor, line_height, fg_color, bg_color):
-    if element.type == "heading":
-        if element.obj["level"] == 1:
-            height_factor = 6
-        else:
-            height_factor = 4
+def _base(screen, element, row, fg_color, bg_color):
+    base = Print(screen, Text(element.render()), row, colour=fg_color, bg=bg_color,)
 
-    base = Print(
-        screen,
-        Text(element.render()),
-        int(
-            screen.height / 2 - (height_factor * line_height)
-        ),
-        colour=fg_color,
-        bg=bg_color,
-    )
     return [base]
 
 
-def _image(screen, element, height_factor, line_height, bg_color):
+def _image(screen, element, row, bg_color):
     image = Print(
         screen,
         ColourImageFile(
             screen,
             element.obj["src"],
-            int(screen.height / 2),
+            element.size,
             bg=bg_color,
             fill_background=True,
             uni=screen.unicode_aware,
             dither=screen.unicode_aware,
         ),
-        int(
-            screen.height / 2 - (height_factor * line_height)
-        ),
+        row,
     )
+
     return [image]
 
 
-def _code(screen, element, height_factor, line_height):
+def _code(screen, element, row):
     code = Print(
         screen,
         Text(element.render()),
-        int(
-            screen.height / 2 - (height_factor * line_height)
-        ),
+        row,
         colour=Screen.COLOUR_WHITE,
         bg=Screen.COLOUR_BLACK,
         transparent=False,
     )
+
     return [code]
 
 

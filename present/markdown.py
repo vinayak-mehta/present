@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import re
+import shutil
 from dataclasses import dataclass
 
 from pyfiglet import Figlet
@@ -12,6 +13,15 @@ from ._vendor.mistune import markdown
 class Heading(object):
     type: str = "heading"
     obj: dict = None
+
+    @property
+    def size(self):
+        if self.obj["level"] == 1:
+            return 6
+        elif self.obj["level"] == 2:
+            return 2
+        else:
+            return 1
 
     def render(self):
         text = self.obj["children"][0]["text"]
@@ -29,6 +39,10 @@ class Heading(object):
 class Text(object):
     type: str = "text"
     obj: dict = None
+
+    @property
+    def size(self):
+        return 1
 
     def render(self):
         return self.obj["text"]
@@ -52,6 +66,10 @@ class List(object):
 
         return text
 
+    @property
+    def size(self):
+        return len(self.walk(self.obj))
+
     def render(self):
         return "\n".join(self.walk(self.obj))
 
@@ -74,6 +92,10 @@ class BlockCode(object):
 
         return "\n".join(lines)
 
+    @property
+    def size(self):
+        return len(self.obj["text"].splitlines())
+
     def render(self):
         return self.pad(self.obj["text"])
 
@@ -83,6 +105,10 @@ class Image(object):
     type: str = "image"
     obj: dict = None
 
+    @property
+    def size(self):
+        return int(shutil.get_terminal_size()[1] / 2)
+
     def render(self):
         raise NotImplementedError
 
@@ -91,6 +117,10 @@ class Image(object):
 class BlockHtml(object):
     type: str = "html"
     obj: dict = None
+
+    @property
+    def size(self):
+        raise NotImplementedError
 
     @property
     def style(self):

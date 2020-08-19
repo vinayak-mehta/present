@@ -63,7 +63,7 @@ class Slideshow(object):
         self.current_slide = 0
         self.screen = Screen.open()
         self.reset = [Slide(self, _reset(self.screen), 7, 0)]
-        self.line_height = self.screen.height / 20.0
+        self.lh = self.screen.height / 20.0
         self.slides = [
             Slide(self, self.get_effects(slide), slide.fg_color, slide.bg_color)
             for slide in slides
@@ -80,17 +80,20 @@ class Slideshow(object):
         if slide.has_style:
             elements = elements[1:]
 
+        row = 5
+        pad = 2
         for e in elements:
-            height_factor = 2
-
             if e.type == "code":
-                effects.extend(_code(self.screen, e, height_factor, self.line_height))
+                effects.extend(_code(self.screen, e, row))
+                pad = 4
             elif e.type == "image":
-                effects.extend(_image(self.screen, e, height_factor, self.line_height, bg_color))
+                effects.extend(_image(self.screen, e, row, bg_color))
+                pad = 2
             else:
-                effects.extend(_base(self.screen, e, height_factor, self.line_height, fg_color, bg_color))
+                effects.extend(_base(self.screen, e, row, fg_color, bg_color))
+                pad = 2
 
-            height_factor -= 1
+            row += e.size + pad
 
         if slide.has_style and slide.effect is not None:
             _effect = eval(f"_{slide.effect}")(self.screen)
