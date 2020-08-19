@@ -105,11 +105,11 @@ EFFECTS = ["explosions", "matrix", "stars"]
 COLORMAP = {
     "black": 0,
     "red": 1,
-    "yellow": 2,
-    "green": 3,
-    "cyan": 4,
-    "blue": 5,
-    "magenta": 6,
+    "green": 2,
+    "yellow": 3,
+    "blue": 4,
+    "magenta": 5,
+    "cyan": 6,
     "white": 7,
 }
 
