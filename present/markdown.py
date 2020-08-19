@@ -94,36 +94,79 @@ class BlockHtml(object):
 
     @property
     def style(self):
-        _style = [s[2] for s in re.findall(r"((\w+)='(\w+)')", self.obj["text"])][0]
-        return _style
+        _style = re.findall(r"((\w+)=(\w+))", self.obj["text"])
+        return {s[1]: s[2] for s in _style}
 
     def render(self):
         raise NotImplementedError
+
+
+EFFECTS = ["explosions", "matrix", "stars"]
+COLORMAP = {
+    "black": 0,
+    "red": 1,
+    "yellow": 2,
+    "green": 3,
+    "cyan": 4,
+    "blue": 5,
+    "magenta": 6,
+    "white": 7,
+}
 
 
 class Slide(object):
     def __init__(self, elements=None):
         self.elements = elements
         self.has_style = False
+        self.has_effect = False
         self.has_code = False
+        self.style = {}
+        self.effect = None
+        self.fg_color = 0
+        self.bg_color = 7
+
+        # TODO: style should always be the first element on a slide
+        # raise error if it isn't
 
         for e in elements:
             if e.type == "html":
                 self.has_style = True
+                self.style = e.style
 
             if e.type == "code":
                 self.has_code = True
 
-        if self.has_style and self.has_code:
-            raise ValueError("Effects and code not supported on the same slide.")
+        # TODO: support everything!
 
-        if self.has_style:
+        if self.style.get("effect") is not None:
+            if self.style["effect"] not in EFFECTS:
+                raise ValueError(f"Effect {self.style['effect']} is not supported")
+            self.has_effect = True
+            self.effect = self.style["effect"]
+
+        if self.style.get("fg") is not None:
+            try:
+                self.fg_color = COLORMAP[self.style["fg"]]
+            except KeyError:
+                raise ValueError(f"Color {self.style['fg']} is not supported")
+
+        if self.style.get("bg") is not None:
+            try:
+                self.bg_color = COLORMAP[self.style["bg"]]
+            except KeyError:
+                raise ValueError(f"Color {self.style['bg']} is not supported")
+
+        if self.has_effect and (self.style.get("fg") is not None or self.style.get("bg") is not None):
+            raise ValueError("Effects and colors on the same slide are not supported")
+
+        if self.has_effect and self.has_code:
+            raise ValueError("Effects and code on the same slide are not supported")
+
+        if self.has_effect:
             self.fg_color, self.bg_color = 7, 0
-        else:
-            self.fg_color, self.bg_color = 0, 7
 
     def __repr__(self):
-        return f"<Slide elements={self.elements} has_style={self.has_style} fg_color={self.fg_color} bg_color={self.bg_color}>"
+        return f"<Slide elements={self.elements} has_style={self.has_style} has_code={self.has_code} fg_color={self.fg_color} bg_color={self.bg_color}>"
 
 
 class Markdown(object):

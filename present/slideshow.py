@@ -92,14 +92,11 @@ class Slideshow(object):
 
     def to_effects(self, slide):
         effects = []
-        style = None
         transparent = True
-        fg_color, bg_color = 0, 7
         elements = slide.elements
+        fg_color, bg_color = slide.fg_color, slide.bg_color
 
         if slide.has_style:
-            style = elements[0].style
-            fg_color, bg_color = 7, 0
             elements = elements[1:]
 
         if slide.has_code:
@@ -150,9 +147,9 @@ class Slideshow(object):
                 )
                 height_factor -= 1
 
-        if style is not None:
-            _style = eval(style)(self.screen)
-            effects.extend(list(_style))
+        if slide.effect is not None:
+            _effect = eval(slide.effect)(self.screen)
+            effects.extend(list(_effect))
 
         return effects
 

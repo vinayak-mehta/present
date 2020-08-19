@@ -30,6 +30,15 @@ print(os.getcwd())
 ![python](python.png)
 
 ---
-<!-- effect='stars' -->
+<!-- fg=white bg=red -->
+
+## Colors
+
+```html
+<!-- fg=white bg=red -->
+```
+
+---
+<!-- effect=explosions -->
 
 ## Effects
