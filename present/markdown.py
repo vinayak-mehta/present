@@ -30,7 +30,9 @@ class Heading(object):
     @property
     def size(self):
         if self.obj["level"] == 1:
-            return 6
+            f = Figlet()
+            text = self.obj["children"][0]["text"]
+            return len(f.renderText(text).splitlines())
         elif self.obj["level"] == 2:
             return 2
         else:
