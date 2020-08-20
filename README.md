@@ -6,7 +6,7 @@
 
 [![Documentation Status](https://readthedocs.org/projects/present/badge/?version=latest)](https://present.readthedocs.io/en/latest/) [![image](https://img.shields.io/pypi/v/present.svg)](https://pypi.org/project/present/) [![image](https://img.shields.io/pypi/pyversions/present.svg)](https://pypi.org/project/present/) [![image](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
 
-A terminal presentation tool with colors and effects.
+A terminal-based presentation tool with colors and effects.
 
 <p align="center">
    <img src="https://raw.githubusercontent.com/vinayak-mehta/present/master/docs/_static/demo.gif" width="800">

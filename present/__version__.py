@@ -15,7 +15,7 @@ def generate_version(version, prerelease=None, revision=None):
 
 
 __title__ = "present"
-__description__ = "A terminal presentation tool with colors and effects."
+__description__ = "A terminal-based presentation tool with colors and effects."
 __url__ = "https://github.com/vinayak-mehta/present"
 __version__ = generate_version(VERSION, prerelease=PRERELEASE, revision=REVISION)
 __author__ = "Vinayak Mehta"

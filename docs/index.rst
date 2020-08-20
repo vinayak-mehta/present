@@ -3,7 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-present — A terminal presentation tool with colors and effects
+present — A terminal-based presentation tool with colors and effects
 ==============================================================
 
 .. image:: https://readthedocs.org/projects/present/badge/?version=latest
@@ -19,7 +19,7 @@ present — A terminal presentation tool with colors and effects
 .. image:: https://img.shields.io/badge/code%20style-black-000000.svg
     :target: https://github.com/ambv/black
 
-``present`` is a terminal presentation tool with colors and effects.
+``present`` is a terminal-based presentation tool with colors and effects.
 
 .. image:: _static/demo.gif
 
