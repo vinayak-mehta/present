@@ -82,8 +82,9 @@ Each slide can be styled with foreground / background colors and effects. By def
 
     Slide 3
 
-Available colors: ``black``, ``red``, ``green``, ``yellow``, ``blue``, ``magenta``, ``cyan``, ``white``.
-Available effects: ``explosions``, ``stars``, ``matrix``, ``plasma``. More coming soon!
+Color options: ``black``, ``red``, ``green``, ``yellow``, ``blue``, ``magenta``, ``cyan``, ``white``.
+
+Effect options: ``explosions``, ``stars``, ``matrix``, ``plasma``. More coming soon!
 
 Text
 ^^^^
