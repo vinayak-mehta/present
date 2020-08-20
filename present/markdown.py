@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+import os
 import re
 import shutil
 from dataclasses import dataclass
@@ -115,13 +116,20 @@ class BlockCode(object):
         return self.pad(self.obj["text"])
 
 
-@dataclass
+@dataclass(init=False)
 class Image(object):
     type: str = "image"
     obj: dict = None
 
+    def __init__(self, type: str = "image", obj: dict = None):
+        self.type = type
+        self.obj = obj
+        if not os.path.exists(self.obj["src"]):
+            raise FileNotFoundError(f"{self.obj['src']} does not exist")
+
     @property
     def size(self):
+        # TODO: Support small, medium, large image sizes
         return int(shutil.get_terminal_size()[1] / 2)
 
     def render(self):
