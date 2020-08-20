@@ -28,6 +28,8 @@ You can navigate between slides using the arrow keys and quit the presentation w
 
 ## Syntax guide
 
+You can check out the [sample slides](https://github.com/vinayak-mehta/present/blob/master/examples/sample.md) for reference.
+
 **Note:** Some things aren't supported yet.
 - Emphasis, inline code, links, blockquotes, tables and strikethroughs.
 - Effects and foreground / background colors on the same slide.
@@ -35,7 +37,7 @@ You can navigate between slides using the arrow keys and quit the presentation w
 
 ### Slide separator
 
-Each slide can be separated with a `---`. Check out the [sample slides](https://github.com/vinayak-mehta/present/blob/master/examples/sample.md) for reference.
+Each slide can be separated with a `---`.
 
 ```
 Slide 1
