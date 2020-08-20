@@ -50,8 +50,8 @@ Slides follow `Markdown <https://guides.github.com/features/mastering-markdown/>
     - Effects and foreground / background colors on the same slide.
     - Effects and code on the same slide.
 
-Slide separator
-^^^^^^^^^^^^^^^
+Separator
+^^^^^^^^^
 
 Each slide can be separated with a ``---``.
 
@@ -62,29 +62,6 @@ Each slide can be separated with a ``---``.
     ---
 
     Slide 2
-
-Slide style
-^^^^^^^^^^^
-
-Each slide can be styled with foreground / background colors and effects. By default, slides are black on white with no effects. You can add style to a slide by adding an HTML comment at the beginning of the slide (after the slide separator):
-
-.. code-block::
-
-    Slide 1
-
-    ---
-    <!-- fg=black bg=yellow -->
-
-    Slide 2
-
-    ---
-    <!-- effect=explosions -->
-
-    Slide 3
-
-Color options: ``black``, ``red``, ``green``, ``yellow``, ``blue``, ``magenta``, ``cyan``, ``white``.
-
-Effect options: ``explosions``, ``stars``, ``matrix``, ``plasma``. More coming soon!
 
 Text
 ^^^^
@@ -143,6 +120,29 @@ Code blocks
 
     os.getcwd()
     ```
+
+Style
+^^^^^
+
+Each slide can be styled with foreground / background colors and effects. By default, slides are black on white with no effects. You can add style to a slide by adding an HTML comment at the beginning of the slide (after the slide separator):
+
+.. code-block::
+
+    Slide 1
+
+    ---
+    <!-- fg=black bg=yellow -->
+
+    Slide 2
+
+    ---
+    <!-- effect=explosions -->
+
+    Slide 3
+
+Color options: ``black``, ``red``, ``green``, ``yellow``, ``blue``, ``magenta``, ``cyan``, ``white``.
+
+Effect options: ``explosions``, ``stars``, ``matrix``, ``plasma``. More coming soon!
 
 Versioning
 ----------
