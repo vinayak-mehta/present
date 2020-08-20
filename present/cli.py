@@ -17,15 +17,7 @@ def cli(filename):
     with open(filename, "r") as f:
         slides = markdown.parse(f.read())
 
-    show = Slideshow(slides)
-    try:
+    with Slideshow(slides) as show:
         show.play()
-    except KeyboardInterrupt:
-        pass
-    finally:
-        # TODO: asciimatics leaves terminal in abnormal state
-        # temp fix till underlying bug is found and fixed
-        if os.name == "posix":
-            os.system("reset")
 
     click.secho("All done! ✨ 🍰 ✨", bold=True)
