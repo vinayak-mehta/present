@@ -26,9 +26,9 @@ $ present sample.md
 
 You can navigate between slides using the arrow keys and quit the presentation with `q`. At the end, you can use `r` to restart the presentation.
 
-## Syntax guide
+## Syntax
 
-You can check out the [sample slides](https://github.com/vinayak-mehta/present/blob/master/examples/sample.md) for reference.
+Slides follow [Markdown](https://guides.github.com/features/mastering-markdown/) syntax. You can check out the [sample slides](https://github.com/vinayak-mehta/present/blob/master/examples/sample.md) for reference.
 
 **Note:** Some things aren't supported yet.
 - Emphasis, inline code, links, blockquotes, tables and strikethroughs.

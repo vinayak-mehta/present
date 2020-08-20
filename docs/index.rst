@@ -37,6 +37,107 @@ Usage
 
     $ present sample.md
 
+Syntax
+------
+
+Slides follow `Markdown <https://guides.github.com/features/mastering-markdown/>`_ syntax. You can check out the `sample slides <https://github.com/vinayak-mehta/present/blob/master/examples/sample.md>`_ for reference.
+
+.. note:: Some things aren't supported yet:
+
+    - Emphasis, inline code, links, blockquotes, tables and strikethroughs.
+    - Effects and foreground / background colors on the same slide.
+    - Effects and code on the same slide.
+
+Slide separator
+^^^^^^^^^^^^^^^
+
+Each slide can be separated with a ``---``.
+
+.. code-block::
+
+    Slide 1
+
+    ---
+
+    Slide 2
+
+Slide style
+^^^^^^^^^^^
+
+Each slide can be styled with foreground / background colors and effects. By default, slides are black on white with no effects. You can add style to a slide by adding an HTML comment at the beginning of the slide (after the slide separator):
+
+.. code-block::
+
+    Slide 1
+
+    ---
+    <!-- fg=black bg=yellow -->
+
+    Slide 2
+
+    ---
+    <!-- effect=explosions -->
+
+    Slide 3
+
+Text
+^^^^
+
+.. code-block::
+
+    Slide 1
+
+    ---
+
+    Slide 2
+
+Headers
+^^^^^^^
+
+Level 1 headings become figlets, level 2 headings get underlined with `-`, and level 3 headings are treated as normal text, for now.
+
+.. code-block::
+
+    # Heading 1
+
+    ## Heading 2
+
+    ### Heading 3
+
+Lists
+^^^^^
+
+Ordered lists become unordered lists automatically, for now.
+
+.. code-block::
+
+    - Item 1
+        - Item 1a
+        - Item 1b
+        - Item 1c
+    - Item 2
+        - Item 2a
+
+Images
+^^^^^^
+
+Image paths are relative to the directory where your slides are kept, and where you invoke `present`.
+
+.. code-block::
+
+    ![RC](images/recurse.png)
+
+Code blocks
+^^^^^^^^^^^
+
+.. code-block::
+
+    ```
+    import os
+
+    os.getcwd()
+    ```
+
 Versioning
 ----------
 
