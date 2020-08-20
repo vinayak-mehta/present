@@ -77,7 +77,7 @@ Slide 2
 
 ### Headers
 
-Level 1 headings become figlets, level 2 headings get underlined with `-` and level 3 headings are treated as normal text for now.
+Level 1 headings become figlets, level 2 headings get underlined with `-`, and level 3 headings are treated as normal text, for now.
 
 ```
 # Heading 1
@@ -89,7 +89,7 @@ Level 1 headings become figlets, level 2 headings get underlined with `-` and le
 
 ### Lists
 
-Ordered lists become unordered lists automatically.
+Ordered lists become unordered lists automatically, for now.
 
 ```
 - Item 1
@@ -102,7 +102,7 @@ Ordered lists become unordered lists automatically.
 
 ### Images
 
-Image paths are relative to the directory where you slides are kept and where you invoke `present`.
+Image paths are relative to the directory where your slides are kept, and where you invoke `present`.
 
 ```
 ![RC](images/recurse.png)
