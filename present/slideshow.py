@@ -63,7 +63,6 @@ class Slideshow(object):
         self.current_slide = 0
         self.screen = Screen.open()
         self.reset = [Slide(self, _reset(self.screen), 7, 0)]
-        self.lh = self.screen.height / 20.0
         self.slides = [
             Slide(self, self.get_effects(slide), slide.fg_color, slide.bg_color)
             for slide in slides
@@ -80,7 +79,11 @@ class Slideshow(object):
         if slide.has_style:
             elements = elements[1:]
 
-        row = 5
+        if len(elements) == 1 and not slide.has_image and not slide.has_code:
+            row = int(self.screen.height / 2) - 1
+        else:
+            row = int(self.screen.height * 0.2)
+
         pad = 2
         for e in elements:
             if e.type == "code":

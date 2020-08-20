@@ -159,6 +159,7 @@ class Slide(object):
         self.elements = elements
         self.has_style = False
         self.has_effect = False
+        self.has_image = False
         self.has_code = False
         self.style = {}
         self.effect = None
@@ -172,6 +173,9 @@ class Slide(object):
             if e.type == "html":
                 self.has_style = True
                 self.style = e.style
+
+            if e.type == "image":
+                self.has_image = True
 
             if e.type == "code":
                 self.has_code = True
