@@ -106,7 +106,7 @@ os.getcwd()
 
 ### Style
 
-Each slide can be styled with foreground / background colors and effects. By default, slides are black on white with no effects. You can add style to a slide by adding an HTML comment at the beginning of the slide (after the slide separator):
+Each slide can be styled with foreground / background colors and effects. By default, slides are black on white with no effects. You can add style to a slide by adding a comment at the beginning of the slide (after the slide separator):
 
 ```
 Slide 1
