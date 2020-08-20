@@ -1,6 +1,6 @@
 # present
 
-A terminal-based presentation tool.
+A terminal presentation tool with colors and effects.
 
 ```bash
 $ pip install present

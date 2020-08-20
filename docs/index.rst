@@ -3,8 +3,8 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-present — A terminal-based presentation tool
-============================================
+present — A terminal presentation tool with colors and effects
+==============================================================
 
 .. image:: https://readthedocs.org/projects/present/badge/?version=latest
     :target: https://present.readthedocs.io/en/latest/
@@ -19,9 +19,11 @@ present — A terminal-based presentation tool
 .. image:: https://img.shields.io/badge/code%20style-black-000000.svg
     :target: https://github.com/ambv/black
 
-``present`` is a terminal-based presentation tool.
+``present`` is a terminal presentation tool with colors and effects.
 
 .. image:: _static/demo.gif
+
+``present`` is built on `asciimatics <https://github.com/peterbrittain/asciimatics>`_.
 
 Installation
 ------------
@@ -79,6 +81,9 @@ Each slide can be styled with foreground / background colors and effects. By def
     <!-- effect=explosions -->
 
     Slide 3
+
+Available colors: ``black``, ``red``, ``green``, ``yellow``, ``blue``, ``magenta``, ``cyan``, ``white``.
+Available effects: ``explosions``, ``stars``, ``matrix``, ``plasma``. More coming soon!
 
 Text
 ^^^^
