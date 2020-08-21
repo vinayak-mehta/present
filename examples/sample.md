@@ -1,6 +1,6 @@
 # present
 
-A terminal-based presentation tool with colors and effects.
+A terminal-based presentation tool with colors and effects
 
 ```bash
 $ pip install present
@@ -8,17 +8,17 @@ $ pip install present
 
 ---
 
-## Markdown
+## Syntax
 
-Slides are made with Markdown.
+You can write slides in Markdown
 
-Each slide is separated with a ---.
+Each slide should be separated with a ---
 
 ---
 
 ## Lists
 
-These are the controls:
+Some controls:
 
 - Basic
     - Quit: q
@@ -31,7 +31,7 @@ These are the controls:
 
 ## Code blocks
 
-Show me the:
+An explanation for the code below:
 
 ```python
 import os
@@ -50,17 +50,17 @@ columns, rows = shutil.get_terminal_size()
 ## Images
 
 ```
-![python](images/recurse.png)
+![RC](images/recurse.png)
 ```
 
-![python](images/recurse.png)
+![RC](images/recurse.png)
 
 ---
 <!-- fg=white bg=red -->
 
 ## Colors
 
-You can add style with fg and bg colors!
+You can style your slides with fg and bg colors!
 
 Just add this to the top of your slide:
 
@@ -68,22 +68,31 @@ Just add this to the top of your slide:
 <!-- fg=white bg=red -->
 ```
 
+Colors: black, red, green, yellow, blue, magenta, cyan, white
+
 ---
 <!-- fg=black bg=yellow -->
 
 ## Effects
 
-And there are effects:
+You can also add effects!
 
-- explosions
-- matrix
-- plasma
-- stars
-- more coming soon!
+Just add this to the top of your slide:
 
 ```html
 <!-- effect=explosions -->
 ```
 
+Effects: explosions, matrix, plasma, stars, more coming soon!
+
 ---
 <!-- effect=explosions -->
+
+---
+<!-- effect=matrix -->
+
+---
+<!-- effect=stars -->
+
+---
+<!-- effect=plasma -->
