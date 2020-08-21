@@ -241,14 +241,18 @@ class Markdown(object):
                         element_name = child["type"].title().replace("_", "")
                         Element = eval(element_name)
                     except NameError:
-                        raise ValueError(f"(Slide {sliden + 1}) {element_name} is not supported")
+                        raise ValueError(
+                            f"(Slide {sliden + 1}) {element_name} is not supported"
+                        )
                     buffer.append(Element(obj=child))
             else:
                 try:
                     element_name = obj["type"].title().replace("_", "")
                     Element = eval(element_name)
                 except NameError:
-                    raise ValueError(f"(Slide {sliden + 1}) {element_name} is not supported")
+                    raise ValueError(
+                        f"(Slide {sliden + 1}) {element_name} is not supported"
+                    )
                 buffer.append(Element(obj=obj))
 
             if i == len(ast) - 1:

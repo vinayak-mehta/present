@@ -4,6 +4,14 @@ Release History
 master
 ------
 
+**Enhancements**
+
+* Allow `Slideshow` to be used as a context manager. [#18](https://github.com/vinayak-mehta/present/pull/18) by [Clint Lawrence](https://github.com/clint-lawrence).
+
+    The earlier duct tape fix `os.system('reset')` (to not leave the terminal in an abnormal state after exit) is replaced with a `screen.close()` which is much better because the earlier fix wouldn't work on Windows.
+
+* Move an element to the center when there is only one on a slide. [6a0b045](https://github.com/vinayak-mehta/present/commit/6a0b045d0837dc05729d45427c6fae66a1d197ad) by Vinayak Mehta.
+
 0.3.0 (2020-08-20)
 ------------------
 

@@ -118,10 +118,9 @@ class Slideshow(object):
         self.reset = [Slide(self, _reset(self.screen), 7, 0)]
 
         self.slides = [
-                Slide(self, self.get_effects(slide), slide.fg_color, slide.bg_color)
-                for slide in self.slides
+            Slide(self, self.get_effects(slide), slide.fg_color, slide.bg_color)
+            for slide in self.slides
         ]
-
 
         # Initialise the Screen for animation.
         self.screen.set_scenes(
