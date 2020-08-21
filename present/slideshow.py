@@ -59,16 +59,19 @@ class Slide(Scene):
 
 class Slideshow(object):
     def __init__(self, slides):
-        self.reset = None
+        self.slides = slides
         self.current_slide = 0
-        self.screen = Screen.open()
-        self.reset = [Slide(self, _reset(self.screen), 7, 0)]
-        self.slides = [
-            Slide(self, self.get_effects(slide), slide.fg_color, slide.bg_color)
-            for slide in slides
-        ]
+        self.screen = None
+        self.reset = None
 
         super(Slideshow, self).__init__()
+
+    def __enter__(self):
+        self.screen = Screen.open()
+        return self
+
+    def __exit__(self, type, value, traceback):
+        self.screen.close()
 
     def get_effects(self, slide):
         effects = []
@@ -112,6 +115,14 @@ class Slideshow(object):
         repeat=True,
         allow_int=False,
     ):
+        self.reset = [Slide(self, _reset(self.screen), 7, 0)]
+
+        self.slides = [
+                Slide(self, self.get_effects(slide), slide.fg_color, slide.bg_color)
+                for slide in self.slides
+        ]
+
+
         # Initialise the Screen for animation.
         self.screen.set_scenes(
             self.slides, unhandled_input=unhandled_input, start_scene=start_scene
