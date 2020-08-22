@@ -15,6 +15,19 @@ from asciimatics.renderers import (
 )
 
 
+EFFECTS = ["explosions", "stars", "matrix", "plasma"]
+COLORMAP = {
+    "black": Screen.COLOUR_BLACK,
+    "red": Screen.COLOUR_RED,
+    "green": Screen.COLOUR_GREEN,
+    "yellow": Screen.COLOUR_YELLOW,
+    "blue": Screen.COLOUR_BLUE,
+    "magenta": Screen.COLOUR_MAGENTA,
+    "cyan": Screen.COLOUR_CYAN,
+    "white": Screen.COLOUR_WHITE,
+}
+
+
 class Text(StaticRenderer):
     def __init__(self, text):
         super(Text, self).__init__()
@@ -28,36 +41,61 @@ class Codio(DynamicRenderer):
         self._height = height
         self._width = width
         self._state = {
-            i: {"len": 1, "start": False, "end": False} for i in range(len(code))
+            i: {"len": 0, "start": False, "end": False} for i in range(len(code))
         }
 
     def _get_code(self, i):
-        if self._state[i]["len"] == len(self._code[i]["in"]):
-            self._state[i]["end"] = True
-            return self._code[i]["in"], self._code[i]["out"]
+        if self._state.get(i - 1) is None:
+            self._state[i]["start"] = True
 
-        try:
-            if self._state[i - 1]["start"] and not self._state[i - 1]["end"]:
+        if self._code[i]["in"]:
+            if self._state[i]["len"] == len(self._code[i]["in"]):
+                self._state[i]["end"] = True
+                return self._code[i]["in"], self._code[i]["out"]
+
+            if self._state.get(i - 1) is not None and not self._state[i - 1]["end"]:
                 return None, None
-        except KeyError:
-            pass
+            else:
+                c = self._code[i]["in"][: self._state[i]["len"]]
+                self._state[i]["len"] += 1
+                return c, None
 
-        c = self._code[i]["in"][: self._state[i]["len"]]
-        self._state[i]["start"] = True
-        self._state[i]["len"] += 1
-
-        return c, None
+        if not self._code[i]["in"] and self._code[i]["out"]:
+            if self._state.get(i - 1) is not None and not self._state[i - 1]["end"]:
+                return None, None
+            else:
+                self._state[i]["end"] = True
+                return None, self._code[i]["out"]
 
     def _render_now(self):
         x = y = 1
 
         for i, c in enumerate(self._code):
+            kwargs = {}
+
+            if self._code[i].get("color") is not None:
+                kwargs.update({"colour": COLORMAP[self._code[i]["color"]]})
+
+            if self._code[i].get("bold") is not None and self._code[i]["bold"]:
+                kwargs.update({"attr": Screen.A_BOLD})
+
+            if (
+                self._code[i].get("underline") is not None
+                and self._code[i]["underline"]
+            ):
+                kwargs.update({"attr": Screen.A_UNDERLINE})
+
             inp, out = self._get_code(i)
             if inp is not None:
-                self._write(f"{self._code[i]['prompt']} {inp}", x, y)
-                if out is not None and out:
-                    y += 1
-                    self._write(out, x, y)
+                prompt = self._code[i]["prompt"]
+                if prompt:
+                    self._write(f"{prompt} {inp}", x, y, **kwargs)
+                else:
+                    self._write(f"{inp}", x, y, **kwargs)
+                y += 1
+            if out is not None and out:
+                # colour=Screen.COLOUR_GREEN, attr=Screen.A_BOLD
+                self._write(out, x, y, **kwargs)
                 y += 1
 
         return self._plain_image, self._colour_map
@@ -118,7 +156,7 @@ def _codio(screen, element, row):
         colour=Screen.COLOUR_WHITE,
         bg=Screen.COLOUR_BLACK,
         transparent=False,
-        speed=4,
+        speed=element.speed,
     )
 
     return [codio]

@@ -92,7 +92,12 @@ class Slideshow(object):
         if slide.has_style:
             elements = elements[1:]
 
-        if len(elements) == 1 and not slide.has_image and not slide.has_code:
+        if (
+            len(elements) == 1
+            and not slide.has_image
+            and not slide.has_code
+            and not slide.has_codio
+        ):
             row = int(self.screen.height / 2) - 1
         else:
             row = int(self.screen.height * 0.2)

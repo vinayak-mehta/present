@@ -10,19 +10,7 @@ import yaml
 from pyfiglet import Figlet
 
 from ._vendor.mistune import markdown
-
-
-EFFECTS = ["explosions", "stars", "matrix", "plasma"]
-COLORMAP = {
-    "black": 0,
-    "red": 1,
-    "green": 2,
-    "yellow": 3,
-    "blue": 4,
-    "magenta": 5,
-    "cyan": 6,
-    "white": 7,
-}
+from .effects import EFFECTS, COLORMAP
 
 
 @dataclass
@@ -124,16 +112,25 @@ class Codio(object):
     obj: dict = None
 
     @property
+    def speed(self):
+        return self.obj["speed"]
+
+    @property
     def width(self):
         _width = 0
-        for l in self.obj:
-            _width = max(_width, len(l["in"]), len(l["out"]))
-        return _width + 2
+        for l in self.obj["steps"]:
+            _width = max(
+                _width,
+                len(l["prompt"]),
+                len(l["in"]) + l["in"].count(" "),
+                len(l["out"]) + l["out"].count(" "),
+            )
+        return _width + 4
 
     @property
     def size(self):
         lines = 0
-        for l in self.obj:
+        for l in self.obj["steps"]:
             if l["in"]:
                 lines += 1
             if l["out"]:
@@ -141,7 +138,7 @@ class Codio(object):
         return lines + 2
 
     def render(self):
-        return self.obj
+        return self.obj["steps"]
 
 
 @dataclass(init=False)
@@ -186,6 +183,7 @@ class Slide(object):
         self.has_effect = False
         self.has_image = False
         self.has_code = False
+        self.has_codio = False
         self.style = {}
         self.effect = None
         self.fg_color = 0
@@ -204,6 +202,9 @@ class Slide(object):
 
             if e.type == "code":
                 self.has_code = True
+
+            if e.type == "codio":
+                self.has_codio = True
 
         # TODO: support everything!
 
