@@ -13,6 +13,7 @@ from .effects import (
     _image,
     _code,
     _codio,
+    _fireworks,
     _explosions,
     _stars,
     _matrix,

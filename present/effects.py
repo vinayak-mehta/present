@@ -1,10 +1,16 @@
 # -*- coding: utf-8 -*-
 
-from random import randint
+from random import randint, choice
 
 from asciimatics.effects import Print
 from asciimatics.screen import Screen
-from asciimatics.particles import Explosion
+from asciimatics.particles import (
+    RingFirework,
+    SerpentFirework,
+    StarFirework,
+    PalmFirework,
+    Explosion,
+)
 from asciimatics.effects import Stars, Matrix
 from asciimatics.renderers import (
     ColourImageFile,
@@ -15,7 +21,7 @@ from asciimatics.renderers import (
 )
 
 
-EFFECTS = ["explosions", "stars", "matrix", "plasma"]
+EFFECTS = ["fireworks", "explosions", "stars", "matrix", "plasma"]
 COLORMAP = {
     "black": Screen.COLOUR_BLACK,
     "red": Screen.COLOUR_RED,
@@ -160,6 +166,32 @@ def _codio(screen, element, row):
     )
 
     return [codio]
+
+
+def _fireworks(screen):
+    effects = []
+    for _ in range(20):
+        fireworks = [
+            (PalmFirework, 25, 30),
+            (PalmFirework, 25, 30),
+            (StarFirework, 25, 35),
+            (StarFirework, 25, 35),
+            (StarFirework, 25, 35),
+            (RingFirework, 20, 30),
+            (SerpentFirework, 30, 35),
+        ]
+        firework, start, stop = choice(fireworks)
+        effects.insert(
+            1,
+            firework(
+                screen,
+                randint(0, screen.width),
+                randint(screen.height // 8, screen.height * 3 // 4),
+                randint(start, stop),
+                start_frame=randint(0, 250),
+            ),
+        )
+    return effects
 
 
 def _explosions(screen):
