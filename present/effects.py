@@ -7,10 +7,10 @@ from asciimatics.screen import Screen
 from asciimatics.particles import Explosion
 from asciimatics.effects import Stars, Matrix
 from asciimatics.renderers import (
-    StaticRenderer,
     ColourImageFile,
-    SpeechBubble,
     DynamicRenderer,
+    StaticRenderer,
+    SpeechBubble,
     Plasma,
 )
 
