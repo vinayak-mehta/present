@@ -170,41 +170,55 @@ def _codio(screen, element, row):
 
 def _fireworks(screen):
     effects = []
+    x_regions = [
+        (0, screen.width),
+        (0, screen.width // 3),
+        (screen.width // 3 * 2, screen.width),
+    ]
+    y_regions = [
+        (0, screen.height),
+        (screen.height // 2, screen.height),
+    ]
+    fireworks = [
+        (PalmFirework, 25, 30),
+        (PalmFirework, 25, 30),
+        (StarFirework, 25, 35),
+        (StarFirework, 25, 35),
+        (StarFirework, 25, 35),
+        (RingFirework, 20, 30),
+        (SerpentFirework, 30, 35),
+    ]
+
     for _ in range(20):
-        fireworks = [
-            (PalmFirework, 25, 30),
-            (PalmFirework, 25, 30),
-            (StarFirework, 25, 35),
-            (StarFirework, 25, 35),
-            (StarFirework, 25, 35),
-            (RingFirework, 20, 30),
-            (SerpentFirework, 30, 35),
-        ]
         firework, start, stop = choice(fireworks)
+        x = randint(*choice(x_regions))
+        y = randint(*choice(y_regions))
         effects.insert(
             1,
-            firework(
-                screen,
-                randint(0, screen.width),
-                randint(screen.height // 8, screen.height * 3 // 4),
-                randint(start, stop),
-                start_frame=randint(0, 250),
-            ),
+            firework(screen, x, y, randint(start, stop), start_frame=randint(0, 250),),
         )
     return effects
 
 
 def _explosions(screen):
+    effects = []
+    x_regions = [
+        (0, screen.width),
+        (0, screen.width // 3),
+        (screen.width // 3 * 2, screen.width),
+    ]
+    y_regions = [
+        (0, screen.height),
+        (screen.height // 2, screen.height),
+    ]
+
     for _ in range(20):
-        yield Explosion(
-            screen,
-            randint(int(screen.width * 0.2), int(screen.width - (screen.width * 0.2))),
-            randint(
-                int(screen.height * 0.2), int(screen.height - (screen.height * 0.2))
-            ),
-            randint(20, 30),
-            start_frame=randint(0, 250),
+        x = randint(*choice(x_regions))
+        y = randint(*choice(y_regions))
+        effects.append(
+            Explosion(screen, x, y, randint(20, 30), start_frame=randint(0, 250),)
         )
+    return effects
 
 
 def _stars(screen):
