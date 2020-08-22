@@ -2,9 +2,11 @@
 
 import os
 import re
+import sys
 import shutil
 from dataclasses import dataclass
 
+import yaml
 from pyfiglet import Figlet
 
 from ._vendor.mistune import markdown
@@ -116,11 +118,34 @@ class BlockCode(object):
         return self.pad(self.obj["text"])
 
 
-@dataclass(init=False)
-class Image(object):
-    type: str = "image"
+@dataclass
+class Codio(object):
+    type: str = "codio"
     obj: dict = None
 
+    @property
+    def width(self):
+        _width = 0
+        for l in self.obj:
+            _width = max(_width, len(l["in"]), len(l["out"]))
+        return _width + 2
+
+    @property
+    def size(self):
+        lines = 0
+        for l in self.obj:
+            if l["in"]:
+                lines += 1
+            if l["out"]:
+                lines += 1
+        return lines + 2
+
+    def render(self):
+        return self.obj
+
+
+@dataclass(init=False)
+class Image(object):
     def __init__(self, type: str = "image", obj: dict = None):
         self.type = type
         self.obj = obj
@@ -238,13 +263,18 @@ class Markdown(object):
             if obj["type"] == "paragraph":
                 for child in obj["children"]:
                     try:
-                        element_name = child["type"].title().replace("_", "")
-                        Element = eval(element_name)
+                        if child["type"] == "image" and child["alt"] == "codio":
+                            with open(child["src"], "r") as f:
+                                codio = yaml.load(f, Loader=yaml.Loader)
+                            buffer.append(Codio(obj=codio))
+                        else:
+                            element_name = child["type"].title().replace("_", "")
+                            Element = eval(element_name)
+                            buffer.append(Element(obj=child))
                     except NameError:
                         raise ValueError(
                             f"(Slide {sliden + 1}) {element_name} is not supported"
                         )
-                    buffer.append(Element(obj=child))
             else:
                 try:
                     element_name = obj["type"].title().replace("_", "")

@@ -6,13 +6,61 @@ from asciimatics.effects import Print
 from asciimatics.screen import Screen
 from asciimatics.particles import Explosion
 from asciimatics.effects import Stars, Matrix
-from asciimatics.renderers import StaticRenderer, ColourImageFile, SpeechBubble, Plasma
+from asciimatics.renderers import (
+    StaticRenderer,
+    ColourImageFile,
+    SpeechBubble,
+    DynamicRenderer,
+    Plasma,
+)
 
 
 class Text(StaticRenderer):
     def __init__(self, text):
         super(Text, self).__init__()
         self._images = [text]
+
+
+class Codio(DynamicRenderer):
+    def __init__(self, code=None, height=100, width=100):
+        super(Codio, self).__init__(height, width)
+        self._code = code
+        self._height = height
+        self._width = width
+        self._state = {
+            i: {"len": 1, "start": False, "end": False} for i in range(len(code))
+        }
+
+    def _get_code(self, i):
+        if self._state[i]["len"] == len(self._code[i]["in"]):
+            self._state[i]["end"] = True
+            return self._code[i]["in"], self._code[i]["out"]
+
+        try:
+            if self._state[i - 1]["start"] and not self._state[i - 1]["end"]:
+                return None, None
+        except KeyError:
+            pass
+
+        c = self._code[i]["in"][: self._state[i]["len"]]
+        self._state[i]["start"] = True
+        self._state[i]["len"] += 1
+
+        return c, None
+
+    def _render_now(self):
+        x = y = 1
+
+        for i, c in enumerate(self._code):
+            inp, out = self._get_code(i)
+            if inp is not None:
+                self._write(f"{self._code[i]['prompt']} {inp}", x, y)
+                if out is not None and out:
+                    y += 1
+                    self._write(out, x, y)
+                y += 1
+
+        return self._plain_image, self._colour_map
 
 
 def _reset(screen):
@@ -60,6 +108,20 @@ def _code(screen, element, row):
     )
 
     return [code]
+
+
+def _codio(screen, element, row):
+    codio = Print(
+        screen,
+        Codio(code=element.render(), width=element.width, height=element.size),
+        row,
+        colour=Screen.COLOUR_WHITE,
+        bg=Screen.COLOUR_BLACK,
+        transparent=False,
+        speed=4,
+    )
+
+    return [codio]
 
 
 def _explosions(screen):

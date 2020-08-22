@@ -1,0 +1,6 @@
+- prompt: '>>>'
+  in: import os
+  out: ''
+- prompt: '>>>'
+  in: os.getcwd()
+  out: /home/vinayak/dev

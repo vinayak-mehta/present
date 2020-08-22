@@ -7,7 +7,17 @@ from asciimatics.screen import Screen
 from asciimatics.event import KeyboardEvent
 from asciimatics.exceptions import ResizeScreenError, StopApplication
 
-from .effects import _reset, _base, _image, _code, _explosions, _stars, _matrix, _plasma
+from .effects import (
+    _reset,
+    _base,
+    _image,
+    _code,
+    _codio,
+    _explosions,
+    _stars,
+    _matrix,
+    _plasma,
+)
 
 
 class Slide(Scene):
@@ -91,6 +101,9 @@ class Slideshow(object):
         for e in elements:
             if e.type == "code":
                 effects.extend(_code(self.screen, e, row))
+                pad = 4
+            elif e.type == "codio":
+                effects.extend(_codio(self.screen, e, row))
                 pad = 4
             elif e.type == "image":
                 effects.extend(_image(self.screen, e, row, bg_color))
