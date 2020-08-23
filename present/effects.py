@@ -46,8 +46,12 @@ class Codio(DynamicRenderer):
         self._code = code
         self._height = height
         self._width = width
+        self._state = None
+        self._reset()
+
+    def _reset(self):
         self._state = {
-            i: {"len": 0, "start": False, "end": False} for i in range(len(code))
+            i: {"len": 0, "start": False, "end": False} for i in range(len(self._code))
         }
 
     def _get_code(self, i):
