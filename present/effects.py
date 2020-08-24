@@ -4,14 +4,8 @@ from random import randint, choice
 
 from asciimatics.effects import Print
 from asciimatics.screen import Screen
-from asciimatics.particles import (
-    RingFirework,
-    SerpentFirework,
-    StarFirework,
-    PalmFirework,
-    Explosion,
-)
 from asciimatics.effects import Stars, Matrix
+from asciimatics.particles import Explosion, StarFirework
 from asciimatics.renderers import (
     ColourImageFile,
     DynamicRenderer,
@@ -183,23 +177,13 @@ def _fireworks(screen):
         (0, screen.height),
         (screen.height // 2, screen.height),
     ]
-    fireworks = [
-        (PalmFirework, 25, 30),
-        (PalmFirework, 25, 30),
-        (StarFirework, 25, 35),
-        (StarFirework, 25, 35),
-        (StarFirework, 25, 35),
-        (RingFirework, 20, 30),
-        (SerpentFirework, 30, 35),
-    ]
 
     for _ in range(20):
-        firework, start, stop = choice(fireworks)
         x = randint(*choice(x_regions))
         y = randint(*choice(y_regions))
         effects.insert(
             1,
-            firework(screen, x, y, randint(start, stop), start_frame=randint(0, 250),),
+            StarFirework(screen, x, y, randint(25, 30), start_frame=randint(0, 250),),
         )
     return effects
 

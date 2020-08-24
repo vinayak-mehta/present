@@ -22,10 +22,8 @@ Some controls:
 
 - Basic
     - Quit: q
-    - Next slide: n, Right arrow
     - Previous slide: b, Left arrow
-- Advanced
-    - Please suggest them!
+    - Next slide: n, Right arrow, Space
 
 ---
 
