@@ -4,6 +4,9 @@ Release History
 master
 ------
 
+0.4.0 (2020-08-27)
+------------------
+
 **Enhancements**
 
 * Allow `Slideshow` to be used as a context manager. [#18](https://github.com/vinayak-mehta/present/pull/18) by [Clint Lawrence](https://github.com/clint-lawrence).
