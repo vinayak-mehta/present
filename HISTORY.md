@@ -4,6 +4,10 @@ Release History
 master
 ------
 
+**Enhancements**
+
+* Allow pressing spacebar to go to next slide. [#30](https://github.com/vinayak-mehta/present/pull/30) by [Thomas Royal](https://github.com/tmroyal).
+
 0.4.0 (2020-08-27)
 ------------------
 

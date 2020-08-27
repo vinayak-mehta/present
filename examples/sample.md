@@ -22,7 +22,7 @@ Some controls:
 
 - Basic
     - Quit: q
-    - Next slide: n, Right arrow
+    - Next slide: n, Space bar, Right arrow
     - Previous slide: b, Left arrow
 - Advanced
     - Please suggest them!

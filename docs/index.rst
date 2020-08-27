@@ -4,7 +4,7 @@
    contain the root `toctree` directive.
 
 present — A terminal-based presentation tool with colors and effects
-==============================================================
+====================================================================
 
 .. image:: https://readthedocs.org/projects/present/badge/?version=latest
     :target: https://present.readthedocs.io/en/latest/
@@ -38,6 +38,14 @@ Usage
 .. code-block:: bash
 
     $ present sample.md
+
+Some controls:
+
+- Quit: ``q``
+- Next slide: ``n``, Space bar, Right arrow
+- Previous slide: ``b``, Left arrow
+
+At the end, you can press ``r`` to restart the presentation.
 
 Syntax
 ------
