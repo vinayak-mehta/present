@@ -37,7 +37,7 @@ class Slide(Scene):
                     )
                 except IndexError:
                     pass
-            elif c in (ord("n"), Screen.KEY_RIGHT):
+            elif c in (ord("n"), ord(" "), Screen.KEY_RIGHT):
                 self.show.current_slide += 1
 
                 try:
