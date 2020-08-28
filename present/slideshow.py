@@ -3,6 +3,7 @@
 import time
 
 from asciimatics.scene import Scene
+from asciimatics.effects import Print
 from asciimatics.screen import Screen
 from asciimatics.event import KeyboardEvent
 from asciimatics.exceptions import ResizeScreenError, StopApplication
@@ -18,6 +19,7 @@ from .effects import (
     _stars,
     _matrix,
     _plasma,
+    Codio,
 )
 
 
@@ -28,13 +30,20 @@ class Slide(Scene):
         self.bg_color = bg_color
         super(Slide, self).__init__(effects)
 
+    def _reset(self):
+        for effect in self._effects:
+            if isinstance(effect, Print) and isinstance(effect._renderer, Codio):
+                effect._renderer._reset()
+
     def process_event(self, event):
         if super(Slide, self).process_event(event) is None:
             return
 
         if isinstance(event, KeyboardEvent):
             c = event.key_code
-            if c in (ord("b"), Screen.KEY_LEFT):
+            if c == ord("r"):
+                self._reset()
+            elif c in (ord("b"), Screen.KEY_LEFT):
                 self.show.current_slide -= 1
 
                 try:
