@@ -6,6 +6,13 @@ master
 
 **Enhancements**
 
+* Allow pressing spacebar to go to next slide. [#30](https://github.com/vinayak-mehta/present/pull/30) by [Thomas Royal](https://github.com/tmroyal).
+
+0.4.0 (2020-08-27)
+------------------
+
+**Enhancements**
+
 * Allow `Slideshow` to be used as a context manager. [#18](https://github.com/vinayak-mehta/present/pull/18) by [Clint Lawrence](https://github.com/clint-lawrence).
 
     Also, the earlier duct tape fix `os.system('reset')` (to not leave the terminal in an abnormal state after exit) is replaced with a `screen.close()` which is much better because the earlier fix wouldn't work on Windows.

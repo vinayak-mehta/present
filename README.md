@@ -28,7 +28,13 @@ $ pip install present
 $ present sample.md
 ```
 
-You can navigate between slides using the arrow keys and quit the presentation with `q`. At the end, you can use `r` to restart the presentation.
+Some controls:
+
+- Quit: `q`
+- Next slide: `n`, Space bar, Right arrow
+- Previous slide: `b`, Left arrow
+
+At the end, you can press `r` to restart the presentation.
 
 ## Syntax
 
