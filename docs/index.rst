@@ -42,8 +42,8 @@ Usage
 Some controls:
 
 - Quit: ``q``
-- Next slide: ``n``, Space bar, Right arrow
 - Previous slide: ``b``, Left arrow
+- Next slide: ``n``, Space bar, Right arrow
 
 At the end, you can press ``r`` to restart the presentation.
 
