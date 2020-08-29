@@ -16,7 +16,7 @@ lines:
   in: smol-git add a.txt
 - prompt: $
   in: 'smol-git commit -m "Add a.txt"'
-- out: '[master b0faa5a] Save progress'
+- out: '[master b0faa5a] Add a.txt'
 - prompt: $
   in: smol-git push origin master
   out: "Pushing to 'origin'..."

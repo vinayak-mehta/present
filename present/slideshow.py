@@ -108,7 +108,7 @@ class Slideshow(object):
             and not slide.has_code
             and not slide.has_codio
         ):
-            row = int(self.screen.height / 2) - 1
+            row = int(self.screen.height / 2) - elements[0].size
         else:
             row = int(self.screen.height * 0.2)
 
