@@ -23,6 +23,10 @@ present — A terminal-based presentation tool with colors and effects
 
 .. image:: _static/demo.gif
 
+You can also play codios, which are pre-recorded code demos.
+
+.. image:: _static/codio.gif
+
 ``present`` is built on `asciimatics <https://github.com/peterbrittain/asciimatics>`_.
 
 Installation
@@ -162,7 +166,7 @@ Each slide can be styled with foreground / background colors and effects. By def
 
 Colors: ``black``, ``red``, ``green``, ``yellow``, ``blue``, ``magenta``, ``cyan``, ``white``.
 
-Effects: ``explosions``, ``stars``, ``matrix``, ``plasma``. More coming soon!
+Effects: ``fireworks``, ``explosions``, ``stars``, ``matrix``, ``plasma``. More coming soon!
 
 Versioning
 ----------

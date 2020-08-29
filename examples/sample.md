@@ -97,10 +97,13 @@ You can also add effects!
 Just add this to the top of your slide:
 
 ```html
-<!-- effect=explosions -->
+<!-- effect=fireworks -->
 ```
 
-Effects: explosions, matrix, plasma, stars, more coming soon!
+Effects: fireworks, explosions, matrix, plasma, stars, more coming soon!
+
+---
+<!-- effect=fireworks -->
 
 ---
 <!-- effect=explosions -->

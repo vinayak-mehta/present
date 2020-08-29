@@ -12,6 +12,12 @@ A terminal-based presentation tool with colors and effects.
    <img src="https://raw.githubusercontent.com/vinayak-mehta/present/master/docs/_static/demo.gif" width="800">
 </p>
 
+You can also play codios, which are pre-recorded code demos.
+
+<p align="center">
+   <img src="https://raw.githubusercontent.com/vinayak-mehta/present/master/docs/_static/codio.gif" width="800">
+</p>
+
 `present` is built on [asciimatics](https://github.com/peterbrittain/asciimatics).
 
 ## Installation
@@ -140,7 +146,7 @@ Slide 3
 
 Colors: `black`, `red`, `green`, `yellow`, `blue`, `magenta`, `cyan`, `white`.
 
-Effects: `explosions`, `stars`, `matrix`, `plasma`. More coming soon!
+Effects: `fireworks`, `explosions`, `stars`, `matrix`, `plasma`. More coming soon!
 
 ## Versioning
 
