@@ -6,7 +6,13 @@ master
 
 **Enhancements**
 
+* [#26](https://github.com/vinayak-mehta/present/issues/26) Add codio support. [#20](https://github.com/vinayak-mehta/present/pull/20) by Vinayak Mehta.
+* [#32](https://github.com/vinayak-mehta/present/issues/32) Make level 3 headings bold. [#33](https://github.com/vinayak-mehta/present/pull/33) by Vinayak Mehta.
 * Allow pressing spacebar to go to next slide. [#30](https://github.com/vinayak-mehta/present/pull/30) by [Thomas Royal](https://github.com/tmroyal).
+
+**Bugfixes**
+
+* [#28](https://github.com/vinayak-mehta/present/issues/28) Render single elements using mid point. [#31](https://github.com/vinayak-mehta/present/pull/31) by Vinayak Mehta.
 
 0.4.0 (2020-08-27)
 ------------------
