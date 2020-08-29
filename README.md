@@ -12,7 +12,7 @@ A terminal-based presentation tool with colors and effects.
    <img src="https://raw.githubusercontent.com/vinayak-mehta/present/master/docs/_static/demo.gif" width="800">
 </p>
 
-You can also play a [codio](https://present.readthedocs.io/en/latest/codio.html), which is a pre-recorded code block.
+You can also play a [codio](https://present.readthedocs.io/en/latest/codio.html) (pre-recorded code block) on a slide.
 
 <p align="center">
    <img src="https://raw.githubusercontent.com/vinayak-mehta/present/master/docs/_static/codio.gif" width="800">

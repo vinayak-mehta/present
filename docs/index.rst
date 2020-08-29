@@ -23,7 +23,7 @@ present — A terminal-based presentation tool with colors and effects
 
 .. image:: _static/demo.gif
 
-You can also play a :ref:`codio`, which is a pre-recorded code block.
+You can also play a :ref:`codio` (pre-recorded code block) on a slide.
 
 .. image:: _static/codio.gif
 
