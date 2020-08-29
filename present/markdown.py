@@ -4,6 +4,7 @@ import os
 import re
 import sys
 import shutil
+import warnings
 from dataclasses import dataclass
 
 import yaml
@@ -11,6 +12,10 @@ from pyfiglet import Figlet
 from mistune import markdown
 
 from .effects import EFFECTS, COLORMAP
+
+
+# For future reference
+UNSUPPORTED_ELEMENTS = ["block_quote", "codespan", "link", "emphasis", "strong"]
 
 
 @dataclass
@@ -310,19 +315,27 @@ class Markdown(object):
                 buffer = []
                 continue
 
-            if obj["type"] == "paragraph":
+            if obj["type"] == "block_quote":
+                warnings.warn(
+                    f"(Slide {sliden + 1}) BlockQuote is not supported"
+                )
+            elif obj["type"] == "paragraph":
                 for child in obj["children"]:
                     try:
                         if child["type"] == "image" and child["alt"] == "codio":
                             with open(child["src"], "r") as f:
                                 codio = yaml.load(f, Loader=yaml.Loader)
                             buffer.append(Codio(obj=codio))
+                        elif child["type"] == "codespan":
+                            pass
+                        elif child["type"] == "link":
+                            pass
                         else:
                             element_name = child["type"].title().replace("_", "")
                             Element = eval(element_name)
                             buffer.append(Element(obj=child))
                     except NameError:
-                        raise ValueError(
+                        warnings.warn(
                             f"(Slide {sliden + 1}) {element_name} is not supported"
                         )
             else:
@@ -330,7 +343,7 @@ class Markdown(object):
                     element_name = obj["type"].title().replace("_", "")
                     Element = eval(element_name)
                 except NameError:
-                    raise ValueError(
+                    warnings.warn(
                         f"(Slide {sliden + 1}) {element_name} is not supported"
                     )
                 buffer.append(Element(obj=obj))

@@ -27,6 +27,7 @@ COLORMAP = {
     "white": Screen.COLOUR_WHITE,
 }
 ATTRS = {
+    "italic": 5,
     "bold": Screen.A_BOLD,
     "underline": Screen.A_UNDERLINE,
 }
