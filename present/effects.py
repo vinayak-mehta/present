@@ -109,7 +109,7 @@ def _reset(screen):
     reset = Print(
         screen,
         SpeechBubble("Press 'r' to restart."),
-        int(screen.height / 2),
+        int(screen.height / 2) - 2,
         attr=Screen.A_BOLD,
     )
     return [reset]
