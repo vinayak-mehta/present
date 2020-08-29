@@ -23,7 +23,7 @@ present — A terminal-based presentation tool with colors and effects
 
 .. image:: _static/demo.gif
 
-You can also play codios, which are pre-recorded code demos.
+You can also play a :ref:`codio`, which is a pre-recorded code block.
 
 .. image:: _static/codio.gif
 
