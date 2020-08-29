@@ -1,15 +1,11 @@
 You can now play code!
 
-Press the right arrow to go to the next slide.
+Press spacebar or right arrow to go to the next slide.
 
 ---
 
-## Color
+## Codio
 
-![codio](color.yml)
+Press r to reset.
 
----
-
-## Progress bar
-
-![codio](progress-bar.yml)
+![codio](test.yml)

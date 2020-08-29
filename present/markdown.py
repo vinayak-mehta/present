@@ -118,27 +118,79 @@ class Codio(object):
     @property
     def width(self):
         _width = 0
-        for l in self.obj["steps"]:
+        _terminal_width = int(shutil.get_terminal_size()[0] / 4)
+
+        for l in self.obj["lines"]:
+            prompt = l.get("prompt", "")
+            inp = l.get("in", "")
+            out = l.get("out", "")
+
+            if l.get("progress") is not None and l["progress"]:
+                _magic_width = _terminal_width
+            else:
+                _magic_width = 0
+
             _width = max(
                 _width,
-                len(l["prompt"]),
-                len(l["in"]) + l["in"].count(" "),
-                len(l["out"]) + l["out"].count(" "),
+                _magic_width,
+                len(prompt),
+                len(inp) + inp.count(" "),
+                len(out) + out.count(" "),
             )
+
         return _width + 4
 
     @property
     def size(self):
-        lines = 0
-        for l in self.obj["steps"]:
-            if l["in"]:
+        lines = len(self.obj["lines"])
+
+        for l in self.obj["lines"]:
+            if l.get("in", ""):
                 lines += 1
-            if l["out"]:
+            if l.get("out", ""):
                 lines += 1
+            if l.get("progress", ""):
+                lines += 1
+
         return lines + 2
 
     def render(self):
-        return self.obj["steps"]
+        _code = []
+        _width = self.width
+
+        for line in self.obj["lines"]:
+            _c = {}
+
+            # if there is a progress bar, don't display prompt or add style
+            if line.get("progress") is not None and line["progress"]:
+                progress_char = line.get("progressChar", "█")
+                _c["prompt"] = ""
+                _c["in"] = progress_char * int(0.6 * _width)
+                _c["out"] = ""
+            else:
+                prompt = line.get("prompt", "")
+                inp = line.get("in", "")
+                out = line.get("out", "")
+
+                if not (prompt or inp or out):
+                    continue
+
+                # if only prompt is present, print it all at once
+                if prompt and not inp and not out:
+                    out = prompt
+                    prompt = ""
+
+                _c["prompt"] = prompt
+                _c["in"] = inp
+                _c["out"] = out
+
+                _c["color"] = line.get("color")
+                _c["bold"] = line.get("bold")
+                _c["underline"] = line.get("underline")
+
+            _code.append(_c)
+
+        return _code
 
 
 @dataclass(init=False)
