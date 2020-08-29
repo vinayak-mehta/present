@@ -3,7 +3,7 @@
 codio
 =====
 
-A codio is a pre-recorded code block which can be useful for live demos.
+A codio is a pre-recorded playable code block which can be useful for live demos.
 
 .. image:: _static/codio.gif
 
@@ -11,7 +11,7 @@ You can make a codio by writing some `yaml <https://en.wikipedia.org/wiki/YAML>`
 
 .. code-block::
 
-    speed: 2
+    speed: 10
     lines:
     - prompt: $
       in: touch a.txt

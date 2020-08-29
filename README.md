@@ -126,6 +126,14 @@ os.getcwd()
 ```
 </pre>
 
+### Codios
+
+Codios are pre-recorded playable code blocks which can be useful for live demos. You can find out how to write one in the [codio](https://present.readthedocs.io/en/latest/codio.html) section of the documentation.
+
+```
+![codio](codio.yml)
+```
+
 ### Style
 
 Each slide can be styled with foreground / background colors and effects. By default, slides are black on white with no effects. You can add style to a slide by adding a comment at the beginning of the slide (after the slide separator):
