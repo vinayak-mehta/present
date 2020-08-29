@@ -7,6 +7,7 @@ master
 **Enhancements**
 
 * [#26](https://github.com/vinayak-mehta/present/issues/26) Add codio support. [#20](https://github.com/vinayak-mehta/present/pull/20) by Vinayak Mehta.
+* [#35](https://github.com/vinayak-mehta/present/issues/35) Support bold/italic text, inline code, links and block quotes. [#38](https://github.com/vinayak-mehta/present/pull/38) by Vinayak Mehta.
 * [#32](https://github.com/vinayak-mehta/present/issues/32) Make level 3 headings bold. [#33](https://github.com/vinayak-mehta/present/pull/33) by Vinayak Mehta.
 * Allow pressing spacebar to go to next slide. [#30](https://github.com/vinayak-mehta/present/pull/30) by [Thomas Royal](https://github.com/tmroyal).
 * [#27](https://github.com/vinayak-mehta/present/issues/27) Don't raise an error for unsupported markdown elements. [#34](https://github.com/vinayak-mehta/present/pull/34) by Vinayak Mehta.

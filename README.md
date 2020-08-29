@@ -41,23 +41,12 @@ At the end, you can press `r` to restart the presentation.
 Slides follow [Markdown](https://guides.github.com/features/mastering-markdown/) syntax. You can check out the [sample slides](https://github.com/vinayak-mehta/present/blob/master/examples/sample.md) for reference.
 
 **Note:** Some things aren't supported yet:
-- Making text bold and italic, inline code, links, and blockquotes.
 - Effects and foreground / background colors on the same slide.
 - Effects and code on the same slide.
 
 ### Separator
 
 Each slide can be separated with a `---`.
-
-```
-Slide 1
-
----
-
-Slide 2
-```
-
-### Text
 
 ```
 Slide 1
@@ -77,6 +66,25 @@ Level 1 headings become figlets, level 2 headings get underlined with `-`, and l
 ## Heading 2
 
 ### Heading 3
+```
+
+### Text
+
+```
+This is normal text
+
+This is **bold text**
+
+This is *italic text*
+
+This is `inline code`
+
+This is a [link](www.google.com)
+
+As Kanye West said:
+
+> We're living the future so
+> the present is our past.
 ```
 
 ### Lists

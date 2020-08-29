@@ -14,14 +14,14 @@ from mistune import markdown
 from .effects import EFFECTS, COLORMAP
 
 
-# For future reference
-UNSUPPORTED_ELEMENTS = ["block_quote", "codespan", "link", "emphasis", "strong"]
-
-
 @dataclass
 class Heading(object):
     type: str = "heading"
     obj: dict = None
+    fg: int = 0
+    attr: int = 2  # Screen.A_NORMAL
+    normal: int = 2  # Screen.A_NORMAL
+    bg: int = 7
 
     @property
     def size(self):
@@ -47,22 +47,13 @@ class Heading(object):
 
 
 @dataclass
-class Text(object):
-    type: str = "text"
-    obj: dict = None
-
-    @property
-    def size(self):
-        return 1
-
-    def render(self):
-        return self.obj["text"]
-
-
-@dataclass
 class List(object):
     type: str = "list"
     obj: dict = None
+    fg: int = 0
+    attr: int = 2  # Screen.A_NORMAL
+    normal: int = 2  # Screen.A_NORMAL
+    bg: int = 7
 
     def walk(self, obj, text=None, level=0):
         if text is None:
@@ -89,6 +80,10 @@ class List(object):
 class BlockCode(object):
     type: str = "code"
     obj: dict = None
+    fg: int = 0
+    attr: int = 2  # Screen.A_NORMAL
+    normal: int = 2  # Screen.A_NORMAL
+    bg: int = 7
 
     @staticmethod
     def pad(s, fill=" "):
@@ -115,20 +110,20 @@ class BlockCode(object):
 class Codio(object):
     type: str = "codio"
     obj: dict = None
+    fg: int = 0
+    attr: int = 2  # Screen.A_NORMAL
+    normal: int = 2  # Screen.A_NORMAL
+    bg: int = 7
 
     @property
     def speed(self):
         _speed = self.obj["speed"]
 
         if _speed < 1:
-            warnings.warn(
-                "Codio speed < 1, setting it to 1"
-            )
+            warnings.warn("Codio speed < 1, setting it to 1")
             _speed = 1
         elif _speed > 10:
-            warnings.warn(
-                "Codio speed > 10, setting it to 10"
-            )
+            warnings.warn("Codio speed > 10, setting it to 10")
             _speed = 10
 
         return 11 - _speed
@@ -211,9 +206,21 @@ class Codio(object):
 
 @dataclass(init=False)
 class Image(object):
-    def __init__(self, type: str = "image", obj: dict = None):
+    def __init__(
+        self,
+        type: str = "image",
+        obj: dict = None,
+        fg: int = 0,
+        attr: int = 2,
+        normal: int = 2,
+        bg: int = 7,
+    ):
         self.type = type
         self.obj = obj
+        self.fg = fg
+        self.attr = attr
+        self.normal = normal
+        self.bg = bg
         if not os.path.exists(self.obj["src"]):
             raise FileNotFoundError(f"{self.obj['src']} does not exist")
 
@@ -230,6 +237,10 @@ class Image(object):
 class BlockHtml(object):
     type: str = "html"
     obj: dict = None
+    fg: int = 0
+    attr: int = 2  # Screen.A_NORMAL
+    normal: int = 2  # Screen.A_NORMAL
+    bg: int = 7
 
     @property
     def size(self):
@@ -242,6 +253,153 @@ class BlockHtml(object):
 
     def render(self):
         raise NotImplementedError
+
+
+@dataclass
+class Text(object):
+    type: str = "text"
+    obj: dict = None
+    fg: int = 0
+    attr: int = 2  # Screen.A_NORMAL
+    normal: int = 2  # Screen.A_NORMAL
+    bg: int = 7
+
+    @property
+    def size(self):
+        return 1
+
+    def render(self):
+        return self.obj["text"]
+
+
+@dataclass
+class Codespan(object):
+    type: str = "codespan"
+    obj: dict = None
+    fg: int = 0
+    attr: int = 3  # Screen.A_REVERSE
+    normal: int = 2  # Screen.A_NORMAL
+    bg: int = 7
+
+    @property
+    def size(self):
+        raise NotImplementedError
+
+    def render(self):
+        return (
+            f"${{{self.fg},{self.attr},{self.bg}}}"
+            + self.obj["text"]
+            + f"${{{self.fg},{self.normal},{self.bg}}}"
+        )
+
+
+@dataclass
+class Strong(object):
+    type: str = "strong"
+    obj: dict = None
+    fg: int = 0
+    attr: int = 1  # Screen.A_BOLD
+    normal: int = 2  # Screen.A_NORMAL
+    bg: int = 7
+
+    @property
+    def size(self):
+        raise NotImplementedError
+
+    def render(self):
+        return (
+            f"${{{self.fg},{self.attr},{self.bg}}}"
+            + self.obj["children"][0]["text"]
+            + f"${{{self.fg},{self.normal},{self.bg}}}"
+        )
+
+
+@dataclass
+class Emphasis(object):
+    type: str = "emphasis"
+    obj: dict = None
+    fg: int = 0
+    attr: int = 5  # Screen.A_ITALIC
+    normal: int = 2  # Screen.A_NORMAL
+    bg: int = 7
+
+    @property
+    def size(self):
+        raise NotImplementedError
+
+    def render(self):
+        return (
+            f"${{{self.fg},{self.attr},{self.bg}}}"
+            + self.obj["children"][0]["text"]
+            + f"${{{self.fg},{self.normal},{self.bg}}}"
+        )
+
+
+@dataclass
+class Link(object):
+    type: str = "link"
+    obj: dict = None
+    fg: int = 0
+    attr: int = 2  # Screen.A_NORMAL
+    normal: int = 2  # Screen.A_NORMAL
+    bg: int = 7
+
+    @property
+    def size(self):
+        raise NotImplementedError
+
+    def render(self):
+        return f"{self.obj['children'][0]['text']} ({self.obj['link']})"
+
+
+@dataclass
+class Paragraph(object):
+    type: str = "paragraph"
+    obj: dict = None
+    fg: int = 0
+    attr: int = 2  # Screen.A_NORMAL
+    normal: int = 2  # Screen.A_NORMAL
+    bg: int = 7
+
+    @property
+    def size(self):
+        # TODO: paragraph size should be sum of all element sizes in it
+        return 1
+
+    def render(self):
+        text = ""
+
+        for child in self.obj["children"]:
+            element_name = child["type"].title().replace("_", "")
+            Element = eval(element_name)
+            e = Element(obj=child, fg=self.fg, bg=self.bg)
+            text += e.render()
+
+        return text
+
+
+@dataclass
+class BlockQuote(object):
+    type: str = "quote"
+    obj: dict = None
+    fg: int = 0
+    attr: int = 2  # Screen.A_NORMAL
+    normal: int = 2  # Screen.A_NORMAL
+    bg: int = 7
+
+    @property
+    def size(self):
+        return len(self.obj["children"])
+
+    def render(self):
+        text = []
+
+        for child in self.obj["children"]:
+            p = Paragraph(obj=child, fg=self.fg, bg=self.bg)
+            for t in p.render().split("\n"):
+                text.append(f"▌ {t}")
+
+        return "\n".join(text)
 
 
 class Slide(object):
@@ -260,7 +418,7 @@ class Slide(object):
         # TODO: style should always be the first element on a slide
         # raise error if it isn't or if there are two style elements
 
-        for e in elements:
+        for e in self.elements:
             if e.type == "html":
                 self.has_style = True
                 self.style = e.style
@@ -304,6 +462,11 @@ class Slide(object):
         if self.has_effect:
             self.fg_color, self.bg_color = 7, 0
 
+        # apply fg and bg color to all elements
+        for e in self.elements:
+            e.fg = self.fg_color
+            e.bg = self.bg_color
+
     def __repr__(self):
         return f"<Slide elements={self.elements} has_style={self.has_style} has_code={self.has_code} fg_color={self.fg_color} bg_color={self.bg_color}>"
 
@@ -328,38 +491,27 @@ class Markdown(object):
                 buffer = []
                 continue
 
-            if obj["type"] == "block_quote":
-                warnings.warn(
-                    f"(Slide {sliden + 1}) BlockQuote is not supported"
-                )
-            elif obj["type"] == "paragraph":
-                for child in obj["children"]:
-                    try:
-                        if child["type"] == "image" and child["alt"] == "codio":
-                            with open(child["src"], "r") as f:
+            try:
+                if obj["type"] == "paragraph":
+                    if (
+                        len(obj["children"]) == 1
+                        and obj["children"][0]["type"] == "image"
+                    ):
+                        image = obj["children"][0]
+                        if image["alt"] == "codio":
+                            with open(image["src"], "r") as f:
                                 codio = yaml.load(f, Loader=yaml.Loader)
                             buffer.append(Codio(obj=codio))
-                        elif child["type"] == "codespan":
-                            pass
-                        elif child["type"] == "link":
-                            pass
                         else:
-                            element_name = child["type"].title().replace("_", "")
-                            Element = eval(element_name)
-                            buffer.append(Element(obj=child))
-                    except NameError:
-                        warnings.warn(
-                            f"(Slide {sliden + 1}) {element_name} is not supported"
-                        )
-            else:
-                try:
+                            buffer.append(Image(obj=image))
+                    else:
+                        buffer.append(Paragraph(obj=obj))
+                else:
                     element_name = obj["type"].title().replace("_", "")
                     Element = eval(element_name)
-                except NameError:
-                    warnings.warn(
-                        f"(Slide {sliden + 1}) {element_name} is not supported"
-                    )
-                buffer.append(Element(obj=obj))
+                    buffer.append(Element(obj=obj))
+            except NameError:
+                warnings.warn(f"(Slide {sliden + 1}) {element_name} is not supported")
 
             if i == len(ast) - 1:
                 slides.append(Slide(elements=buffer))

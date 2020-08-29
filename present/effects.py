@@ -2,16 +2,20 @@
 
 from random import randint, choice
 
+import asciimatics.renderers
+
+asciimatics.renderers.ATTRIBUTES["5"] = 5
+
 from asciimatics.effects import Print
 from asciimatics.screen import Screen
 from asciimatics.effects import Stars, Matrix
 from asciimatics.particles import Explosion, StarFirework
 from asciimatics.renderers import (
+    Plasma,
+    SpeechBubble,
+    StaticRenderer,
     ColourImageFile,
     DynamicRenderer,
-    StaticRenderer,
-    SpeechBubble,
-    Plasma,
 )
 
 
@@ -29,6 +33,8 @@ COLORMAP = {
 ATTRS = {
     "italic": 5,
     "bold": Screen.A_BOLD,
+    "normal": Screen.A_NORMAL,
+    "reverse": Screen.A_REVERSE,
     "underline": Screen.A_UNDERLINE,
 }
 
@@ -124,7 +130,15 @@ def _base(screen, element, row, fg_color, bg_color, attr=0):
     if element.type == "heading" and element.obj["level"] == 3:
         attr = ATTRS["bold"]
 
-    base = Print(screen, Text(element.render()), row, colour=fg_color, bg=bg_color, attr=attr)
+    base = Print(
+        screen,
+        Text(element.render()),
+        row,
+        colour=fg_color,
+        bg=bg_color,
+        attr=attr,
+        transparent=False,
+    )
 
     return [base]
 
