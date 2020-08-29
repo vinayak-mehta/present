@@ -98,7 +98,7 @@ Level 1 headings become figlets, level 2 headings get underlined with `-`, and l
 Lists
 ^^^^^
 
-Ordered lists become unordered lists automatically, for now.
+Ordered lists become unordered lists automatically.
 
 .. code-block::
 
