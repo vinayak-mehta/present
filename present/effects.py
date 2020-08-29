@@ -3,6 +3,7 @@
 from random import randint, choice
 
 import asciimatics.renderers
+
 asciimatics.renderers.ATTRIBUTES["5"] = 5
 
 from asciimatics.effects import Print
@@ -10,11 +11,11 @@ from asciimatics.screen import Screen
 from asciimatics.effects import Stars, Matrix
 from asciimatics.particles import Explosion, StarFirework
 from asciimatics.renderers import (
+    Plasma,
+    SpeechBubble,
+    StaticRenderer,
     ColourImageFile,
     DynamicRenderer,
-    StaticRenderer,
-    SpeechBubble,
-    Plasma,
 )
 
 
@@ -130,7 +131,13 @@ def _base(screen, element, row, fg_color, bg_color, attr=0):
         attr = ATTRS["bold"]
 
     base = Print(
-        screen, Text(element.render()), row, colour=fg_color, bg=bg_color, attr=attr
+        screen,
+        Text(element.render()),
+        row,
+        colour=fg_color,
+        bg=bg_color,
+        attr=attr,
+        transparent=False,
     )
 
     return [base]

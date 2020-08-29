@@ -47,23 +47,6 @@ class Heading(object):
 
 
 @dataclass
-class Text(object):
-    type: str = "text"
-    obj: dict = None
-    fg: int = 0
-    attr: int = 2  # Screen.A_NORMAL
-    normal: int = 2  # Screen.A_NORMAL
-    bg: int = 7
-
-    @property
-    def size(self):
-        return 1
-
-    def render(self):
-        return self.obj["text"]
-
-
-@dataclass
 class List(object):
     type: str = "list"
     obj: dict = None
@@ -223,7 +206,15 @@ class Codio(object):
 
 @dataclass(init=False)
 class Image(object):
-    def __init__(self, type: str = "image", obj: dict = None, fg: int = 0, attr: int = 2, normal: int = 2, bg: int = 7):
+    def __init__(
+        self,
+        type: str = "image",
+        obj: dict = None,
+        fg: int = 0,
+        attr: int = 2,
+        normal: int = 2,
+        bg: int = 7,
+    ):
         self.type = type
         self.obj = obj
         self.fg = fg
@@ -265,6 +256,23 @@ class BlockHtml(object):
 
 
 @dataclass
+class Text(object):
+    type: str = "text"
+    obj: dict = None
+    fg: int = 0
+    attr: int = 2  # Screen.A_NORMAL
+    normal: int = 2  # Screen.A_NORMAL
+    bg: int = 7
+
+    @property
+    def size(self):
+        return 1
+
+    def render(self):
+        return self.obj["text"]
+
+
+@dataclass
 class Codespan(object):
     type: str = "codespan"
     obj: dict = None
@@ -278,7 +286,11 @@ class Codespan(object):
         raise NotImplementedError
 
     def render(self):
-        return "${" + f"{self.fg},{self.attr},{self.bg}" + "}" + self.obj['text']
+        return (
+            f"${{{self.fg},{self.attr},{self.bg}}}"
+            + self.obj["text"]
+            + f"${{{self.fg},{self.normal},{self.bg}}}"
+        )
 
 
 @dataclass
@@ -295,7 +307,11 @@ class Strong(object):
         raise NotImplementedError
 
     def render(self):
-        return "${" + f"{self.fg},{self.attr},{self.bg}" + "}" + self.obj['children'][0]['text']
+        return (
+            f"${{{self.fg},{self.attr},{self.bg}}}"
+            + self.obj["children"][0]["text"]
+            + f"${{{self.fg},{self.normal},{self.bg}}}"
+        )
 
 
 @dataclass
@@ -312,7 +328,11 @@ class Emphasis(object):
         raise NotImplementedError
 
     def render(self):
-        return "${" + f"{self.fg},{self.attr},{self.bg}" + "}" + self.obj['children'][0]['text']
+        return (
+            f"${{{self.fg},{self.attr},{self.bg}}}"
+            + self.obj["children"][0]["text"]
+            + f"${{{self.fg},{self.normal},{self.bg}}}"
+        )
 
 
 @dataclass
@@ -343,6 +363,7 @@ class Paragraph(object):
 
     @property
     def size(self):
+        # TODO: paragraph size should be sum of all element sizes in it
         return 1
 
     def render(self):
@@ -351,7 +372,7 @@ class Paragraph(object):
         for child in self.obj["children"]:
             element_name = child["type"].title().replace("_", "")
             Element = eval(element_name)
-            e = Element(obj=child, fg=self.fg, attr=self.attr, normal=self.normal, bg=self.bg)
+            e = Element(obj=child, fg=self.fg, bg=self.bg)
             text += e.render()
 
         return text
@@ -374,8 +395,9 @@ class BlockQuote(object):
         text = []
 
         for child in self.obj["children"]:
-            p = Paragraph(obj=child, fg=self.fg, attr=self.attr, normal=self.normal, bg=self.bg)
-            text.append(f"▌ {p.render()}")
+            p = Paragraph(obj=child, fg=self.fg, bg=self.bg)
+            for t in p.render().split("\n"):
+                text.append(f"▌ {t}")
 
         return "\n".join(text)
 
@@ -471,7 +493,10 @@ class Markdown(object):
 
             try:
                 if obj["type"] == "paragraph":
-                    if len(obj["children"]) == 1 and obj["children"][0] == "image":
+                    if (
+                        len(obj["children"]) == 1
+                        and obj["children"][0]["type"] == "image"
+                    ):
                         image = obj["children"][0]
                         if image["alt"] == "codio":
                             with open(image["src"], "r") as f:

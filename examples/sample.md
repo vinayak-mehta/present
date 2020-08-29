@@ -27,6 +27,25 @@ Some controls:
 
 ---
 
+## Formatted text
+
+As Kanye West said:
+
+> We're living the future so
+> the present is our past.
+
+This is normal text
+
+This is `inline code`
+
+This is **bold text**
+
+This is *italic text*
+
+This is a [link](www.google.com)
+
+---
+
 ## Code blocks
 
 An explanation for the code below:
@@ -42,6 +61,14 @@ import shutil
 
 columns, rows = shutil.get_terminal_size()
 ```
+
+---
+
+## Codios: playable code blocks
+
+Press r to reset.
+
+![codio](simple_codio.yml)
 
 ---
 

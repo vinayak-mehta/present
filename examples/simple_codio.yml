@@ -1,0 +1,7 @@
+speed: 10
+lines:
+- prompt: '>>>'
+  in: import os
+- prompt: '>>>'
+  in: os.getcwd()
+  out: /home/vinayak/dev
