@@ -118,7 +118,20 @@ class Codio(object):
 
     @property
     def speed(self):
-        return self.obj["speed"]
+        _speed = self.obj["speed"]
+
+        if _speed < 1:
+            warnings.warn(
+                "Codio speed < 1, setting it to 1"
+            )
+            _speed = 1
+        elif _speed > 10:
+            warnings.warn(
+                "Codio speed > 10, setting it to 10"
+            )
+            _speed = 10
+
+        return 11 - _speed
 
     @property
     def width(self):

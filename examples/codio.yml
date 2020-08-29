@@ -1,4 +1,4 @@
-speed: 2
+speed: 10
 lines:
 - prompt: $
   in: touch a.txt
