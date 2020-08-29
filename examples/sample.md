@@ -64,14 +64,6 @@ columns, rows = shutil.get_terminal_size()
 
 ---
 
-## Codios: playable code blocks
-
-Press r to reset.
-
-![codio](simple_codio.yml)
-
----
-
 ## Images
 
 ```
