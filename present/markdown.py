@@ -240,7 +240,7 @@ class Slide(object):
         self.bg_color = 7
 
         # TODO: style should always be the first element on a slide
-        # raise error if it isn't
+        # raise error if it isn't or if there are two style elements
 
         for e in elements:
             if e.type == "html":
@@ -257,7 +257,6 @@ class Slide(object):
                 self.has_codio = True
 
         # TODO: support everything!
-
         if self.style.get("effect") is not None:
             if self.style["effect"] not in EFFECTS:
                 raise ValueError(f"Effect {self.style['effect']} is not supported")
