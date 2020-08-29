@@ -8,8 +8,8 @@ from dataclasses import dataclass
 
 import yaml
 from pyfiglet import Figlet
+from mistune import markdown
 
-from ._vendor.mistune import markdown
 from .effects import EFFECTS, COLORMAP
 
 

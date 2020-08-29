@@ -15,6 +15,7 @@ with open("README.md", "r") as f:
 requires = [
     "asciimatics>=1.11.0",
     "Click>=7.0",
+    "mistune>=2.0.0a4",
     "pyfiglet>=0.8.post1",
     "PyYAML>=5.3.1",
 ]
