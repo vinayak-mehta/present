@@ -19,8 +19,14 @@ from asciimatics.renderers import (
 )
 
 
-EFFECTS = ["fireworks", "explosions", "stars", "matrix", "plasma"]
-COLORMAP = {
+ATTRS = {
+    "italic": 5,
+    "bold": Screen.A_BOLD,
+    "normal": Screen.A_NORMAL,
+    "reverse": Screen.A_REVERSE,
+    "underline": Screen.A_UNDERLINE,
+}
+COLORS = {
     "black": Screen.COLOUR_BLACK,
     "red": Screen.COLOUR_RED,
     "green": Screen.COLOUR_GREEN,
@@ -30,13 +36,7 @@ COLORMAP = {
     "cyan": Screen.COLOUR_CYAN,
     "white": Screen.COLOUR_WHITE,
 }
-ATTRS = {
-    "italic": 5,
-    "bold": Screen.A_BOLD,
-    "normal": Screen.A_NORMAL,
-    "reverse": Screen.A_REVERSE,
-    "underline": Screen.A_UNDERLINE,
-}
+EFFECTS = ["fireworks", "explosions", "stars", "matrix", "plasma"]
 
 
 class Text(StaticRenderer):
@@ -89,7 +89,7 @@ class Codio(DynamicRenderer):
             kwargs = {}
 
             if self._code[i].get("color") is not None:
-                kwargs.update({"colour": COLORMAP[self._code[i]["color"]]})
+                kwargs.update({"colour": COLORS[self._code[i]["color"]]})
 
             if self._code[i].get("bold") is not None and self._code[i]["bold"]:
                 kwargs.update({"attr": ATTRS["bold"]})

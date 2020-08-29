@@ -11,7 +11,7 @@ import yaml
 from pyfiglet import Figlet
 from mistune import markdown
 
-from .effects import EFFECTS, COLORMAP
+from .effects import COLORS, EFFECTS
 
 
 @dataclass
@@ -441,13 +441,13 @@ class Slide(object):
 
         if self.style.get("fg") is not None:
             try:
-                self.fg_color = COLORMAP[self.style["fg"]]
+                self.fg_color = COLORS[self.style["fg"]]
             except KeyError:
                 raise ValueError(f"Color {self.style['fg']} is not supported")
 
         if self.style.get("bg") is not None:
             try:
-                self.bg_color = COLORMAP[self.style["bg"]]
+                self.bg_color = COLORS[self.style["bg"]]
             except KeyError:
                 raise ValueError(f"Color {self.style['bg']} is not supported")
 
