@@ -108,6 +108,8 @@ Image paths are relative to the directory where your slides are kept, and where 
 ![RC](images/recurse.png)
 ```
 
+Note: You can use high resolution images and tweak the terminal font size to get the best results.
+
 ### Code blocks
 
 <pre>
