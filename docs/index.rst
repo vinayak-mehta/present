@@ -70,17 +70,6 @@ Each slide can be separated with a ``---``.
 
     Slide 2
 
-Text
-^^^^
-
-.. code-block::
-
-    Slide 1
-
-    ---
-
-    Slide 2
-
 Headers
 ^^^^^^^
 
@@ -93,6 +82,26 @@ Level 1 headings become figlets, level 2 headings get underlined with `-`, and l
     ## Heading 2
 
     ### Heading 3
+
+Text
+^^^^
+
+.. code-block::
+
+    This is normal text
+
+    This is **bold text**
+
+    This is *italic text*
+
+    This is `inline code`
+
+    This is a [link](www.google.com)
+
+    As Kanye West said:
+
+    > We're living the future so
+    > the present is our past.
 
 Lists
 ^^^^^

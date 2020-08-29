@@ -56,16 +56,6 @@ Slide 1
 Slide 2
 ```
 
-### Text
-
-```
-Slide 1
-
----
-
-Slide 2
-```
-
 ### Headers
 
 Level 1 headings become figlets, level 2 headings get underlined with `-`, and level 3 headings become bold.
@@ -76,6 +66,25 @@ Level 1 headings become figlets, level 2 headings get underlined with `-`, and l
 ## Heading 2
 
 ### Heading 3
+```
+
+### Text
+
+```
+This is normal text
+
+This is **bold text**
+
+This is *italic text*
+
+This is `inline code`
+
+This is a [link](www.google.com)
+
+As Kanye West said:
+
+> We're living the future so
+> the present is our past.
 ```
 
 ### Lists
