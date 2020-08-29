@@ -26,6 +26,10 @@ COLORMAP = {
     "cyan": Screen.COLOUR_CYAN,
     "white": Screen.COLOUR_WHITE,
 }
+ATTRS = {
+    "bold": Screen.A_BOLD,
+    "underline": Screen.A_UNDERLINE,
+}
 
 
 class Text(StaticRenderer):
@@ -81,13 +85,13 @@ class Codio(DynamicRenderer):
                 kwargs.update({"colour": COLORMAP[self._code[i]["color"]]})
 
             if self._code[i].get("bold") is not None and self._code[i]["bold"]:
-                kwargs.update({"attr": Screen.A_BOLD})
+                kwargs.update({"attr": ATTRS["bold"]})
 
             if (
                 self._code[i].get("underline") is not None
                 and self._code[i]["underline"]
             ):
-                kwargs.update({"attr": Screen.A_UNDERLINE})
+                kwargs.update({"attr": ATTRS["underline"]})
 
             inp, out = self._get_code(i)
             if inp is not None:
@@ -98,7 +102,6 @@ class Codio(DynamicRenderer):
                     self._write(f"{inp}", x, y, **kwargs)
                 y += 1
             if out is not None and out:
-                # colour=Screen.COLOUR_GREEN, attr=Screen.A_BOLD
                 self._write(out, x, y, **kwargs)
                 y += 1
 
@@ -110,33 +113,19 @@ def _reset(screen):
         screen,
         SpeechBubble("Press 'r' to restart."),
         int(screen.height / 2) - 2,
-        attr=Screen.A_BOLD,
+        attr=ATTRS["bold"],
     )
     return [reset]
 
 
-def _base(screen, element, row, fg_color, bg_color):
-    base = Print(screen, Text(element.render()), row, colour=fg_color, bg=bg_color,)
+def _base(screen, element, row, fg_color, bg_color, attr=0):
+    # for heading, text, list, blockhtml
+    if element.type == "heading" and element.obj["level"] == 3:
+        attr = ATTRS["bold"]
+
+    base = Print(screen, Text(element.render()), row, colour=fg_color, bg=bg_color, attr=attr)
 
     return [base]
-
-
-def _image(screen, element, row, bg_color):
-    image = Print(
-        screen,
-        ColourImageFile(
-            screen,
-            element.obj["src"],
-            element.size,
-            bg=bg_color,
-            fill_background=True,
-            uni=screen.unicode_aware,
-            dither=screen.unicode_aware,
-        ),
-        row,
-    )
-
-    return [image]
 
 
 def _code(screen, element, row):
@@ -164,6 +153,24 @@ def _codio(screen, element, row):
     )
 
     return [codio]
+
+
+def _image(screen, element, row, bg_color):
+    image = Print(
+        screen,
+        ColourImageFile(
+            screen,
+            element.obj["src"],
+            element.size,
+            bg=bg_color,
+            fill_background=True,
+            uni=screen.unicode_aware,
+            dither=screen.unicode_aware,
+        ),
+        row,
+    )
+
+    return [image]
 
 
 def _fireworks(screen):
