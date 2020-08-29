@@ -54,7 +54,6 @@ Slides follow `Markdown <https://guides.github.com/features/mastering-markdown/>
 
 .. note:: Some things aren't supported yet:
 
-    - Making text bold and italic, inline code, links, and blockquotes.
     - Effects and foreground / background colors on the same slide.
     - Effects and code on the same slide.
 
