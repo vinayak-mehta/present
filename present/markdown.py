@@ -145,11 +145,9 @@ class Codio(object):
         lines = len(self.obj["lines"])
 
         for l in self.obj["lines"]:
-            if l.get("in", ""):
-                lines += 1
-            if l.get("out", ""):
-                lines += 1
-            if l.get("progress", ""):
+            inp = l.get("in", "")
+            out = l.get("out", "")
+            if inp and out:
                 lines += 1
 
         return lines + 2
