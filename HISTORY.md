@@ -4,6 +4,9 @@ Release History
 master
 ------
 
+0.5.0 (2020-08-30)
+------------------
+
 **Enhancements**
 
 * [#26](https://github.com/vinayak-mehta/present/issues/26) Add codio support. [#20](https://github.com/vinayak-mehta/present/pull/20) by Vinayak Mehta.
