@@ -2,25 +2,15 @@
 
 import os
 import re
+import sys
 import shutil
 from dataclasses import dataclass
 
+import yaml
 from pyfiglet import Figlet
 
 from ._vendor.mistune import markdown
-
-
-EFFECTS = ["explosions", "stars", "matrix", "plasma"]
-COLORMAP = {
-    "black": 0,
-    "red": 1,
-    "green": 2,
-    "yellow": 3,
-    "blue": 4,
-    "magenta": 5,
-    "cyan": 6,
-    "white": 7,
-}
+from .effects import EFFECTS, COLORMAP
 
 
 @dataclass
@@ -116,11 +106,93 @@ class BlockCode(object):
         return self.pad(self.obj["text"])
 
 
-@dataclass(init=False)
-class Image(object):
-    type: str = "image"
+@dataclass
+class Codio(object):
+    type: str = "codio"
     obj: dict = None
 
+    @property
+    def speed(self):
+        return self.obj["speed"]
+
+    @property
+    def width(self):
+        _width = 0
+        _terminal_width = int(shutil.get_terminal_size()[0] / 4)
+
+        for l in self.obj["lines"]:
+            prompt = l.get("prompt", "")
+            inp = l.get("in", "")
+            out = l.get("out", "")
+
+            if l.get("progress") is not None and l["progress"]:
+                _magic_width = _terminal_width
+            else:
+                _magic_width = 0
+
+            _width = max(
+                _width,
+                _magic_width,
+                len(prompt),
+                len(inp) + inp.count(" "),
+                len(out) + out.count(" "),
+            )
+
+        return _width + 4
+
+    @property
+    def size(self):
+        lines = len(self.obj["lines"])
+
+        for l in self.obj["lines"]:
+            inp = l.get("in", "")
+            out = l.get("out", "")
+            if inp and out:
+                lines += 1
+
+        return lines + 2
+
+    def render(self):
+        _code = []
+        _width = self.width
+
+        for line in self.obj["lines"]:
+            _c = {}
+
+            # if there is a progress bar, don't display prompt or add style
+            if line.get("progress") is not None and line["progress"]:
+                progress_char = line.get("progressChar", "█")
+                _c["prompt"] = ""
+                _c["in"] = progress_char * int(0.6 * _width)
+                _c["out"] = ""
+            else:
+                prompt = line.get("prompt", "")
+                inp = line.get("in", "")
+                out = line.get("out", "")
+
+                if not (prompt or inp or out):
+                    continue
+
+                # if only prompt is present, print it all at once
+                if prompt and not inp and not out:
+                    out = prompt
+                    prompt = ""
+
+                _c["prompt"] = prompt
+                _c["in"] = inp
+                _c["out"] = out
+
+                _c["color"] = line.get("color")
+                _c["bold"] = line.get("bold")
+                _c["underline"] = line.get("underline")
+
+            _code.append(_c)
+
+        return _code
+
+
+@dataclass(init=False)
+class Image(object):
     def __init__(self, type: str = "image", obj: dict = None):
         self.type = type
         self.obj = obj
@@ -161,6 +233,7 @@ class Slide(object):
         self.has_effect = False
         self.has_image = False
         self.has_code = False
+        self.has_codio = False
         self.style = {}
         self.effect = None
         self.fg_color = 0
@@ -179,6 +252,9 @@ class Slide(object):
 
             if e.type == "code":
                 self.has_code = True
+
+            if e.type == "codio":
+                self.has_codio = True
 
         # TODO: support everything!
 
@@ -238,13 +314,18 @@ class Markdown(object):
             if obj["type"] == "paragraph":
                 for child in obj["children"]:
                     try:
-                        element_name = child["type"].title().replace("_", "")
-                        Element = eval(element_name)
+                        if child["type"] == "image" and child["alt"] == "codio":
+                            with open(child["src"], "r") as f:
+                                codio = yaml.load(f, Loader=yaml.Loader)
+                            buffer.append(Codio(obj=codio))
+                        else:
+                            element_name = child["type"].title().replace("_", "")
+                            Element = eval(element_name)
+                            buffer.append(Element(obj=child))
                     except NameError:
                         raise ValueError(
                             f"(Slide {sliden + 1}) {element_name} is not supported"
                         )
-                    buffer.append(Element(obj=child))
             else:
                 try:
                     element_name = obj["type"].title().replace("_", "")

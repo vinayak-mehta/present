@@ -15,7 +15,8 @@ with open("README.md", "r") as f:
 requires = [
     "asciimatics>=1.11.0",
     "Click>=7.0",
-    "pyfiglet==0.8.post1",
+    "pyfiglet>=0.8.post1",
+    "PyYAML>=5.3.1",
 ]
 dev_requires = ["Sphinx>=2.2.1"]
 dev_requires = dev_requires + requires

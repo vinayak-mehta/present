@@ -3,11 +3,24 @@
 import time
 
 from asciimatics.scene import Scene
+from asciimatics.effects import Print
 from asciimatics.screen import Screen
 from asciimatics.event import KeyboardEvent
 from asciimatics.exceptions import ResizeScreenError, StopApplication
 
-from .effects import _reset, _base, _image, _code, _explosions, _stars, _matrix, _plasma
+from .effects import (
+    _reset,
+    _base,
+    _image,
+    _code,
+    _codio,
+    _fireworks,
+    _explosions,
+    _stars,
+    _matrix,
+    _plasma,
+    Codio,
+)
 
 
 class Slide(Scene):
@@ -17,13 +30,20 @@ class Slide(Scene):
         self.bg_color = bg_color
         super(Slide, self).__init__(effects)
 
+    def _reset(self):
+        for effect in self._effects:
+            if isinstance(effect, Print) and isinstance(effect._renderer, Codio):
+                effect._renderer._reset()
+
     def process_event(self, event):
         if super(Slide, self).process_event(event) is None:
             return
 
         if isinstance(event, KeyboardEvent):
             c = event.key_code
-            if c in (ord("b"), Screen.KEY_LEFT):
+            if c == ord("r"):
+                self._reset()
+            elif c in (ord("b"), Screen.KEY_LEFT):
                 self.show.current_slide -= 1
 
                 try:
@@ -37,7 +57,7 @@ class Slide(Scene):
                     )
                 except IndexError:
                     pass
-            elif c in (ord("n"), ord(" "), Screen.KEY_RIGHT):
+            elif c in (ord(" "), ord("n"), Screen.KEY_RIGHT):
                 self.show.current_slide += 1
 
                 try:
@@ -82,7 +102,12 @@ class Slideshow(object):
         if slide.has_style:
             elements = elements[1:]
 
-        if len(elements) == 1 and not slide.has_image and not slide.has_code:
+        if (
+            len(elements) == 1
+            and not slide.has_image
+            and not slide.has_code
+            and not slide.has_codio
+        ):
             row = int(self.screen.height / 2) - 1
         else:
             row = int(self.screen.height * 0.2)
@@ -91,6 +116,9 @@ class Slideshow(object):
         for e in elements:
             if e.type == "code":
                 effects.extend(_code(self.screen, e, row))
+                pad = 4
+            elif e.type == "codio":
+                effects.extend(_codio(self.screen, e, row))
                 pad = 4
             elif e.type == "image":
                 effects.extend(_image(self.screen, e, row, bg_color))
