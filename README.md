@@ -1,21 +1,28 @@
 <p align="center">
-   <img src="https://raw.githubusercontent.com/vinayak-mehta/present/master/docs/_static/present.png" width="200">
+   <img src="https://user-images.githubusercontent.com/27065646/91667596-3503e400-eb06-11ea-9c1c-7763cddb1668.png" width="80%" height="90%">
 </p>
 
-# present
+<p align="center">
+  <a href="#installation">Installation</a>
+  &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#usage">Usage</a>
+  &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#syntax">Syntax</a>
+  &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#cersioning">Versioning</a>
+  &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#license">License</a>
+</p>
 
-[![Documentation Status](https://readthedocs.org/projects/present/badge/?version=latest)](https://present.readthedocs.io/en/latest/) [![image](https://img.shields.io/pypi/v/present.svg)](https://pypi.org/project/present/) [![image](https://img.shields.io/pypi/pyversions/present.svg)](https://pypi.org/project/present/) [![image](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
-
-A terminal-based presentation tool with colors and effects.
+<p align="center">
+  <a href="https://present.readthedocs.io/en/latest/"><img src="https://readthedocs.org/projects/present/badge/?version=latest" alt="Documentation Status"></a>
+  <a href="https://pypi.org/project/present/"><img src="https://img.shields.io/pypi/v/present.svg" alt="image"></a>
+  <a href="https://pypi.org/project/present/"><img src="https://img.shields.io/pypi/pyversions/present.svg" alt="image"></a>
+  <a href="https://github.com/ambv/black"><img src="https://img.shields.io/badge/code%20style-black-000000.svg" alt="image"></a>
+</p>
 
 <p align="center">
    <img src="https://raw.githubusercontent.com/vinayak-mehta/present/master/docs/_static/demo.gif" width="800">
-</p>
-
-You can also play a [codio](https://present.readthedocs.io/en/latest/codio.html) (pre-recorded code block) on a slide.
-
-<p align="center">
-   <img src="https://raw.githubusercontent.com/vinayak-mehta/present/master/docs/_static/codio.gif" width="800">
 </p>
 
 `present` is built on [asciimatics](https://github.com/peterbrittain/asciimatics).
