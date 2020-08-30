@@ -37,7 +37,9 @@ You can make a codio by writing all the input and output as plaintext in a `yaml
       progressChar: █
     - prompt: $
 
-Let's deconstruct the YAML from above. You can set the speed for your codio by specifying its value in a top-level key called ``speed``. It can be between 1 (very slow) to 10 (very fast).
+Let's deconstruct this YAML.
+
+You can set the speed for your codio by specifying its value in a top-level key called ``speed``. It can be between 1 (very slow) to 10 (very fast).
 
 .. code-block:: yaml
 
@@ -70,6 +72,8 @@ You can also just specify one output per line, to show a multi-line output (like
     - out: '  (use "git reset HEAD ..." to unstage)'
     - out: '    '
     - out: '        new file:   a.txt'
+
+Note the ``- out: '    '`` to print an empty line.
 
 You can add colors and styles to your output like this:
 
