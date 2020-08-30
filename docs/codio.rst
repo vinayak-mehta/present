@@ -62,7 +62,7 @@ You can also choose to skip output for some lines.
     - prompt: '>>>'
       in: 'import os'
 
-You can also just specify one output per line, to show a multi-line output (like in the first example).
+To show a multi-line output (like in the first example), you can just specify one output per line,
 
 .. code-block:: yaml
 
@@ -73,7 +73,7 @@ You can also just specify one output per line, to show a multi-line output (like
     - out: '    '
     - out: '        new file:   a.txt'
 
-Note the ``- out: '    '`` to print an empty line.
+Notice the ``out: '    '`` to print an empty line.
 
 You can add colors and styles to your output like this:
 
