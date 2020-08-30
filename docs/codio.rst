@@ -62,7 +62,7 @@ You can also choose to skip output for some lines.
     - prompt: '>>>'
       in: 'import os'
 
-To show a multi-line output (like in the first example), you can just specify one output per line,
+To show a multi-line output (like in the first example), you can just specify one output per line.
 
 .. code-block:: yaml
 
