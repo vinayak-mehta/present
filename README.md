@@ -4,7 +4,7 @@
 
 # present
 
-[![Documentation Status](https://readthedocs.org/projects/present/badge/?version=latest)](https://present.readthedocs.io/en/latest/) [![image](https://img.shields.io/pypi/v/present.svg)](https://pypi.org/project/present/) [![image](https://img.shields.io/pypi/pyversions/present.svg)](https://pypi.org/project/present/) [![image](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
+[![Documentation Status](https://readthedocs.org/projects/present/badge/?version=latest)](https://present.readthedocs.io/en/latest/) [![image](https://img.shields.io/pypi/v/present.svg)](https://pypi.org/project/present/) [![image](https://img.shields.io/pypi/pyversions/present.svg)](https://pypi.org/project/present/) [![image](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black) [![Run on Repl.it](https://repl.it/badge/github/vinayak-mehta/present)](https://repl.it/@amasad/terminal-present)
 
 A terminal-based presentation tool with colors and effects.
 
