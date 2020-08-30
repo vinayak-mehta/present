@@ -7,7 +7,7 @@ A codio is a pre-recorded playable code block which can be useful for live demos
 
 .. image:: _static/codio.gif
 
-You can make a codio by writing all the input and output as plaintext in a `yaml <https://en.wikipedia.org/wiki/YAML>`_ file (shown below), and use it inside your Markdown slides just like an image: ``![codio](codio.yml)``. The image alt should be ``![codio]``, but filename can be anything.
+You can make a codio by writing all the input and output as plaintext in a `YAML <https://en.wikipedia.org/wiki/YAML>`_ file (shown below), and use it inside your Markdown slides just like an image: ``![codio](codio.yml)``. The image alt should be ``![codio]``, but filename can be anything.
 
 .. code-block:: yaml
 
