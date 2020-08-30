@@ -37,7 +37,7 @@ You can make a codio by writing all the input and output as plaintext in a `yaml
       progressChar: █
     - prompt: $
 
-Let's deconstruct the YAML from above. You can set the speed for your codio by specifying its value in a top-level key called `speed`. It can be between 1 (very slow) to 10 (very fast).
+Let's deconstruct the YAML from above. You can set the speed for your codio by specifying its value in a top-level key called ``speed``. It can be between 1 (very slow) to 10 (very fast).
 
 .. code-block:: yaml
 
