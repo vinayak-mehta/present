@@ -18,7 +18,7 @@ You can also play a [codio](https://present.readthedocs.io/en/latest/codio.html)
    <img src="https://raw.githubusercontent.com/vinayak-mehta/present/master/docs/_static/codio.gif" width="800">
 </p>
 
-`present` is built on [asciimatics](https://github.com/peterbrittain/asciimatics).
+`present` is built on [asciimatics](https://github.com/peterbrittain/asciimatics), and it works with `Python>=3.7`.
 
 ## Installation
 

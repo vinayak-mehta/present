@@ -27,7 +27,7 @@ You can also play a :ref:`codio` (pre-recorded code block) on a slide.
 
 .. image:: _static/codio.gif
 
-``present`` is built on `asciimatics <https://github.com/peterbrittain/asciimatics>`_.
+``present`` is built on `asciimatics <https://github.com/peterbrittain/asciimatics>`_, and it works with ``Python>=3.7``.
 
 Installation
 ------------
