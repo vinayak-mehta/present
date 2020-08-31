@@ -18,6 +18,7 @@ requires = [
     "mistune>=2.0.0a4",
     "pyfiglet>=0.8.post1",
     "PyYAML>=5.3.1",
+    "dataclasses==0.7",
 ]
 dev_requires = ["Sphinx>=2.2.1"]
 dev_requires = dev_requires + requires
