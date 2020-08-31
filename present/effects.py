@@ -2,10 +2,6 @@
 
 from random import randint, choice
 
-import asciimatics.renderers
-
-asciimatics.renderers.ATTRIBUTES["5"] = 5
-
 from asciimatics.effects import Print
 from asciimatics.screen import Screen
 from asciimatics.effects import Stars, Matrix
@@ -20,7 +16,6 @@ from asciimatics.renderers import (
 
 
 ATTRS = {
-    "italic": 5,
     "bold": Screen.A_BOLD,
     "normal": Screen.A_NORMAL,
     "reverse": Screen.A_REVERSE,

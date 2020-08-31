@@ -96,8 +96,6 @@ Text
 
     This is **bold text**
 
-    This is *italic text*
-
     This is `inline code`
 
     This is a [link](www.google.com)

@@ -319,7 +319,7 @@ class Emphasis(object):
     type: str = "emphasis"
     obj: dict = None
     fg: int = 0
-    attr: int = 5  # Screen.A_ITALIC
+    attr: int = 2  # Screen.A_NORMAL
     normal: int = 2  # Screen.A_NORMAL
     bg: int = 7
 
@@ -328,11 +328,8 @@ class Emphasis(object):
         raise NotImplementedError
 
     def render(self):
-        return (
-            f"${{{self.fg},{self.attr},{self.bg}}}"
-            + self.obj["children"][0]["text"]
-            + f"${{{self.fg},{self.normal},{self.bg}}}"
-        )
+        # TODO: add italic support
+        return self.obj["children"][0]["text"]
 
 
 @dataclass

@@ -4,6 +4,14 @@ Release History
 master
 ------
 
+0.5.1 (2020-08-31)
+------------------
+
+**Bugfixes**
+
+* [#48](https://github.com/vinayak-mehta/present/issues/48), [#54](https://github.com/vinayak-mehta/present/issues/54), [#52](https://github.com/vinayak-mehta/present/issues/52) Remove italics support temporarily. [#58](https://github.com/vinayak-mehta/present/pull/58) by Vinayak Mehta.
+* [#55](https://github.com/vinayak-mehta/present/issues/55) Yank versions older than `0.5.0` from PyPI because they didn't have `python_requires>=3.7`.
+
 0.5.0 (2020-08-30)
 ------------------
 
