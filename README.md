@@ -47,7 +47,7 @@ At the end, you can press `r` to restart the presentation.
 Slides follow [Markdown](https://guides.github.com/features/mastering-markdown/) syntax. You can check out the [sample slides](https://github.com/vinayak-mehta/present/blob/master/examples/sample.md) for reference.
 
 **Note:** Some things aren't supported yet:
-- Effects and foreground / background colors on the same slide.
+- Effects and colors on the same slide.
 - Effects and code on the same slide.
 
 ### Separator
