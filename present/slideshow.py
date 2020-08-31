@@ -3,9 +3,9 @@
 import time
 
 from asciimatics.scene import Scene
+from asciimatics.screen import Screen
 from asciimatics.effects import Print
 from asciimatics.event import KeyboardEvent
-from asciimatics.screen import Screen, _CursesScreen
 from asciimatics.exceptions import ResizeScreenError, StopApplication
 
 from .effects import (
@@ -88,14 +88,6 @@ class Slideshow(object):
 
     def __enter__(self):
         self.screen = Screen.open()
-
-        if isinstance(self.screen, _CursesScreen):
-            import curses
-
-            self.screen.A_ITALIC = 5
-            self.screen._a_italic = curses.tigetstr("sitm").decode("utf-8")
-            self.screen._ATTRIBUTES[self.screen.A_ITALIC] = self.screen._a_italic
-
         return self
 
     def __exit__(self, type, value, traceback):

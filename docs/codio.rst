@@ -84,7 +84,7 @@ You can add colors and styles to your output like this:
       color: green
       bold: true
 
-Currently, these colors are supported: ``black``, ``red``, ``green``, ``yellow``, ``blue``, ``magenta``, ``cyan``, ``white``. In terms of styles, ``bold`` and ``underline`` are supported. (``italics`` coming soon!)
+Currently, these colors are supported: ``black``, ``red``, ``green``, ``yellow``, ``blue``, ``magenta``, ``cyan``, ``white``. And these styles are supported: ``bold`` and ``underline``. (``italics`` coming soon!)
 
 You can add progress bars too. To add one, just set ``progress`` to ``true`` and add a progress character for your progress bar using ``progressChar``. The default ``progressChar`` is ``█``.
 
