@@ -19,6 +19,9 @@ present — A terminal-based presentation tool with colors and effects
 .. image:: https://img.shields.io/badge/code%20style-black-000000.svg
     :target: https://github.com/ambv/black
 
+.. image:: https://repl.it/badge/github/vinayak-mehta/present
+    :target: https://repl.it/@amasad/terminal-present
+
 ``present`` is a terminal-based presentation tool with colors and effects.
 
 .. image:: _static/demo.gif
