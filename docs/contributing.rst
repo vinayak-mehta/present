@@ -3,16 +3,20 @@
 Contributor's Guide
 ===================
 
-Thanks for taking the time to contribute! This doc will help you get started with contributing issues, documentation, code, and tests. If you have any questions, feel free to reach out to `Vinayak Mehta`_, the author and maintainer.
+Thanks for taking the time to contribute!
+
+This doc will help you get started with contributing issues, documentation, code, and tests. If you have any questions, feel free to reach out to `Vinayak Mehta`_, the author and maintainer.
 
 .. _Vinayak Mehta: https://github.com/vinayak-mehta
 
 Filing Issues
 -------------
 
-``present`` uses `GitHub issues`_ to keep track of all issues and pull requests. Before opening an issue (which asks a question or reports a bug), please use the issue search feature to look for existing issues (both open and closed) that may be similar. When opening an issue:
+``present`` uses `GitHub issues`_ to keep track of all issues and pull requests. Before opening an issue with a question or a bug report, please use the issue search feature to look for existing issues (both open and closed) that may be similar.
 
 .. _GitHub issues: https://github.com/vinayak-mehta/present/issues
+
+When opening an issue:
 
 1. List the steps you used to install ``present``.
 
@@ -49,7 +53,7 @@ Alternatively, you can clone the project repository, and install using pip::
 Writing Documentation
 ^^^^^^^^^^^^^^^^^^^^^
 
-Writing documentation, function docstrings, examples and tutorials is a great way to start contributing to free and open-source software! The documentation lies in the ``docs/`` directory of the project repository.
+Writing documentation, function docstrings, examples and tutorials is a great way to start contributing to free and open-source software! The documentation for this project lies in the ``docs/`` directory of the repository.
 
 The documentation (including this page) is written in `reStructuredText`_, with `Sphinx`_ used to generate these lovely HTML files that you're currently reading (unless you're reading this on GitHub). You can edit the documentation using any text editor and then generate the HTML output by running ``make html`` in the ``docs/`` directory.
 
