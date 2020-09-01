@@ -178,6 +178,11 @@ Colors: ``black``, ``red``, ``green``, ``yellow``, ``blue``, ``magenta``, ``cyan
 
 Effects: ``fireworks``, ``explosions``, ``stars``, ``matrix``, ``plasma``. More coming soon!
 
+Contributing
+------------
+
+The :ref:`contributing` has detailed information about contributing issues, documentation, code, and tests.
+
 Versioning
 ----------
 
