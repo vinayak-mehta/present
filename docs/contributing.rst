@@ -53,7 +53,7 @@ Alternatively, you can clone the project repository, and install using pip::
 Writing Documentation
 ^^^^^^^^^^^^^^^^^^^^^
 
-Writing documentation, function docstrings, examples and tutorials is a great way to start contributing to free and open-source software! The documentation for this project lies in the ``docs/`` directory of the repository, and it is written in `reStructuredText`_ with `Sphinx`_ used to generate these lovely HTML files that you're currently reading (unless you're reading this on GitHub). You can edit the documentation directly on GitHub or using any text editor.
+Writing documentation, function docstrings, examples and tutorials is a great way to start contributing to free and open-source software! The documentation for this project lies in the ``docs/`` directory of the repository, and it is written in `reStructuredText`_ with `Sphinx`_ used to generate these lovely HTML files that you're currently reading (unless you're reading this on GitHub). You can edit the documentation using any text editor and then submit a pull request.
 
 .. _reStructuredText: https://en.wikipedia.org/wiki/ReStructuredText
 .. _Sphinx: http://www.sphinx-doc.org/en/master/
