@@ -1,6 +1,6 @@
 ---
 name: Bug report
-about: Bug report template
+about: You can follow this template to submit bug reports.
 title: ''
 labels: ''
 assignees: ''
