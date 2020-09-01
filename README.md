@@ -154,6 +154,10 @@ Colors: `black`, `red`, `green`, `yellow`, `blue`, `magenta`, `cyan`, `white`.
 
 Effects: `fireworks`, `explosions`, `stars`, `matrix`, `plasma`. More coming soon!
 
+## Contributing
+
+The [Contributor's Guide](https://present.readthedocs.io/en/latest/contributing.html) has detailed information about contributing issues, documentation, code, and tests.
+
 ## Versioning
 
 `present` uses [Semantic Versioning](https://semver.org/). For the available versions, see the tags on the GitHub repository.
