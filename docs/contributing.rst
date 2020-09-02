@@ -22,9 +22,9 @@ When opening an issue:
 
 2. Make sure you include your operating system name, terminal emulator name, Python version number, and ``present`` version number. You can use the following code snippet to find most of this information::
 
-    >>> import platform; print(platform.platform())
-    >>> import sys; print('Python', sys.version)
-    >>> import present; print(present.__version__)
+    import platform; print(platform.platform())
+    import sys; print('Python', sys.version)
+    import present; print(present.__version__)
 
 3. Make sure you provide a suitable amount of information to work with. For example, the Markdown for the slide causing the issue in a `code block`_ (you can replace sensitive text with `lorem ipsum`_), what you expected to happen, and what actually happened.
 
