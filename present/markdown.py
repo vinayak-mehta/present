@@ -11,6 +11,7 @@ from dataclasses import dataclass
 import yaml
 from pyfiglet import Figlet
 from mistune import markdown
+from click import progressbar
 
 from .effects import COLORS, EFFECTS
 
@@ -229,20 +230,22 @@ class Image(object):
                 if not "images" in os.listdir():
                     os.mkdir("images")
                 
-                # Check if image is already downloaded
+                # Check if image is already downloaded in images folder
                 if f"{self.obj['alt']}.png" in os.listdir("images"):
                     self.obj['src'] = f"images/{self.obj['alt']}.png"      
 
                 else:
                     # Download image and store it in 'images' directory
-                    print("downloading image..")
-                    response = requests.get(self.obj["src"])
-                    filename = f'images/{self.obj["alt"]}.png'
+                    with progressbar(length=2, label='Downloading image..') as bar:
+                        response = requests.get(self.obj["src"])
+                        filename = f'images/{self.obj["alt"]}.png'
+                        bar.update(1)
 
-                    with open(filename, 'wb') as f:
-                        f.write(response.content)
+                        with open(filename, 'wb') as f:
+                            f.write(response.content)
+                        bar.update(1)
 
-                    self.obj['src'] = filename
+                        self.obj['src'] = filename
 
             else:
                 raise FileNotFoundError(f"{self.obj['src']} does not exist")
