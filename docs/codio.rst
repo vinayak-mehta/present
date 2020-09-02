@@ -3,7 +3,7 @@
 codio
 =====
 
-A codio is a pre-recorded playable code block which can be useful for live demos.
+A codio is a pre-recorded playable code block which can be useful for live demos. During the presentation, and on the slide with a codio, you can press ``r`` to reset the codio so that it starts playing again from the first line.
 
 .. image:: _static/codio.gif
 
