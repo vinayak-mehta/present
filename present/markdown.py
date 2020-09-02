@@ -229,27 +229,26 @@ class Image(object):
             if "https://" in self.obj["src"]:
                 if not "images" in os.listdir():
                     os.mkdir("images")
-                
+
                 # Check if image is already downloaded in images folder
                 if f"{self.obj['alt']}.png" in os.listdir("images"):
-                    self.obj['src'] = f"images/{self.obj['alt']}.png"      
+                    self.obj["src"] = f"images/{self.obj['alt']}.png"
 
                 else:
                     # Download image and store it in 'images' directory
-                    with progressbar(length=2, label='Downloading image..') as bar:
+                    with progressbar(length=2, label="Downloading image..") as bar:
                         response = requests.get(self.obj["src"])
                         filename = f'images/{self.obj["alt"]}.png'
                         bar.update(1)
 
-                        with open(filename, 'wb') as f:
+                        with open(filename, "wb") as f:
                             f.write(response.content)
                         bar.update(1)
 
-                        self.obj['src'] = filename
+                        self.obj["src"] = filename
 
             else:
                 raise FileNotFoundError(f"{self.obj['src']} does not exist")
-                
 
     @property
     def size(self):
@@ -499,8 +498,7 @@ class Slide(object):
 
 
 class Markdown(object):
-    """Parse and traverse through the markdown abstract syntax tree.
-    """
+    """Parse and traverse through the markdown abstract syntax tree."""
 
     def parse(self, text):
         slides = []
