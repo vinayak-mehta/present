@@ -1,0 +1,15 @@
+speed: 8
+lines:
+- prompt: $
+  in: How will we meet?
+  bold: True
+- out: '    '
+- out: '    -Zoom Meetings'
+- out: '    '
+- prompt: $
+  in: What will we do?
+  bold: True
+- out: '    '
+- out: '    - breakout room debugging'
+- out: '    - sharing awesome projects'
+- out: '    - trinket.io'
