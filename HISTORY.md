@@ -4,6 +4,7 @@ Release History
 master
 ------
 
+* Add a gallery! [#74](https://github.com/vinayak-mehta/present/pull/74) by Vinayak Mehta.
 * [#36](https://github.com/vinayak-mehta/present/issues/36) Add contributing guide. [#69](https://github.com/vinayak-mehta/present/pull/69) by Vinayak Mehta.
 
 0.5.1 (2020-08-31)
