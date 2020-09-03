@@ -4,7 +4,7 @@ Gallery
 The Hitchhiker's Guide to CLIs in Python
 ----------------------------------------
 
-A talk about terminals and CLIs
+A talk about terminals and CLIs, and how to make CLIs using Python.
 
 .. image:: /_static/gallery/the-hitchhikers-guide-to-clis-in-python.png
     :align: center

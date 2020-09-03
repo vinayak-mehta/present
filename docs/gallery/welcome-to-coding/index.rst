@@ -4,7 +4,7 @@ Gallery
 Welcome to Coding
 -----------------
 
-Zoom loading screen for a coding class
+I teach coding at a middle school. I made this welcome slide for students to see as they join our zoom class.
 
 .. image:: /_static/gallery/welcome-to-coding.gif
     :align: center

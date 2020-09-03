@@ -1,0 +1,9 @@
+speed: 8
+lines:
+- prompt: $
+  in: project creation using
+  bold: True
+- out: '    '
+- out: '    - edhesive'
+- out: '    - trinket.io'
+- out: '    - HTML?'
