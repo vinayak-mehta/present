@@ -6,9 +6,9 @@ Gallery
 .. gallery_image::
     :src: _static/gallery/the-hitchhikers-guide-to-clis-in-python.png
     :slides: the-hitchhikers-guide-to-clis-in-python
-    :description: A talk about terminals and CLIs by Vinayak Mehta
+    :description: The Hitchhiker's Guide to CLIs in Python by Vinayak Mehta
 
 .. gallery_image::
     :src: _static/gallery/welcome-to-coding.gif
     :slides: welcome-to-coding
-    :description: Zoom loading screen for a coding class by Russell Helmstedter
+    :description: Welcome to Coding by Russell Helmstedter

@@ -11,8 +11,10 @@ Zoom loading screen for a coding class
 
 Made by `Russell Helmstedter <https://github.com/rhelmstedter>`_.
 
-You can find the images and codios `here`_.
+You can see all files `here`_.
 
 .. _here: https://github.com/vinayak-mehta/present/tree/master/docs/gallery/welcome-to-coding
+
+Markdown slides:
 
 .. literalinclude:: slides.md

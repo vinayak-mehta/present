@@ -11,8 +11,10 @@ A talk about terminals and CLIs
 
 Made by `Vinayak Mehta <https://github.com/vinayak-mehta>`_.
 
-You can find the images and codios `here`_.
+You can see all files `here`_.
 
 .. _here: https://github.com/vinayak-mehta/present/tree/master/docs/gallery/the-hitchhikers-guide-to-clis-in-python
+
+Markdown slides:
 
 .. literalinclude:: slides.md

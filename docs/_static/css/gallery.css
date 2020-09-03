@@ -3,7 +3,7 @@ div.gallery {
   border: 1px solid #ccc;
   float: left;
   width: 180px;
-  height: 220px;
+  height: 225px;
 }
 
 div.gallery:hover {
@@ -21,6 +21,6 @@ div.gallery img {
 }
 
 div.desc {
-  padding: 15px;
+  padding: 10px;
   text-align: center;
 }
