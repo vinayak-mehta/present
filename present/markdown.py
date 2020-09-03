@@ -469,8 +469,7 @@ class Slide(object):
 
 
 class Markdown(object):
-    """Parse and traverse through the markdown abstract syntax tree.
-    """
+    """Parse and traverse through the markdown abstract syntax tree."""
 
     def parse(self, text):
         slides = []

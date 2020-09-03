@@ -1,0 +1,32 @@
+speed: 5
+lines:
+- prompt: $
+  in: cat
+  out: ''
+- prompt: ''
+  in: hello world
+  out: hello world
+- prompt: ''
+  in: ''
+  out: ^C
+- prompt: $
+  in: stty -icanon
+  out: ''
+- prompt: $
+  in: cat
+  out: ''
+- prompt: ''
+  in: hheelllloo wwoorrlldd^C
+  out: ''
+- prompt: $
+  in: stty icanon
+  out: ''
+- prompt: $
+  in: cat
+  out: ''
+- prompt: ''
+  in: hello world
+  out: hello world
+- prompt: ''
+  in: $
+  out: ''

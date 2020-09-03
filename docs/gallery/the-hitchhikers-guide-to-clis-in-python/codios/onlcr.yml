@@ -1,0 +1,38 @@
+speed: 5
+lines:
+- prompt: $
+  in: ps
+  out: '  PID TTY          TIME CMD'
+- prompt: ''
+  in: ''
+  out: '  396 pts/15   00:00:00 ps'
+- prompt: ''
+  in: ''
+  out: ' 2739 pts/15   00:00:02 fish'
+- prompt: '$'
+  in: 'stty -onlcr'
+  out: ''
+- prompt: '$'
+  in: 'ps'
+  out: '      PID TTY          TIME CMD'
+- prompt: ''
+  in: ''
+  out: '              396 pts/15   00:00:00 ps'
+- prompt: ''
+  in: ''
+  out: '                        2739 pts/15   00:00:02 fish'
+- prompt: '$'
+  in: 'stty onlcr'
+  out: ''
+- prompt: $
+  in: ps
+  out: '  PID TTY          TIME CMD'
+- prompt: ''
+  in: ''
+  out: '  396 pts/15   00:00:00 ps'
+- prompt: ''
+  in: ''
+  out: ' 2739 pts/15   00:00:02 fish'
+- prompt: ''
+  in: $
+  out: ''

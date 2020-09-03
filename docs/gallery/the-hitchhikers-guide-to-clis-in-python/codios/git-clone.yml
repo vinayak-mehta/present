@@ -1,0 +1,11 @@
+speed: 2
+lines:
+- prompt: $
+  in: smol-git clone git@github.com:vinayak-mehta/smol-git
+  out: ''
+- prompt: ''
+  in: ████████████████████████
+  out: ''
+- prompt: ''
+  in: $
+  out: ''

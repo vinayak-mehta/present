@@ -1,0 +1,17 @@
+speed: 4
+lines:
+- prompt: $
+  in: smol-git config user.name Vinayak
+  out: ''
+- prompt: '$'
+  in: cat ~/.config/smol_git/config
+  out: ''
+- prompt: ''
+  in: ''
+  out: '[user]'
+- prompt: ''
+  in: ''
+  out: 'name = Vinayak'
+- prompt: ''
+  in: $
+  out: ''

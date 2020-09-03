@@ -22,6 +22,7 @@ import sys
 # sys.path.insert(0, os.path.abspath('..'))
 
 # Insert present's path into the system.
+sys.path.insert(0, os.path.abspath("."))
 sys.path.insert(0, os.path.abspath(".."))
 sys.path.insert(0, os.path.abspath("_themes"))
 
@@ -37,7 +38,7 @@ import present
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = []
+extensions = ["gallery"]
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ["_templates"]
@@ -165,6 +166,12 @@ html_favicon = "_static/favicon.ico"
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ["_static"]
 
+# These paths are either relative to html_static_path
+# or fully qualified paths (eg. https://...)
+html_css_files = [
+    "css/gallery.css",
+]
+
 # Add any extra paths that contain custom files (such as robots.txt or
 # .htaccess) here, relative to this directory. These files are copied
 # directly to the root of the documentation.
@@ -277,7 +284,13 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, "present.tex", u"present documentation", u"Vinayak Mehta", "manual",)
+    (
+        master_doc,
+        "present.tex",
+        u"present documentation",
+        u"Vinayak Mehta",
+        "manual",
+    )
 ]
 
 # The name of an image file (relative to this directory) to place at the top of

@@ -1,0 +1,20 @@
+speed: 2
+lines:
+- prompt: $
+  in: smol-git push origin master
+  out: ''
+- prompt: "Username for 'https://github.com':"
+  in: vinayak
+  out: ''
+- prompt: "Password for 'https://vinayak@github.com':"
+  in: '                        '
+  out: ''
+- prompt: ""
+  in: ''
+  out: "Pushing to 'origin'..."
+- prompt: ''
+  in: ████████████████████████
+  out: ''
+- prompt: ''
+  in: $
+  out: ''

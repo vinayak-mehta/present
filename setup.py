@@ -19,7 +19,7 @@ requires = [
     "pyfiglet>=0.8.post1",
     "PyYAML>=5.3.1",
 ]
-dev_requires = ["Sphinx>=2.2.1"]
+dev_requires = ["black>=20.8b1", "Sphinx>=2.2.1"]
 dev_requires = dev_requires + requires
 
 

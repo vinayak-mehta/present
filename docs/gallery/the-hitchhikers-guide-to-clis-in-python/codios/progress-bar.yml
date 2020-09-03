@@ -1,0 +1,14 @@
+speed: 2
+lines:
+- prompt: $
+  in: smol-git push origin master
+  out: ''
+- prompt: ""
+  in: ''
+  out: "Pushing to 'origin'..."
+- prompt: ''
+  in: ████████████████████████
+  out: ''
+- prompt: ''
+  in: $
+  out: ''
