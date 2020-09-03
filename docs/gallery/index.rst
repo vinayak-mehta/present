@@ -12,3 +12,8 @@ Gallery
     :src: _static/gallery/welcome-to-coding.gif
     :slides: welcome-to-coding
     :description: Welcome to Coding by Russell Helmstedter
+
+.. gallery_image::
+    :src: _static/gallery/back-to-school.gif
+    :slides: back-to-school
+    :description: Back to School by Russell Helmstedter

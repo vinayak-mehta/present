@@ -1,7 +1,7 @@
 Gallery
 =======
 
-Back to school
+Back to School
 --------------
 
 I made a presentation for back to school night for virtual learning.
