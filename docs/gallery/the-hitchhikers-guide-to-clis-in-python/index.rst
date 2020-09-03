@@ -4,10 +4,10 @@ Gallery
 The Hitchhiker's Guide to CLIs in Python
 ----------------------------------------
 
+A talk about terminals and CLIs
+
 .. image:: /_static/gallery/the-hitchhikers-guide-to-clis-in-python.png
     :align: center
-
-Description: A talk about terminals and CLIs by Vinayak Mehta
 
 Made by `Vinayak Mehta <https://github.com/vinayak-mehta>`_.
 

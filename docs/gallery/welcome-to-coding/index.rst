@@ -4,10 +4,10 @@ Gallery
 Welcome to Coding
 -----------------
 
+Zoom loading screen for a coding class
+
 .. image:: /_static/gallery/welcome-to-coding.gif
     :align: center
-
-Description: Zoom loading screen for a coding class
 
 Made by `Russell Helmstedter <https://github.com/rhelmstedter>`_.
 
