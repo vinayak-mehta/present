@@ -32,7 +32,9 @@ You can also play a :ref:`codio` (pre-recorded code block) on a slide.
 
 ``present`` is built on `asciimatics <https://github.com/peterbrittain/asciimatics>`_, and it works with ``Python>=3.7``.
 
-Check out the :ref:`gallery` to see what everyone is making with ``present``!
+Check out the :ref:`gallery` to see what everyone is making with ``present``! You can add your slides to the docs by simply `opening an issue`_.
+
+.. _opening an issue: https://github.com/vinayak-mehta/present/issues/new?assignees=&labels=made-with-present&template=submit-slides-to-gallery.md&title=Add+slides+to+gallery
 
 Installation
 ------------
