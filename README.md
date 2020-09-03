@@ -20,6 +20,8 @@ You can also play a [codio](https://present.readthedocs.io/en/latest/codio.html)
 
 `present` is built on [asciimatics](https://github.com/peterbrittain/asciimatics), and it works with `Python>=3.7`.
 
+Check out the [Gallery](https://present.readthedocs.io/en/latest/gallery.html) to see what everyone is making with `present`!
+
 ## Installation
 
 You can simply use pip to install `present`:

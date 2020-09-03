@@ -1,0 +1,38 @@
+speed: 4
+lines:
+- prompt: $
+  in: smol-git commit
+  out: ''
+- prompt: ''
+  in: ''
+  out: '# Please enter the commit message for your changes. Lines starting'
+- prompt: ''
+  in: ''
+  out: "# with '#' will be ignored, and an empty message aborts the commit."
+- prompt: ''
+  in: ''
+  out: "# On branch master"
+- prompt: ''
+  in: ''
+  out: "# Changes to be committed:"
+- prompt: ''
+  in: ''
+  out: "#       new file:   a.txt"
+- prompt: ''
+  in: ''
+  out: '#'
+- prompt: ''
+  in: '    '
+  out: ''
+- prompt: ''
+  in: 'Add file'
+  out: ''
+- prompt: ''
+  in: ':wq'
+  out: ''
+- prompt: ''
+  in: ''
+  out: '[master 9d83964] Add file'
+- prompt: ''
+  in: $
+  out: ''

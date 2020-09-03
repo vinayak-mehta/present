@@ -1,0 +1,28 @@
+speed: 4
+lines:
+- prompt: $
+  in: smol-git status
+  out: ''
+- prompt: ''
+  in: ''
+  out: 'On branch master'
+- prompt: ''
+  in: ''
+  out: 'Changes to be committed:'
+- prompt: ''
+  in: ''
+  out: '  (use "git reset HEAD <file>..." to unstage)'
+- prompt: ''
+  in: ''
+  out: '    '
+- prompt: ''
+  in: ''
+  out: '        new file:   a.txt'
+  color: green
+  bold: True
+- prompt: ''
+  in: ''
+  out: '    '
+- prompt: ''
+  in: $
+  out: ''

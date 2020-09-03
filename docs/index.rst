@@ -32,6 +32,8 @@ You can also play a :ref:`codio` (pre-recorded code block) on a slide.
 
 ``present`` is built on `asciimatics <https://github.com/peterbrittain/asciimatics>`_, and it works with ``Python>=3.7``.
 
+Check out the :ref:`gallery` to see what everyone is making with ``present``!
+
 Installation
 ------------
 

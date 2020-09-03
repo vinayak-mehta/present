@@ -1,0 +1,44 @@
+speed: 5
+lines:
+- prompt: $
+  in: cat
+  out: ''
+- prompt: ''
+  in: hello
+  out: hello
+- prompt: ''
+  in: world
+  out: world
+- prompt: ''
+  in: ''
+  out: ^C
+- prompt: $
+  in: stty -echo
+  out: ''
+- prompt: ''
+  in: '    '
+  out: ''
+- prompt: ''
+  in: ''
+  out: hello
+- prompt: ''
+  in: '    '
+  out: ''
+- prompt: ''
+  in: ''
+  out: world
+- prompt: $
+  in: '    '
+  out: ''
+- prompt: $
+  in: cat
+  out: ''
+- prompt: ''
+  in: hello
+  out: hello
+- prompt: ''
+  in: world
+  out: world
+- prompt: ''
+  in: $
+  out: ''

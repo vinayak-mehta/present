@@ -200,7 +200,13 @@ def _fireworks(screen):
         y = randint(*choice(y_regions))
         effects.insert(
             1,
-            StarFirework(screen, x, y, randint(25, 30), start_frame=randint(0, 250),),
+            StarFirework(
+                screen,
+                x,
+                y,
+                randint(25, 30),
+                start_frame=randint(0, 250),
+            ),
         )
     return effects
 
@@ -221,7 +227,13 @@ def _explosions(screen):
         x = randint(*choice(x_regions))
         y = randint(*choice(y_regions))
         effects.append(
-            Explosion(screen, x, y, randint(20, 30), start_frame=randint(0, 250),)
+            Explosion(
+                screen,
+                x,
+                y,
+                randint(20, 30),
+                start_frame=randint(0, 250),
+            )
         )
     return effects
 
