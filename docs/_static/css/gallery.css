@@ -9,6 +9,12 @@ div.gallery:hover {
   border: 1px solid #777;
 }
 
+div.gallery a {
+  /* color: #3E4349; */
+  text-decoration: none;
+  color: inherit;
+}
+
 div.gallery img {
   width: 100%;
   height: auto;
