@@ -35,7 +35,7 @@ def gallery_image_html(self, node):
     template = f"""
     <div class="gallery">
       <a href="{slides}/index.html">
-        <img src="{src}" width="600" height="400">
+        <img src="/en/latest/{src}" width="600" height="400">
       </a>
       <div class="desc">{description}</div>
     </div>
