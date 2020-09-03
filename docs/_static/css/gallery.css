@@ -3,6 +3,7 @@ div.gallery {
   border: 1px solid #ccc;
   float: left;
   width: 180px;
+  height: 200px;
 }
 
 div.gallery:hover {
@@ -10,7 +11,6 @@ div.gallery:hover {
 }
 
 div.gallery a {
-  /* color: #3E4349; */
   text-decoration: none;
   color: inherit;
 }
