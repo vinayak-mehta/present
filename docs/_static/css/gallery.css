@@ -3,7 +3,7 @@ div.gallery {
   border: 1px solid #ccc;
   float: left;
   width: 180px;
-  height: 200px;
+  height: 220px;
 }
 
 div.gallery:hover {
