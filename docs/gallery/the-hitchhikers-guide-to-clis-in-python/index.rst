@@ -11,7 +11,7 @@ A talk about terminals and CLIs, and how to make CLIs using Python.
 
 Made by `Vinayak Mehta <https://github.com/vinayak-mehta>`_.
 
-You can see all files `here`_.
+You can check out all files `here`_.
 
 .. _here: https://github.com/vinayak-mehta/present/tree/master/docs/gallery/the-hitchhikers-guide-to-clis-in-python
 

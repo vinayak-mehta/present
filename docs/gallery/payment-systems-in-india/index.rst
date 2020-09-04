@@ -11,7 +11,7 @@ A talk about how financial payments in India work.
 
 Made by `Nemo <https://github.com/captn3m0>`_.
 
-You can see all files `here`_.
+You can check out all files `here`_.
 
 .. _here: https://github.com/vinayak-mehta/present/tree/master/docs/gallery/payment-systems-in-india
 
