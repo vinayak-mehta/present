@@ -15,26 +15,26 @@ class GalleryImage(Directive):
     final_argument_whitespace = True
     option_spec = {
         "src": directives.unchanged,
-        "slides": directives.unchanged,
+        "stub": directives.unchanged,
         "description": directives.unchanged,
     }
 
     def run(self):
         node = Node()
         node["src"] = self.options["src"]
-        node["slides"] = self.options["slides"]
+        node["stub"] = self.options["stub"]
         node["description"] = self.options["description"]
         return [node]
 
 
 def gallery_image_html(self, node):
     src = node["src"]
-    slides = node["slides"]
+    stub = node["stub"]
     description = node["description"]
 
     template = f"""
     <div class="gallery">
-      <a href="{slides}/index.html">
+      <a href="{stub}/index.html">
         <img src="https://present.readthedocs.io/en/latest/{src}" width="600" height="400">
         <div class="desc">{description}</div>
       </a>
