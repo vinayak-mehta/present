@@ -5,11 +5,13 @@ import re
 import sys
 import shutil
 import warnings
+import requests
 from dataclasses import dataclass
 
 import yaml
 from pyfiglet import Figlet
 from mistune import markdown
+from click import progressbar
 
 from .effects import COLORS, EFFECTS
 
@@ -221,8 +223,32 @@ class Image(object):
         self.attr = attr
         self.normal = normal
         self.bg = bg
+
         if not os.path.exists(self.obj["src"]):
-            raise FileNotFoundError(f"{self.obj['src']} does not exist")
+
+            if "https://" in self.obj["src"]:
+                if not "images" in os.listdir():
+                    os.mkdir("images")
+
+                # Check if image is already downloaded in images folder
+                if f"{self.obj['alt']}.png" in os.listdir("images"):
+                    self.obj["src"] = f"images/{self.obj['alt']}.png"
+
+                else:
+                    # Download image and store it in 'images' directory
+                    with progressbar(length=2, label="Downloading image..") as bar:
+                        response = requests.get(self.obj["src"])
+                        filename = f'images/{self.obj["alt"]}.png'
+                        bar.update(1)
+
+                        with open(filename, "wb") as f:
+                            f.write(response.content)
+                        bar.update(1)
+
+                        self.obj["src"] = filename
+
+            else:
+                raise FileNotFoundError(f"{self.obj['src']} does not exist")
 
     @property
     def size(self):
