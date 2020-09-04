@@ -9,7 +9,7 @@ You can add your slides by simply `opening an issue`_!
 
 .. gallery_image::
     :src: _static/gallery/payment-systems-in-india.png
-    :slides: payment-systems-in-india
+    :stub: payment-systems-in-india
     :description: Payment Systems in India by Nemo
 
 .. gallery_image::
