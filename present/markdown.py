@@ -471,10 +471,14 @@ class Slide(object):
 class Markdown(object):
     """Parse and traverse through the markdown abstract syntax tree."""
 
-    def __init__(self, file_path: str = "."):
-        self.file_dir = os.path.dirname(os.path.realpath(file_path))
+    def __init__(self, filename):
+        self.filename = filename
+        self.dirname = os.path.dirname(os.path.realpath(filename))
 
-    def parse(self, text):
+    def parse(self):
+        with open(self.filename, "r") as f:
+            text = f.read()
+
         slides = []
         ast = markdown(text, renderer="ast")
 
@@ -497,9 +501,8 @@ class Markdown(object):
                         and obj["children"][0]["type"] == "image"
                     ):
                         image = obj["children"][0]
-                        image["src"] = os.path.join(
-                            self.file_dir, os.path.expanduser(image["src"])
-                        )
+                        image["src"] = os.path.join(self.dirname, image["src"])
+
                         if image["alt"] == "codio":
                             with open(image["src"], "r") as f:
                                 codio = yaml.load(f, Loader=yaml.Loader)
