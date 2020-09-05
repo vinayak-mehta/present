@@ -497,7 +497,9 @@ class Markdown(object):
                         and obj["children"][0]["type"] == "image"
                     ):
                         image = obj["children"][0]
-                        image["src"] = os.path.join(self.file_dir, image["src"])
+                        image["src"] = os.path.join(
+                            self.file_dir, os.path.expanduser(image["src"])
+                        )
                         if image["alt"] == "codio":
                             with open(image["src"], "r") as f:
                                 codio = yaml.load(f, Loader=yaml.Loader)
