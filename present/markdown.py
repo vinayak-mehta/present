@@ -38,6 +38,11 @@ class Markdown(object):
         slides = []
         ast = markdown(text, renderer="ast")
 
+        # import sys, pprint
+
+        # pprint.pprint(ast)
+        # sys.exit(1)
+
         sliden = 0
         buffer = []
         for i, obj in enumerate(ast):
@@ -52,11 +57,10 @@ class Markdown(object):
 
             try:
                 if obj["type"] == "paragraph":
-                    if (
-                        len(obj["children"]) == 1
-                        and obj["children"][0]["type"] == "image"
-                    ):
-                        image = obj["children"][0]
+                    images = [c for c in obj["children"] if c["type"] == "image"]
+                    not_images = [c for c in obj["children"] if c["type"] != "image"]
+
+                    for image in images:
                         image["src"] = os.path.join(self.dirname, image["src"])
 
                         if image["alt"] == "codio":
@@ -65,8 +69,9 @@ class Markdown(object):
                             buffer.append(Codio(obj=codio))
                         else:
                             buffer.append(Image(obj=image))
-                    else:
-                        buffer.append(Paragraph(obj=obj))
+
+                    obj["children"] = not_images
+                    buffer.append(Paragraph(obj=obj))
                 else:
                     element_name = obj["type"].title().replace("_", "")
                     Element = eval(element_name)
