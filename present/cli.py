@@ -3,19 +3,16 @@
 import os
 import click
 
-from .slideshow import Slideshow
 from .markdown import Markdown
+from .slideshow import Slideshow
 
 
 @click.command()
-@click.argument("filename")
+@click.argument("filename", type=click.Path(exists=True))
 def cli(filename):
     """present: A terminal-based presentation tool with colors and effects."""
 
-    markdown = Markdown()
-
-    with open(filename, "r") as f:
-        slides = markdown.parse(f.read())
+    slides = Markdown(filename).parse()
 
     with Slideshow(slides) as show:
         show.play()
