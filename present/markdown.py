@@ -38,11 +38,6 @@ class Markdown(object):
         slides = []
         ast = markdown(text, renderer="ast")
 
-        # import sys, pprint
-
-        # pprint.pprint(ast)
-        # sys.exit(1)
-
         sliden = 0
         buffer = []
         for i, obj in enumerate(ast):
