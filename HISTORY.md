@@ -6,6 +6,7 @@ master
 
 **Bugfixes**
 
+* [#83](https://github.com/vinayak-mehta/present/issues/83) Having two consecutive image inclusion lines causes NotImplementedError. [#85](https://github.com/vinayak-mehta/present/pull/85) by Vinayak Mehta.
 * [#82](https://github.com/vinayak-mehta/present/issues/82) Using markdown comments throws NotImplementedError. [#84](https://github.com/vinayak-mehta/present/pull/84) by Vinayak Mehta.
 * [#80](https://github.com/vinayak-mehta/present/issues/80) Image paths aren't relative to the current working directory. [#81](https://github.com/vinayak-mehta/present/pull/81) by [Tymoteusz Makowski](https://github.com/tmakowski).
 
