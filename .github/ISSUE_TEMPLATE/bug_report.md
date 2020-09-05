@@ -2,7 +2,7 @@
 name: Bug report
 about: You can follow this template to submit bug reports.
 title: ''
-labels: ''
+labels: bug
 assignees: ''
 
 ---
@@ -12,8 +12,8 @@ assignees: ''
 **Describe the bug**
 A clear and concise description of what the bug is.
 
-**To Reproduce**
-Steps to install `present`:
+**Steps to reproduce the bug**
+Steps used to install `present`:
 1. Add step here (you can add more steps too)
 
 Steps to reproduce the behavior:
