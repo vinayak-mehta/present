@@ -99,9 +99,6 @@ class Slideshow(object):
         elements = slide.elements
         fg_color, bg_color = slide.fg_color, slide.bg_color
 
-        if slide.has_style:
-            elements = elements[1:]
-
         if (
             len(elements) == 1
             and not slide.has_image
