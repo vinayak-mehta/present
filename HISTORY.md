@@ -4,6 +4,12 @@ Release History
 master
 ------
 
+**Bugfixes**
+
+* [#80](https://github.com/vinayak-mehta/present/issues/80) Image paths aren't relative to the current working directory. [#81](https://github.com/vinayak-mehta/present/pull/81) by [Tymoteusz Makowski](https://github.com/tmakowski).
+
+**Documentation**
+
 * Add a gallery! [#74](https://github.com/vinayak-mehta/present/pull/74) by Vinayak Mehta.
 * [#36](https://github.com/vinayak-mehta/present/issues/36) Add contributing guide. [#69](https://github.com/vinayak-mehta/present/pull/69) by Vinayak Mehta.
 
