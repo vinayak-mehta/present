@@ -12,7 +12,7 @@ from .markdown import Markdown
 def cli(filename):
     """present: A terminal-based presentation tool with colors and effects."""
 
-    markdown = Markdown()
+    markdown = Markdown(filename)
 
     with open(filename, "r") as f:
         slides = markdown.parse(f.read())
