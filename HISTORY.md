@@ -6,6 +6,7 @@ master
 
 **Bugfixes**
 
+* [#82](https://github.com/vinayak-mehta/present/issues/82) Using markdown comments throws NotImplementedError. [#84](https://github.com/vinayak-mehta/present/pull/84) by Vinayak Mehta.
 * [#80](https://github.com/vinayak-mehta/present/issues/80) Image paths aren't relative to the current working directory. [#81](https://github.com/vinayak-mehta/present/pull/81) by [Tymoteusz Makowski](https://github.com/tmakowski).
 
 **Documentation**
