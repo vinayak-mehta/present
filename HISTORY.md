@@ -4,6 +4,10 @@ Release History
 master
 ------
 
+**Enhancements**
+
+* [#88](https://github.com/vinayak-mehta/present/issues/88) Support Page Up/Down for switching slides. [#90](https://github.com/vinayak-mehta/present/pull/90) by [Gaby](https://github.com/GitSquared).
+
 **Bugfixes**
 
 * [#83](https://github.com/vinayak-mehta/present/issues/83) Having two consecutive image inclusion lines causes NotImplementedError. [#85](https://github.com/vinayak-mehta/present/pull/85) by Vinayak Mehta.

@@ -39,8 +39,8 @@ $ present sample.md
 Some controls:
 
 - Quit: `q`
-- Previous slide: `b`, Left arrow
-- Next slide: `n`, Space bar, Right arrow
+- Previous slide: `b`, Left arrow, Page Up
+- Next slide: `n`, Space bar, Right arrow, Page Down
 
 At the end, you can press `r` to restart the presentation.
 
