@@ -4,6 +4,9 @@ Release History
 master
 ------
 
+0.6.0 (2020-09-09)
+------------------
+
 **Enhancements**
 
 * [#88](https://github.com/vinayak-mehta/present/issues/88) Support Page Up/Down for switching slides. [#90](https://github.com/vinayak-mehta/present/pull/90) by [Gaby](https://github.com/GitSquared).
