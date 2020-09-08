@@ -43,7 +43,7 @@ class Slide(Scene):
             c = event.key_code
             if c == ord("r"):
                 self._reset()
-            elif c in (ord("b"), Screen.KEY_LEFT):
+            elif c in (ord("b"), Screen.KEY_LEFT, Screen.KEY_PAGE_UP):
                 self.show.current_slide -= 1
 
                 try:
@@ -57,7 +57,7 @@ class Slide(Scene):
                     )
                 except IndexError:
                     pass
-            elif c in (ord(" "), ord("n"), Screen.KEY_RIGHT):
+            elif c in (ord(" "), ord("n"), Screen.KEY_RIGHT, Screen.KEY_PAGE_DOWN):
                 self.show.current_slide += 1
 
                 try:
