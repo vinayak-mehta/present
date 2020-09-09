@@ -8,6 +8,11 @@ You can add your slides by simply `opening an issue`_!
 .. _opening an issue: https://github.com/vinayak-mehta/present/issues/new?assignees=&labels=made-with-present&template=submit-slides-to-gallery.md&title=Add+slides+to+gallery
 
 .. gallery_image::
+    :src: _static/gallery/trustless-bridges.gif
+    :stub: trustless-bridges
+    :description: Trustless Bridges by Hernando Castano
+
+.. gallery_image::
     :src: _static/gallery/payment-systems-in-india.png
     :stub: payment-systems-in-india
     :description: Payment Systems in India by Nemo
