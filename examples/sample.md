@@ -21,9 +21,9 @@ Each slide should be separated with a ---
 Some controls:
 
 - Basic
-    - Quit: q
-    - Previous slide: b, Left arrow, Page Up
-    - Next slide: n, Space bar, Right arrow, Page Down
+    - Quit: `q`
+    - Previous slide: `b`, `Left arrow`, `Page Up`
+    - Next slide: `n`, `Space bar`, `Right arrow`, `Page Down`
 
 ---
 
