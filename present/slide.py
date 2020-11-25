@@ -51,15 +51,34 @@ class List(object):
     normal: int = 2  # Screen.A_NORMAL
     bg: int = 7
 
+    @staticmethod
+    def render_children(obj):
+        s = ''
+        for child in obj.get("children", []):
+            if child.get("type") == Text.type:
+                s += Text(obj=child).render()
+            elif child.get("type") == Codespan.type:
+                s += Codespan(obj=child).render()
+            elif child.get("type") == Strong.type:
+                s += Strong(obj=child).render()
+            elif child.get("type") == Emphasis.type:
+                s += Emphasis(obj=child).render()
+            elif child.get("type") == Link.type:
+                s += Link(obj=child).render()
+            elif child.get("text") is not None:
+                s += child.get("text")
+        return s
+
     def walk(self, obj, text=None, level=0):
         if text is None:
             text = []
 
         for child in obj.get("children", []):
-            if child.get("text") is not None:
-                text.append((" " * 2 * level) + "• " + child["text"])
-
-            if "children" in obj:
+            if child.get("type") == "block_text":
+                s = (" " * 2 * level) + "• "
+                s += List.render_children(child)
+                text.append(s)
+            elif "children" in obj:
                 self.walk(child, text=text, level=level + 1)
 
         return text
