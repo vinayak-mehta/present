@@ -28,7 +28,11 @@ class Slide(Scene):
         self.show = show
         self.fg_color = fg_color
         self.bg_color = bg_color
-        super(Slide, self).__init__(effects)
+
+        code_blocks = [item for item in effects if type(item) is tuple]
+        stripped_effects = [e for e in effects if type(e) is not tuple]
+
+        super(Slide, self).__init__(stripped_effects)
 
     def _reset(self):
         for effect in self._effects:
@@ -112,7 +116,8 @@ class Slideshow(object):
         pad = 2
         for e in elements:
             if e.type == "code":
-                effects.extend(_code(self.screen, e, row))
+                # effects.extend(_code(self.screen, e, row))
+                effects.append((self.screen, e, row))
                 pad = 4
             elif e.type == "codio":
                 effects.extend(_codio(self.screen, e, row))
