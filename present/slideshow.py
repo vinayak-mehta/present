@@ -133,8 +133,7 @@ class Slideshow(object):
         pad = 2
         for e in elements:
             if e.type == "code":
-                # effects.extend(_code(self.screen, e, row))
-                effects.append((self.screen, e, row))
+                effects.append((e, row))
                 pad = 4
             elif e.type == "codio":
                 effects.extend(_codio(self.screen, e, row))
@@ -224,7 +223,7 @@ class Slideshow(object):
                         self.screen.paint(
                             text.raw_text,
                             left_start,
-                            block[2],
+                            block[1],
                             colour_map=text.colour_map,
                         )
                 if self.screen.has_resized():
