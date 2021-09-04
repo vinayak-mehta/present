@@ -31,22 +31,26 @@ from asciimatics.strings import ColouredText
 
 
 def render_code_block(screen, block, row):
-    lang = "python"
+    lang = block.lang()
     code = "print('Testing')"
     # Dividide the width by 3
     left_start = int(screen.dimensions[1] / 3)
     lexer = get_lexer_by_name(lang)
-    coded_text = highlight(code, lexer, Terminal256Formatter())
-    text = ColouredText(
-        coded_text,
-        AsciimaticsParser(),
-    )
-    screen.paint(
-        text.raw_text,
-        left_start,
-        row,
-        colour_map=text.colour_map,
-    )
+
+    cur_row = row
+    for line in block.lines():
+        coded_text = highlight(line, lexer, Terminal256Formatter())
+        text = ColouredText(
+            coded_text,
+            AsciimaticsParser(),
+        )
+        screen.paint(
+            text.raw_text,
+            left_start,
+            cur_row,
+            colour_map=text.colour_map,
+        )
+        cur_row += 1
 
 
 class Slide(Scene):

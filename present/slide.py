@@ -101,6 +101,12 @@ class BlockCode(object):
     def render(self):
         return self.pad(self.obj["text"])
 
+    def lang(self):
+        return self.obj["info"]
+
+    def lines(self):
+        return self.obj["text"].splitlines()
+
 
 @dataclass
 class Codio(object):
