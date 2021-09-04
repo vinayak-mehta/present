@@ -30,13 +30,22 @@ from asciimatics.parsers import AsciimaticsParser
 from asciimatics.strings import ColouredText
 
 
-def highlight_code(code, lang):
+def render_code_block(screen, block, row):
+    lang = "python"
+    code = "print('Testing')"
+    # Dividide the width by 3
+    left_start = int(screen.dimensions[1] / 3)
     lexer = get_lexer_by_name(lang)
     coded_text = highlight(code, lexer, Terminal256Formatter())
-
-    return ColouredText(
+    text = ColouredText(
         coded_text,
         AsciimaticsParser(),
+    )
+    screen.paint(
+        text.raw_text,
+        left_start,
+        row,
+        colour_map=text.colour_map,
     )
 
 
@@ -212,20 +221,12 @@ class Slideshow(object):
                 self.screen.draw_next_frame(repeat=repeat)
 
                 cur_slide = self.slides[self.current_slide]
-                # Dividide the width by 3
-                left_start = int(self.screen.dimensions[1] / 3)
 
                 if cur_slide.code_blocks:
                     blocks = cur_slide.code_blocks
 
                     for block in blocks:
-                        text = highlight_code("print('Testing') ", "python")
-                        self.screen.paint(
-                            text.raw_text,
-                            left_start,
-                            block[1],
-                            colour_map=text.colour_map,
-                        )
+                        render_code_block(self.screen, block[0], block[1])
                 if self.screen.has_resized():
                     if stop_on_resize:
                         self.screen._scenes[self.screen._scene_index].exit()
