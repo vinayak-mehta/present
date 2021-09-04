@@ -31,11 +31,9 @@ from asciimatics.strings import ColouredText
 
 
 def render_code_block(screen, block, row):
-    lang = block.lang()
-    code = "print('Testing')"
     # Dividide the width by 3
     left_start = int(screen.dimensions[1] / 3)
-    lexer = get_lexer_by_name(lang)
+    lexer = get_lexer_by_name(block.lang())
 
     cur_row = row
     for line in block.lines():
@@ -224,13 +222,13 @@ class Slideshow(object):
                 a = time.time()
                 self.screen.draw_next_frame(repeat=repeat)
 
-                cur_slide = self.slides[self.current_slide]
+                if self.current_slide < len(self.slides) and (
+                    code_blocks := self.slides[self.current_slide].code_blocks
+                ):
+                    for tpl in code_blocks:
+                        block_code, row = tpl
+                        render_code_block(self.screen, block_code, row)
 
-                if cur_slide.code_blocks:
-                    blocks = cur_slide.code_blocks
-
-                    for block in blocks:
-                        render_code_block(self.screen, block[0], block[1])
                 if self.screen.has_resized():
                     if stop_on_resize:
                         self.screen._scenes[self.screen._scene_index].exit()
