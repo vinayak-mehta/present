@@ -22,6 +22,23 @@ from .effects import (
     Codio,
 )
 
+from pygments import highlight
+from pygments.lexers import get_lexer_by_name
+from pygments.formatters import Terminal256Formatter
+
+from asciimatics.parsers import AsciimaticsParser
+from asciimatics.strings import ColouredText
+
+
+def highlight_code(code, lang):
+    lexer = get_lexer_by_name(lang)
+    coded_text = highlight(code, lexer, Terminal256Formatter())
+
+    return ColouredText(
+        coded_text,
+        AsciimaticsParser(),
+    )
+
 
 class Slide(Scene):
     def __init__(self, show, effects, fg_color, bg_color):
@@ -29,7 +46,7 @@ class Slide(Scene):
         self.fg_color = fg_color
         self.bg_color = bg_color
 
-        code_blocks = [item for item in effects if type(item) is tuple]
+        self.code_blocks = [item for item in effects if type(item) is tuple]
         stripped_effects = [e for e in effects if type(e) is not tuple]
 
         super(Slide, self).__init__(stripped_effects)
@@ -194,6 +211,22 @@ class Slideshow(object):
 
                 a = time.time()
                 self.screen.draw_next_frame(repeat=repeat)
+
+                cur_slide = self.slides[self.current_slide]
+                # Dividide the width by 3
+                left_start = int(self.screen.dimensions[1] / 3)
+
+                if cur_slide.code_blocks:
+                    blocks = cur_slide.code_blocks
+
+                    for block in blocks:
+                        text = highlight_code("print('Testing') ", "python")
+                        self.screen.paint(
+                            text.raw_text,
+                            left_start,
+                            block[2],
+                            colour_map=text.colour_map,
+                        )
                 if self.screen.has_resized():
                     if stop_on_resize:
                         self.screen._scenes[self.screen._scene_index].exit()
