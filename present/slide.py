@@ -92,20 +92,17 @@ class BlockCode(object):
         lines.insert(0, top)
         lines.append(bottom)
 
-        return "\n".join(lines)
+        return lines
 
     @property
     def size(self):
         return len(self.obj["text"].splitlines())
 
-    def render(self):
-        return self.pad(self.obj["text"])
-
     def lang(self):
         return self.obj["info"]
 
-    def lines(self):
-        return self.obj["text"].splitlines()
+    def padded_lines(self):
+        return self.pad(self.obj["text"])
 
 
 @dataclass

@@ -36,7 +36,7 @@ def render_code_block(screen, block, row):
     lexer = get_lexer_by_name(block.lang())
 
     cur_row = row
-    for line in block.lines():
+    for line in block.padded_lines():
         coded_text = highlight(line, lexer, Terminal256Formatter())
         text = ColouredText(
             coded_text,
