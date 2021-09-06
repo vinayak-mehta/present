@@ -11,7 +11,6 @@ from asciimatics.exceptions import ResizeScreenError, StopApplication
 from .effects import (
     _reset,
     _base,
-    _code,
     _codio,
     _image,
     _fireworks,

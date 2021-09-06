@@ -138,19 +138,6 @@ def _base(screen, element, row, fg_color, bg_color, attr=0):
     return [base]
 
 
-def _code(screen, element, row):
-    code = Print(
-        screen,
-        Text(element.render()),
-        row,
-        colour=Screen.COLOUR_WHITE,
-        bg=Screen.COLOUR_BLACK,
-        transparent=False,
-    )
-
-    return [code]
-
-
 def _codio(screen, element, row):
     codio = Print(
         screen,
