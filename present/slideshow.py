@@ -26,7 +26,7 @@ from pygments import highlight
 from pygments.lexers import get_lexer_by_name
 from pygments.formatters import Terminal256Formatter
 
-from asciimatics.parsers import AsciimaticsParser
+from asciimatics.parsers import AnsiTerminalParser
 from asciimatics.strings import ColouredText
 
 
@@ -40,10 +40,10 @@ def render_code_block(screen, block, row):
         coded_text = highlight(line, lexer, Terminal256Formatter())
         text = ColouredText(
             coded_text,
-            AsciimaticsParser(),
+            AnsiTerminalParser(),
         )
         screen.paint(
-            text.raw_text,
+            text,
             left_start,
             cur_row,
             colour_map=text.colour_map,
