@@ -175,6 +175,8 @@ def _code(screen, element, row):
         HighlightedCode(element.render(), element.lang()),
         row,
         column,
+        colour=Screen.COLOUR_WHITE,
+        bg=Screen.COLOUR_BLACK,
         transparent=False,
     )
 
