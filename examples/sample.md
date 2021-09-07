@@ -64,7 +64,7 @@ columns, rows = shutil.get_terminal_size()
 
 ## Images
 
-```
+```md
 ![RC](images/recurse.png)
 ```
 
