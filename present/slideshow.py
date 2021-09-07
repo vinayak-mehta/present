@@ -51,11 +51,12 @@ def render_code_block(screen, block, row):
 
 
 class Slide(Scene):
-    def __init__(self, show, effects, code_blocks, fg_color, bg_color):
+    def __init__(self, show, slide):
         self.show = show
-        self.fg_color = fg_color
-        self.bg_color = bg_color
-        self.code_blocks = code_blocks
+        self.fg_color = slide.fg_color
+        self.bg_color = slide.bg_color
+        self.code_blocks = slide.code_blocks
+        effects = show.build_scene(slide)
 
         super(Slide, self).__init__(effects)
 
@@ -122,7 +123,7 @@ class Slideshow(object):
     def __exit__(self, type, value, traceback):
         self.screen.close()
 
-    def get_effects(self, slide):
+    def build_scene(self, slide):
         effects = []
         transparent = True
         elements = slide.elements
@@ -170,18 +171,9 @@ class Slideshow(object):
         repeat=True,
         allow_int=False,
     ):
-        self.reset = [Slide(self, _reset(self.screen), None, 7, 0)]
+        self.reset = [Scene(_reset(self.screen))]
 
-        self.slides = [
-            Slide(
-                self,
-                self.get_effects(slide),
-                slide.code_blocks,
-                slide.fg_color,
-                slide.bg_color,
-            )
-            for slide in self.slides
-        ]
+        self.slides = [Slide(self, slide) for slide in self.slides]
 
         # Initialise the Screen for animation.
         self.screen.set_scenes(
