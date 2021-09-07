@@ -8,7 +8,6 @@ from asciimatics.effects import Print
 from asciimatics.event import KeyboardEvent
 from asciimatics.exceptions import ResizeScreenError, StopApplication
 
-
 from .effects import (
     _reset,
     _base,
@@ -29,7 +28,6 @@ class Slide(Scene):
         self.show = show
         self.fg_color = fg_color
         self.bg_color = bg_color
-
         super(Slide, self).__init__(effects)
 
     def _reset(self):
@@ -191,7 +189,6 @@ class Slideshow(object):
 
                 a = time.time()
                 self.screen.draw_next_frame(repeat=repeat)
-
                 if self.screen.has_resized():
                     if stop_on_resize:
                         self.screen._scenes[self.screen._scene_index].exit()
