@@ -118,8 +118,10 @@ Note: You can use high resolution images and tweak the terminal font size to get
 
 ### Code blocks
 
+Put the code language after the backticks to get syntax highlighting.
+
 <pre>
-```
+```python
 import os
 
 os.getcwd()
