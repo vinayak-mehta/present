@@ -118,7 +118,7 @@ Note: You can use high resolution images and tweak the terminal font size to get
 
 ### Code blocks
 
-Put the code language after the backticks to get syntax highlighting.
+To specify your language for syntax highlighting, put it on the first line after the backticks. If no language is specified, a guess will be made based on the code block.
 
 <pre>
 ```python

@@ -17,7 +17,7 @@ from asciimatics.parsers import AnsiTerminalParser
 from asciimatics.strings import ColouredText
 
 from pygments import highlight
-from pygments.lexers import get_lexer_by_name
+from pygments.lexers import get_lexer_by_name, guess_lexer
 from pygments.formatters import Terminal256Formatter
 
 ATTRS = {
@@ -43,7 +43,7 @@ class HighlightedCode(StaticRenderer):
     def __init__(self, code, lang):
         super(HighlightedCode, self).__init__()
         self._images = [code]
-        self.lexer = get_lexer_by_name(lang)
+        self.lexer = get_lexer_by_name(lang) if lang is not None else guess_lexer(code)
 
     @property
     def rendered_text(self):
