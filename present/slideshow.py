@@ -7,16 +7,12 @@ from asciimatics.screen import Screen
 from asciimatics.effects import Print
 from asciimatics.event import KeyboardEvent
 from asciimatics.exceptions import ResizeScreenError, StopApplication
-from asciimatics.parsers import AnsiTerminalParser
-from asciimatics.strings import ColouredText
 
-from pygments import highlight
-from pygments.lexers import get_lexer_by_name
-from pygments.formatters import Terminal256Formatter
 
 from .effects import (
     _reset,
     _base,
+    _code,
     _codio,
     _image,
     _fireworks,
@@ -28,32 +24,11 @@ from .effects import (
 )
 
 
-def render_code_block(screen, block, row):
-    # Divide the width by 3
-    column = int(screen.dimensions[1] / 3)
-    lexer = get_lexer_by_name(block.lang())
-
-    for cur_row, line in enumerate(block.padded_lines(), start=row):
-        coded_text = highlight(line, lexer, Terminal256Formatter())
-        text = ColouredText(
-            coded_text,
-            AnsiTerminalParser(),
-        )
-        screen.paint(
-            text,
-            column,
-            cur_row,
-            colour_map=text.colour_map,
-        )
-
-
 class Slide(Scene):
-    def __init__(self, show, slide):
+    def __init__(self, show, effects, fg_color, bg_color):
         self.show = show
-        self.fg_color = slide.fg_color
-        self.bg_color = slide.bg_color
-        self.code_blocks = slide.code_blocks
-        effects = show.build_scene(slide)
+        self.fg_color = fg_color
+        self.bg_color = bg_color
 
         super(Slide, self).__init__(effects)
 
@@ -120,7 +95,7 @@ class Slideshow(object):
     def __exit__(self, type, value, traceback):
         self.screen.close()
 
-    def build_scene(self, slide):
+    def get_effects(self, slide):
         effects = []
         transparent = True
         elements = slide.elements
@@ -139,8 +114,7 @@ class Slideshow(object):
         pad = 2
         for e in elements:
             if e.type == "code":
-                # Add the element + row to the slide's code_blocks list
-                slide.code_blocks.append((e, row))
+                effects.extend(_code(self.screen, e, row))
                 pad = 4
             elif e.type == "codio":
                 effects.extend(_codio(self.screen, e, row))
@@ -168,9 +142,12 @@ class Slideshow(object):
         repeat=True,
         allow_int=False,
     ):
-        self.reset = [Scene(_reset(self.screen))]
+        self.reset = [Slide(self, _reset(self.screen), 7, 0)]
 
-        self.slides = [Slide(self, slide) for slide in self.slides]
+        self.slides = [
+            Slide(self, self.get_effects(slide), slide.fg_color, slide.bg_color)
+            for slide in self.slides
+        ]
 
         # Initialise the Screen for animation.
         self.screen.set_scenes(
@@ -214,13 +191,6 @@ class Slideshow(object):
 
                 a = time.time()
                 self.screen.draw_next_frame(repeat=repeat)
-
-                if self.current_slide < len(self.slides) and (
-                    code_blocks := self.slides[self.current_slide].code_blocks
-                ):
-                    for tpl in code_blocks:
-                        block_code, row = tpl
-                        render_code_block(self.screen, block_code, row)
 
                 if self.screen.has_resized():
                     if stop_on_resize:

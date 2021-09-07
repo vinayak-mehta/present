@@ -92,7 +92,7 @@ class BlockCode(object):
         lines.insert(0, top)
         lines.append(bottom)
 
-        return lines
+        return "\n".join(lines)
 
     @property
     def size(self):
@@ -101,7 +101,7 @@ class BlockCode(object):
     def lang(self):
         return self.obj["info"]
 
-    def padded_lines(self):
+    def render(self):
         return self.pad(self.obj["text"])
 
 
@@ -404,12 +404,12 @@ class Slide(object):
         self.has_style = False
         self.has_effect = False
         self.has_image = False
+        self.has_code = False
         self.has_codio = False
         self.style = {}
         self.effect = None
         self.fg_color = 0
         self.bg_color = 7
-        self.code_blocks = None
 
         _elements = []
 
@@ -426,8 +426,7 @@ class Slide(object):
                 self.has_image = True
 
             if e.type == "code":
-                # This list will get built by the Slideshow
-                self.code_blocks = []
+                self.has_code = True
 
             if e.type == "codio":
                 self.has_codio = True
@@ -470,10 +469,6 @@ class Slide(object):
         for e in self.elements:
             e.fg = self.fg_color
             e.bg = self.bg_color
-
-    @property
-    def has_code(self):
-        return type(self.code_blocks) is list
 
     def __repr__(self):
         return f"<Slide elements={self.elements} has_style={self.has_style} has_code={self.has_code} fg_color={self.fg_color} bg_color={self.bg_color}>"
