@@ -51,15 +51,13 @@ def render_code_block(screen, block, row):
 
 
 class Slide(Scene):
-    def __init__(self, show, effects, fg_color, bg_color):
+    def __init__(self, show, effects, code_blocks, fg_color, bg_color):
         self.show = show
         self.fg_color = fg_color
         self.bg_color = bg_color
+        self.code_blocks = code_blocks
 
-        self.code_blocks = [item for item in effects if type(item) is tuple]
-        stripped_effects = [e for e in effects if type(e) is not tuple]
-
-        super(Slide, self).__init__(stripped_effects)
+        super(Slide, self).__init__(effects)
 
     def _reset(self):
         for effect in self._effects:
@@ -143,7 +141,8 @@ class Slideshow(object):
         pad = 2
         for e in elements:
             if e.type == "code":
-                effects.append((e, row))
+                # Add the element + row to the slide's code_blocks list
+                slide.code_blocks.append((e, row))
                 pad = 4
             elif e.type == "codio":
                 effects.extend(_codio(self.screen, e, row))
@@ -171,10 +170,16 @@ class Slideshow(object):
         repeat=True,
         allow_int=False,
     ):
-        self.reset = [Slide(self, _reset(self.screen), 7, 0)]
+        self.reset = [Slide(self, _reset(self.screen), None, 7, 0)]
 
         self.slides = [
-            Slide(self, self.get_effects(slide), slide.fg_color, slide.bg_color)
+            Slide(
+                self,
+                self.get_effects(slide),
+                slide.code_blocks,
+                slide.fg_color,
+                slide.bg_color,
+            )
             for slide in self.slides
         ]
 

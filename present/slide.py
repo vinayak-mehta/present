@@ -410,6 +410,7 @@ class Slide(object):
         self.effect = None
         self.fg_color = 0
         self.bg_color = 7
+        self.code_blocks = []
 
         _elements = []
 
