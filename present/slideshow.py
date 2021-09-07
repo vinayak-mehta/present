@@ -7,6 +7,12 @@ from asciimatics.screen import Screen
 from asciimatics.effects import Print
 from asciimatics.event import KeyboardEvent
 from asciimatics.exceptions import ResizeScreenError, StopApplication
+from asciimatics.parsers import AnsiTerminalParser
+from asciimatics.strings import ColouredText
+
+from pygments import highlight
+from pygments.lexers import get_lexer_by_name
+from pygments.formatters import Terminal256Formatter
 
 from .effects import (
     _reset,
@@ -21,17 +27,10 @@ from .effects import (
     Codio,
 )
 
-from pygments import highlight
-from pygments.lexers import get_lexer_by_name
-from pygments.formatters import Terminal256Formatter
-
-from asciimatics.parsers import AnsiTerminalParser
-from asciimatics.strings import ColouredText
-
 
 def render_code_block(screen, block, row):
     # Divide the width by 3
-    left_start = int(screen.dimensions[1] / 3)
+    column = int(screen.dimensions[1] / 3)
     lexer = get_lexer_by_name(block.lang())
 
     for cur_row, line in enumerate(block.padded_lines(), start=row):
@@ -42,7 +41,7 @@ def render_code_block(screen, block, row):
         )
         screen.paint(
             text,
-            left_start,
+            column,
             cur_row,
             colour_map=text.colour_map,
         )
