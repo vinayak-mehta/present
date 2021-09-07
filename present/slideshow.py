@@ -30,12 +30,11 @@ from asciimatics.strings import ColouredText
 
 
 def render_code_block(screen, block, row):
-    # Dividide the width by 3
+    # Divide the width by 3
     left_start = int(screen.dimensions[1] / 3)
     lexer = get_lexer_by_name(block.lang())
 
-    cur_row = row
-    for line in block.padded_lines():
+    for cur_row, line in enumerate(block.padded_lines(), start=row):
         coded_text = highlight(line, lexer, Terminal256Formatter())
         text = ColouredText(
             coded_text,
@@ -47,7 +46,6 @@ def render_code_block(screen, block, row):
             cur_row,
             colour_map=text.colour_map,
         )
-        cur_row += 1
 
 
 class Slide(Scene):
