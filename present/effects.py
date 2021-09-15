@@ -13,7 +13,12 @@ from asciimatics.renderers import (
     ColourImageFile,
     DynamicRenderer,
 )
+from asciimatics.parsers import AnsiTerminalParser
+from asciimatics.strings import ColouredText
 
+from pygments import highlight
+from pygments.lexers import get_lexer_by_name
+from pygments.formatters import Terminal256Formatter
 
 ATTRS = {
     "bold": Screen.A_BOLD,
@@ -32,6 +37,35 @@ COLORS = {
     "white": Screen.COLOUR_WHITE,
 }
 EFFECTS = ["fireworks", "explosions", "stars", "matrix", "plasma"]
+
+
+class HighlightedCode(StaticRenderer):
+    def __init__(self, code, lang):
+        super(HighlightedCode, self).__init__()
+        self._images = [code]
+        self.lang = lang
+
+    @property
+    def rendered_text(self):
+        if self.lang is None:
+            return super().rendered_text
+
+        if len(self._plain_images) <= 0:
+            self._convert_images()
+
+        lexer = get_lexer_by_name(self.lang)
+        highlighted_block = []
+        colour_map = []
+
+        # We're only expecting this renderer to have one code block
+        for line in self._plain_images[0]:
+            highlighted_line = highlight(line, lexer, Terminal256Formatter())
+            encoded_text = ColouredText(highlighted_line, AnsiTerminalParser())
+
+            highlighted_block.append(encoded_text)
+            colour_map.append(encoded_text.colour_map)
+
+        return (highlighted_block, colour_map)
 
 
 class Text(StaticRenderer):
@@ -139,10 +173,12 @@ def _base(screen, element, row, fg_color, bg_color, attr=0):
 
 
 def _code(screen, element, row):
+    column = int(screen.dimensions[1] / 3)
     code = Print(
         screen,
-        Text(element.render()),
+        HighlightedCode(element.render(), element.lang()),
         row,
+        column,
         colour=Screen.COLOUR_WHITE,
         bg=Screen.COLOUR_BLACK,
         transparent=False,

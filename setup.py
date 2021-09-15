@@ -17,6 +17,7 @@ requires = [
     "Click>=7.0",
     "mistune>=2.0.0a4",
     "pyfiglet>=0.8.post1",
+    "Pygments>=2.10.0",
     "PyYAML>=5.3.1",
 ]
 dev_requires = ["black>=20.8b1", "Sphinx>=2.2.1"]

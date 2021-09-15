@@ -98,6 +98,9 @@ class BlockCode(object):
     def size(self):
         return len(self.obj["text"].splitlines())
 
+    def lang(self):
+        return self.obj["info"]
+
     def render(self):
         return self.pad(self.obj["text"])
 
