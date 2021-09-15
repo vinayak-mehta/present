@@ -17,7 +17,7 @@ from asciimatics.parsers import AnsiTerminalParser
 from asciimatics.strings import ColouredText
 
 from pygments import highlight
-from pygments.lexers import get_lexer_by_name, guess_lexer
+from pygments.lexers import get_lexer_by_name
 from pygments.formatters import Terminal256Formatter
 
 ATTRS = {
@@ -43,19 +43,23 @@ class HighlightedCode(StaticRenderer):
     def __init__(self, code, lang):
         super(HighlightedCode, self).__init__()
         self._images = [code]
-        self.lexer = get_lexer_by_name(lang) if lang is not None else guess_lexer(code)
+        self.lang = lang
 
     @property
     def rendered_text(self):
+        if self.lang is None:
+            return super().rendered_text
+
         if len(self._plain_images) <= 0:
             self._convert_images()
 
+        lexer = get_lexer_by_name(self.lang)
         highlighted_block = []
         colour_map = []
 
         # We're only expecting this renderer to have one code block
         for line in self._plain_images[0]:
-            highlighted_line = highlight(line, self.lexer, Terminal256Formatter())
+            highlighted_line = highlight(line, lexer, Terminal256Formatter())
             encoded_text = ColouredText(highlighted_line, AnsiTerminalParser())
 
             highlighted_block.append(encoded_text)
