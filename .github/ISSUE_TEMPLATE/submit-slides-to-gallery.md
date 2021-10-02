@@ -2,7 +2,7 @@
 name: Submit slides to gallery
 about: You can follow this template to submit your slides to the gallery.
 title: Add slides to gallery
-labels: made-with-present
+labels: ''
 assignees: ''
 
 ---
