@@ -13,13 +13,13 @@ with open("README.md", "r") as f:
     readme = f.read()
 
 requires = [
-    "asciimatics>=1.11.0",
-    "Click>=7.0",
-    "mistune>=2.0.0a4",
+    "asciimatics>=1.14.0",
+    "Click>=8.1.3,<9.0",
+    "mistune>=2.0.4,<3.0",
     "pyfiglet>=0.8.post1",
-    "PyYAML>=5.3.1",
+    "PyYAML>=6.0,<7.0",
 ]
-dev_requires = ["black>=20.8b1", "Sphinx>=2.2.1"]
+dev_requires = ["black>=22.12", "Sphinx>=6.1.3"]
 dev_requires = dev_requires + requires
 
 
